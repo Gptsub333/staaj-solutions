@@ -50,6 +50,39 @@ export default function LandingPage() {
             }
           }
 
+          @keyframes logo-glow {
+            0%, 100% {
+              filter: drop-shadow(0 0 5px rgba(220, 38, 127, 0.3));
+            }
+            50% {
+              filter: drop-shadow(0 0 20px rgba(220, 38, 127, 0.6)) drop-shadow(0 0 30px rgba(239, 68, 68, 0.4));
+            }
+          }
+
+          @keyframes logo-bounce {
+            0%, 20%, 50%, 80%, 100% {
+              transform: translateY(0) scale(1);
+            }
+            40% {
+              transform: translateY(-8px) scale(1.05);
+            }
+            60% {
+              transform: translateY(-4px) scale(1.02);
+            }
+          }
+
+          @keyframes logo-pulse {
+            0% {
+              transform: scale(1);
+            }
+            50% {
+              transform: scale(1.05);
+            }
+            100% {
+              transform: scale(1);
+            }
+          }
+
           .animate-fade-in-up {
             animation: fade-in-up 0.8s ease-out forwards;
           }
@@ -66,8 +99,29 @@ export default function LandingPage() {
             animation: float 3s ease-in-out infinite;
           }
 
+          .animate-logo-glow {
+            animation: logo-glow 3s ease-in-out infinite;
+          }
+
+          .animate-logo-bounce {
+            animation: logo-bounce 2s ease-in-out infinite;
+          }
+
+          .animate-logo-pulse {
+            animation: logo-pulse 2s ease-in-out infinite;
+          }
+
           .counter-animation {
             animation: fade-in-up 0.8s ease-out forwards;
+          }
+
+          .logo-hover-effect {
+            transition: all 0.3s ease;
+          }
+
+          .logo-hover-effect:hover {
+            transform: scale(1.1) rotate(5deg);
+            filter: drop-shadow(0 10px 20px rgba(220, 38, 127, 0.4));
           }
         `
       }} />
@@ -100,8 +154,18 @@ export default function LandingPage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Navigation */}
           <nav className="flex items-center justify-between py-6">
-            <div className="flex items-center">
-              <div className="text-2xl font-bold text-gray-900 ml-3">
+            <div className="flex items-center space-x-4">
+              {/* Logo with interesting animations */}
+              <div className="relative">
+                <img 
+                  src="/logo.png" 
+                  alt="STAAJ Solutions Logo" 
+                  className="h-10 w-10 logo-hover-effect animate-logo-glow"
+                />
+                {/* Animated ring around logo */}
+                <div className="absolute -inset-2 border-2 border-pink-300 rounded-full opacity-20 animate-logo-pulse"></div>
+              </div>
+              <div className="text-2xl font-bold text-gray-900">
                 STAAJ<span className="text-red-600">Solutions</span>
               </div>
             </div>
@@ -192,6 +256,14 @@ export default function LandingPage() {
       <div className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
+            {/* Logo in stats section */}
+            <div className="flex justify-center mb-6">
+              <img 
+                src="/logo.png" 
+                alt="STAAJ Solutions" 
+                className="h-16 w-16 animate-logo-bounce opacity-80"
+              />
+            </div>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Trusted by Growing Businesses</h2>
             <p className="text-lg text-gray-600">Our proven track record speaks for itself</p>
           </div>
@@ -393,8 +465,14 @@ export default function LandingPage() {
       {/* Footer */}
       <div className="bg-gray-900 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center items-center">
-            <div className="text-xl font-bold text-white ml-3">
+          <div className="flex justify-center items-center space-x-3">
+            {/* Logo in footer */}
+            <img 
+              src="/logo.png" 
+              alt="STAAJ Solutions" 
+              className="h-8 w-8 opacity-80 hover:opacity-100 transition-opacity duration-300"
+            />
+            <div className="text-xl font-bold text-white">
               STAAJ<span className="text-red-400">Solutions</span>
             </div>
           </div>
