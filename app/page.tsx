@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, Users, Target, TrendingUp, CheckCircle, Star, Zap, Award } from 'lucide-react';
+import Link from 'next/link';
 
 export default function LandingPage() {
   return (
@@ -124,10 +125,12 @@ export default function LandingPage() {
               </div>
 
               <div className="animate-fade-in-up" style={{animationDelay: '0.4s'}}>
+                <Link href="/auth">
                 <button className="group bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-semibold py-4 px-8 rounded-lg text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2">
                   <span>Get Started</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
+                </Link>
               </div>
 
               {/* Trust Indicators */}
@@ -377,10 +380,12 @@ export default function LandingPage() {
             Join successful business leaders who trust STAAJ Solutions to help them reach their full potential.
           </p>
           <div className="animate-fade-in-up" style={{animationDelay: '0.4s'}}>
+            <Link href="/auth">
             <button className="group bg-white text-red-600 hover:bg-gray-100 font-semibold py-4 px-8 rounded-lg text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center mx-auto space-x-2">
               <span>Get Started</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
+            </Link>
           </div>
         </div>
       </div>
