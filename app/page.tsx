@@ -158,9 +158,9 @@ export default function LandingPage() {
               {/* Logo with interesting animations */}
               <div className="relative">
                 <img 
-                  src="/logo.png" 
-                  alt="STAAJ Solutions Logo" 
-                  className="h-10 w-10 logo-hover-effect animate-logo-glow"
+                  src="/logo.png"
+                  alt="STAAJ Solutions Logo"
+                  className="h-10 w-10 logo-hover-effect animate-logo-glow mix-blend-multiply"
                 />
                 {/* Animated ring around logo */}
                 <div className="absolute -inset-2 border-2 border-pink-300 rounded-full opacity-20 animate-logo-pulse"></div>
@@ -261,7 +261,7 @@ export default function LandingPage() {
               <img 
                 src="/logo.png" 
                 alt="STAAJ Solutions" 
-                className="h-16 w-16 animate-logo-bounce opacity-80"
+                className="h-16 w-16 animate-logo-bounce opacity-80 mix-blend-multiply"
               />
             </div>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Trusted by Growing Businesses</h2>
@@ -459,26 +459,6 @@ export default function LandingPage() {
             </button>
             </Link>
           </div>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <div className="bg-gray-900 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center items-center space-x-3">
-            {/* Logo in footer */}
-            <img 
-              src="/logo.png" 
-              alt="STAAJ Solutions" 
-              className="h-8 w-8 opacity-80 hover:opacity-100 transition-opacity duration-300"
-            />
-            <div className="text-xl font-bold text-white">
-              STAAJ<span className="text-red-400">Solutions</span>
-            </div>
-          </div>
-          <p className="text-center text-gray-400 mt-4">
-            © 2025 STAAJ Solutions. Scaling your business with confidence.
-          </p>
         </div>
       </div>
     </div>
