@@ -1,6 +1,7 @@
 import React from 'react';
-import { ArrowRight, Users, Target, TrendingUp, CheckCircle, Star, Zap, Award, Monitor, ShoppingBag, DollarSign, Heart } from 'lucide-react';
+import { ArrowRight, Users, Target, TrendingUp, CheckCircle, Star, Zap, Award } from 'lucide-react';
 import Link from 'next/link';
+
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-white">
@@ -51,10 +52,10 @@ export default function LandingPage() {
 
           @keyframes logo-glow {
             0%, 100% {
-              filter: drop-shadow(0 0 8px rgba(220, 38, 127, 0.3));
+              filter: drop-shadow(0 0 5px rgba(220, 38, 127, 0.3));
             }
             50% {
-              filter: drop-shadow(0 0 16px rgba(220, 38, 127, 0.5));
+              filter: drop-shadow(0 0 20px rgba(220, 38, 127, 0.6)) drop-shadow(0 0 30px rgba(239, 68, 68, 0.4));
             }
           }
 
@@ -63,10 +64,10 @@ export default function LandingPage() {
               transform: translateY(0) scale(1);
             }
             40% {
-              transform: translateY(-3px) scale(1.02);
+              transform: translateY(-8px) scale(1.05);
             }
             60% {
-              transform: translateY(-1px) scale(1.01);
+              transform: translateY(-4px) scale(1.02);
             }
           }
 
@@ -119,17 +120,8 @@ export default function LandingPage() {
           }
 
           .logo-hover-effect:hover {
-            transform: scale(1.05);
-            filter: drop-shadow(0 8px 16px rgba(220, 38, 127, 0.3));
-          }
-
-          .main-logo {
-            transition: all 0.4s ease;
-          }
-
-          .main-logo:hover {
-            transform: scale(1.08) translateY(-2px);
-            filter: drop-shadow(0 12px 24px rgba(220, 38, 127, 0.4));
+            transform: scale(1.1) rotate(5deg);
+            filter: drop-shadow(0 10px 20px rgba(220, 38, 127, 0.4));
           }
         `
       }} />
@@ -161,22 +153,25 @@ export default function LandingPage() {
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Navigation */}
-          <nav className="flex items-center justify-center py-8">
-            <div className="flex items-center justify-center">
-              {/* Updated Logo */}
+          <nav className="flex items-center justify-between py-6">
+            <div className="flex items-center space-x-4">
+              {/* Logo with interesting animations */}
               <div className="relative">
                 <img 
-                  src="/logo2.png" 
-                  alt="STAAJ Solutions" 
-                  className="h-16 w-auto object-contain main-logo animate-logo-glow"
+                  src="/logo.png"
+                  alt="STAAJ Solutions Logo"
+                  className="h-10 w-10 logo-hover-effect animate-logo-glow mix-blend-multiply"
                 />
                 {/* Animated ring around logo */}
-                <div className="absolute -inset-2 border-2 border-pink-200 rounded-2xl opacity-30 animate-logo-pulse"></div>
+                <div className="absolute -inset-2 border-2 border-pink-300 rounded-full opacity-20 animate-logo-pulse"></div>
+              </div>
+              <div className="text-2xl font-bold text-gray-900">
+                STAAJ<span className="text-red-600">Solutions</span>
               </div>
             </div>
           </nav>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-20">
             {/* Left Content */}
             <div className="space-y-8">
               <div className="animate-fade-in-up">
@@ -194,7 +189,7 @@ export default function LandingPage() {
               </div>
 
               <div className="animate-fade-in-up" style={{animationDelay: '0.4s'}}>
-                <Link href = '/auth'>
+                <Link href="/auth">
                 <button className="group bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-semibold py-4 px-8 rounded-lg text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2">
                   <span>Get Started</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -264,9 +259,9 @@ export default function LandingPage() {
             {/* Logo in stats section */}
             <div className="flex justify-center mb-6">
               <img 
-                src="/logo2.png" 
+                src="/logo.png" 
                 alt="STAAJ Solutions" 
-                className="h-12 w-auto object-contain animate-logo-bounce opacity-90"
+                className="h-16 w-16 animate-logo-bounce opacity-80 mix-blend-multiply"
               />
             </div>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Trusted by Growing Businesses</h2>
@@ -399,33 +394,33 @@ export default function LandingPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white/60 backdrop-blur-sm rounded-xl p-8 text-center hover:shadow-lg transition-all duration-300 border border-pink-100/50 transform hover:scale-105 group">
-              <div className="w-16 h-16 bg-gradient-to-br from-red-500/10 to-pink-600/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform backdrop-blur-sm border border-red-200/30">
-                <Monitor className="w-8 h-8 text-red-600" />
+            <div className="bg-gradient-to-br from-red-50 to-pink-100 rounded-xl p-8 text-center hover:shadow-lg transition-all duration-300 border border-red-200 transform hover:scale-105 group">
+              <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform">
+                <span className="text-2xl">💻</span>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Technology</h3>
               <p className="text-gray-600">SaaS, Apps, Platforms</p>
             </div>
 
-            <div className="bg-white/60 backdrop-blur-sm rounded-xl p-8 text-center hover:shadow-lg transition-all duration-300 border border-pink-100/50 transform hover:scale-105 group">
-              <div className="w-16 h-16 bg-gradient-to-br from-pink-500/10 to-red-600/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform backdrop-blur-sm border border-pink-200/30">
-                <ShoppingBag className="w-8 h-8 text-pink-600" />
+            <div className="bg-gradient-to-br from-pink-50 to-red-100 rounded-xl p-8 text-center hover:shadow-lg transition-all duration-300 border border-pink-200 transform hover:scale-105 group">
+              <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform">
+                <span className="text-2xl">🛍️</span>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Retail</h3>
               <p className="text-gray-600">E-commerce, Stores</p>
             </div>
 
-            <div className="bg-white/60 backdrop-blur-sm rounded-xl p-8 text-center hover:shadow-lg transition-all duration-300 border border-pink-100/50 transform hover:scale-105 group">
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-500/10 to-red-600/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform backdrop-blur-sm border border-orange-200/30">
-                <DollarSign className="w-8 h-8 text-orange-600" />
+            <div className="bg-gradient-to-br from-orange-50 to-red-100 rounded-xl p-8 text-center hover:shadow-lg transition-all duration-300 border border-orange-200 transform hover:scale-105 group">
+              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform">
+                <span className="text-2xl">💰</span>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Finance</h3>
               <p className="text-gray-600">Fintech, Services</p>
             </div>
 
-            <div className="bg-white/60 backdrop-blur-sm rounded-xl p-8 text-center hover:shadow-lg transition-all duration-300 border border-pink-100/50 transform hover:scale-105 group">
-              <div className="w-16 h-16 bg-gradient-to-br from-red-500/10 to-orange-600/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform backdrop-blur-sm border border-red-200/30">
-                <Heart className="w-8 h-8 text-red-600" />
+            <div className="bg-gradient-to-br from-red-50 to-orange-100 rounded-xl p-8 text-center hover:shadow-lg transition-all duration-300 border border-red-200 transform hover:scale-105 group">
+              <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform">
+                <span className="text-2xl">🏥</span>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Medical Tech</h3>
               <p className="text-gray-600">Devices, Healthcare</p>
@@ -457,30 +452,13 @@ export default function LandingPage() {
             Join successful business leaders who trust STAAJ Solutions to help them reach their full potential.
           </p>
           <div className="animate-fade-in-up" style={{animationDelay: '0.4s'}}>
-            <Link href = '/auth'>
+            <Link href="/auth">
             <button className="group bg-white text-red-600 hover:bg-gray-100 font-semibold py-4 px-8 rounded-lg text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center mx-auto space-x-2">
               <span>Get Started</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
             </Link>
           </div>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <div className="bg-gradient-to-br from-pink-50 to-red-50 py-12 border-t border-pink-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center items-center">
-            {/* Logo in footer */}
-            <img 
-              src="/logo2.png" 
-              alt="STAAJ Solutions" 
-              className="h-10 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
-            />
-          </div>
-          <p className="text-center text-gray-600 mt-4">
-            © 2025 STAAJ Solutions. Scaling your business with confidence.
-          </p>
         </div>
       </div>
     </div>
