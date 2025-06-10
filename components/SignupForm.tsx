@@ -87,32 +87,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ onComplete }) => {
     return () => clearInterval(interval);
   }, []);
 
-  const submitToHubSpot = async (data: SignupData) => {
-    try {
-      const response = await fetch('/api/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: data.email,
-          companyName: data.companyName
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to submit to HubSpot');
-      }
-
-      const result = await response.json();
-      console.log('HubSpot submission successful:', result);
-      return result;
-    } catch (error) {
-      console.error('Error submitting to HubSpot:', error);
-      throw error;
-    }
-  };
+  
 
   const handleSubmit = async () => {
     // Validate form data
@@ -134,7 +109,6 @@ const SignupForm: React.FC<SignupFormProps> = ({ onComplete }) => {
 
     try {
       // Submit to HubSpot
-      await submitToHubSpot(formData);
       
       // If successful, set success status
       setSubmitStatus('success');
@@ -157,7 +131,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ onComplete }) => {
       return (
         <div className="flex items-center justify-center space-x-3">
           <div className="w-6 h-6 border-3 border-white/30 border-t-white rounded-full animate-spin"></div>
-          <span>Submitting to HubSpot...</span>
+          <span>Submitting...</span>
         </div>
       );
     }
@@ -309,7 +283,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ onComplete }) => {
                     <div className="bg-green-50 border border-green-200 rounded-xl p-4">
                       <div className="flex items-center space-x-2">
                         <span className="text-green-500">✅</span>
-                        <p className="text-green-700 text-sm font-medium">Successfully submitted to HubSpot!</p>
+                        <p className="text-green-700 text-sm font-medium">Successfully submitted...!</p>
                       </div>
                     </div>
                   )}

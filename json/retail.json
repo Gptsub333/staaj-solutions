@@ -1,0 +1,149 @@
+{
+  "hero": {
+    "title": "Revolutionize Retail with AI-Driven Consulting",
+    "subtitle": "Unlock Growth, Efficiency, and Customer Loyalty with Next-Gen Retail AI Solutions",
+    "description": "Transform Your Retail Business with Artificial Intelligence. Is your retail operation ready to thrive in a fast-changing, data-driven world? Our consulting team specializes in delivering tailored AI solutions that empower retailers to optimize operations, personalize customer experiences, and drive measurable business results.",
+    "cta": "Book Your Free AI Consultation",
+    "heroImage": "/retail-hero.jpeg"
+  },
+  "whyChooseUs": {
+    "title": "Why Choose Our AI-Driven Retail Consulting?",
+    "features": [
+      {
+        "icon": "🧠",
+        "title": "Industry-Leading AI Expertise",
+        "description": "Our consultants combine deep retail knowledge with advanced AI, ML, and generative AI technologies to solve your unique business challenges and seize new opportunities"
+      },
+      {
+        "icon": "🔄",
+        "title": "End-to-End Solutions",
+        "description": "From AI strategy and roadmap development to custom solution integration and ongoing support, we guide you through every step of your digital transformation journey."
+      },
+      {
+        "icon": "📈",
+        "title": "Proven Business Impact",
+        "description": "Our AI-powered solutions have delivered up to 7% sales uplift, 5pp increase in operating profit margin, and up to 50% boost in EBITDA for leading retailers."
+      },
+      {
+        "icon": "⚡",
+        "title": "Seamless Integration",
+        "description": "We design and deploy AI systems that fit your existing tech stack, minimizing disruption and maximizing ROI."
+      }
+    ]
+  },
+  "services": {
+    "title": "Our AI Retail Consulting Services",
+    "subtitle": "Comprehensive solutions tailored to your retail needs",
+    "servicesList": [
+      {
+        "title": "AI/ML Strategy & Roadmapping",
+        "description": "Define your AI vision and develop a clear, actionable plan tailored to your business goals.",
+        "icon": "🎯"
+      },
+      {
+        "title": "Predictive Analytics & Demand Forecasting",
+        "description": "Leverage historical data and market trends to optimize inventory, reduce waste, and improve planning accuracy.",
+        "icon": "📊"
+      },
+      {
+        "title": "Dynamic Pricing & Merchandising",
+        "description": "Implement real-time pricing optimization and AI-driven merchandising for higher margins and better customer engagement.",
+        "icon": "💰"
+      },
+      {
+        "title": "Personalization & Customer Insights",
+        "description": "Deliver hyper-personalized recommendations and experiences across channels, boosting loyalty and conversion.",
+        "icon": "👥"
+      },
+      {
+        "title": "AI-Driven Supply Chain & Inventory Management",
+        "description": "Automate inventory tracking, replenishment, and logistics for greater efficiency and resilience.",
+        "icon": "📦"
+      },
+      {
+        "title": "AI Agent & Copilot Development",
+        "description": "Deploy AI-powered agents for customer service, fraud detection, and omnichannel support.",
+        "icon": "🤖"
+      },
+      {
+        "title": "Generative AI & Chatbots",
+        "description": "Enhance customer engagement with natural language chatbots and content generation tools.",
+        "icon": "💬"
+      }
+    ]
+  },
+  "stats": {
+    "title": "Proven Results",
+    "metrics": [
+      {
+        "value": "7%",
+        "label": "Sales Uplift",
+        "description": "Average increase in sales performance"
+      },
+      {
+        "value": "5pp",
+        "label": "Operating Profit Margin",
+        "description": "Percentage point increase in margins"
+      },
+      {
+        "value": "50%",
+        "label": "EBITDA Boost",
+        "description": "Enhancement in operational efficiency"
+      },
+      {
+        "value": "3-6",
+        "label": "Months to Impact",
+        "description": "Time to see measurable results"
+      }
+    ]
+  },
+  "process": {
+    "title": "Our Proven Process",
+    "subtitle": "A systematic approach to retail transformation",
+    "steps": [
+      {
+        "step": "01",
+        "title": "Discovery & Analysis",
+        "description": "Deep dive into your business needs, current systems, and growth objectives"
+      },
+      {
+        "step": "02",
+        "title": "Strategy Development",
+        "description": "Create a comprehensive roadmap tailored to your specific retail challenges"
+      },
+      {
+        "step": "03",
+        "title": "Implementation",
+        "description": "Execute the strategy with precision, ensuring seamless integration and minimal disruption"
+      },
+      {
+        "step": "04",
+        "title": "Optimization & Growth",
+        "description": "Continuously optimize and innovate to drive sustained business growth"
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "questions": [
+      {
+        "question": "What types of AI solutions do you offer?",
+        "answer": "We provide strategy consulting, custom AI development, integration, and ongoing support for predictive analytics, personalization, supply chain optimization, dynamic pricing, and more."
+      },
+      {
+        "question": "How quickly can we see results?",
+        "answer": "Our agile approach delivers early wins through pilot projects and scalable solutions, with measurable impact often within months."
+      },
+      {
+        "question": "Can you integrate with our existing systems?",
+        "answer": "Yes, our solutions are designed for seamless integration with your current platforms and data infrastructure."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready to Accelerate Your Retail Transformation?",
+    "subtitle": "Let's explore how our AI-driven solutions can help you outpace the competition and delight your customers.",
+    "buttonText": "Book Your Consultation Now",
+    "tagline": "Empowering retailers to lead with AI—driving growth, efficiency, and customer satisfaction for the future of retail."
+  }
+}
