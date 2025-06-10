@@ -5,7 +5,7 @@ export interface SignupData {
 }
 
 export interface QuestionnaireData {
-  businessStage: 'starting' | 'growing' | 'stuck' | '';
+  businessStage: string;
   mainChallenge: string;
   helpType: 'outside' | 'inhouse' | 'mixed' | '';
   teamInfo: string;

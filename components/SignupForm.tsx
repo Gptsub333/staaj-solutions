@@ -76,6 +76,8 @@ const SignupForm: React.FC<SignupFormProps> = ({ onComplete }) => {
   const [focused, setFocused] = useState<string>('');
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   useEffect(() => {
     setIsVisible(true);
@@ -85,12 +87,110 @@ const SignupForm: React.FC<SignupFormProps> = ({ onComplete }) => {
     return () => clearInterval(interval);
   }, []);
 
+  const submitToHubSpot = async (data: SignupData) => {
+    try {
+      const response = await fetch('/api/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: data.email,
+          companyName: data.companyName
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to submit to HubSpot');
+      }
+
+      const result = await response.json();
+      console.log('HubSpot submission successful:', result);
+      return result;
+    } catch (error) {
+      console.error('Error submitting to HubSpot:', error);
+      throw error;
+    }
+  };
+
   const handleSubmit = async () => {
-    if (!formData.email || !formData.companyName) return;
+    // Validate form data
+    if (!formData.email || !formData.companyName) {
+      setErrorMessage('Please fill in all required fields');
+      return;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setErrorMessage('Please enter a valid email address');
+      return;
+    }
+
     setIsLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    onComplete(formData);
-    setIsLoading(false);
+    setSubmitStatus('idle');
+    setErrorMessage('');
+
+    try {
+      // Submit to HubSpot
+      await submitToHubSpot(formData);
+      
+      // If successful, set success status
+      setSubmitStatus('success');
+      
+      // Call the onComplete callback after a short delay to show success state
+      setTimeout(() => {
+        onComplete(formData);
+      }, 1500);
+
+    } catch (error) {
+      setSubmitStatus('error');
+      setErrorMessage(error instanceof Error ? error.message : 'An unexpected error occurred');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const getButtonContent = () => {
+    if (isLoading) {
+      return (
+        <div className="flex items-center justify-center space-x-3">
+          <div className="w-6 h-6 border-3 border-white/30 border-t-white rounded-full animate-spin"></div>
+          <span>Submitting to HubSpot...</span>
+        </div>
+      );
+    }
+    
+    if (submitStatus === 'success') {
+      return (
+        <div className="flex items-center justify-center space-x-2">
+          <span className="text-xl">✓</span>
+          <span>Successfully Submitted!</span>
+        </div>
+      );
+    }
+
+    return (
+      <div className="flex items-center justify-center space-x-2">
+        <span>Begin Strategic Assessment</span>
+        <span className="text-xl">→</span>
+      </div>
+    );
+  };
+
+  const getButtonClass = () => {
+    const baseClass = "w-full font-semibold py-5 rounded-2xl transition-all duration-300 transform focus:outline-none focus:ring-4 focus:ring-pink-600/25 active:scale-[0.98]";
+    
+    if (submitStatus === 'success') {
+      return `${baseClass} bg-gradient-to-r from-green-600 to-green-700 text-white`;
+    }
+    
+    if (submitStatus === 'error') {
+      return `${baseClass} bg-gradient-to-r from-red-600 to-red-700 text-white hover:from-red-700 hover:to-red-800`;
+    }
+    
+    return `${baseClass} bg-gradient-to-r from-pink-600 to-pink-700 text-white hover:from-pink-700 hover:to-pink-800 hover:scale-[1.02] hover:shadow-xl disabled:from-pink-400 disabled:to-pink-500 disabled:cursor-not-allowed disabled:scale-100`;
   };
 
   return (
@@ -102,13 +202,13 @@ const SignupForm: React.FC<SignupFormProps> = ({ onComplete }) => {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <div className="w-12 h-12 relative">
-                          <Image
-            src="/logo.png"
-            alt="Company Logo"
-            fill
-            className="object-contain"
-            priority
-          />
+                <Image
+                  src="/logo.png"
+                  alt="Company Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                />
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-gray-800">Staaj Solutions</h1>
@@ -320,6 +420,26 @@ const SignupForm: React.FC<SignupFormProps> = ({ onComplete }) => {
                     </label>
                   </div>
 
+                  {/* Error Message */}
+                  {errorMessage && (
+                    <div className="bg-red-50 border border-red-200 rounded-xl p-4">
+                      <div className="flex items-center space-x-2">
+                        <span className="text-red-500">❌</span>
+                        <p className="text-red-700 text-sm font-medium">{errorMessage}</p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Success Message */}
+                  {submitStatus === 'success' && (
+                    <div className="bg-green-50 border border-green-200 rounded-xl p-4">
+                      <div className="flex items-center space-x-2">
+                        <span className="text-green-500">✅</span>
+                        <p className="text-green-700 text-sm font-medium">Successfully submitted to HubSpot!</p>
+                      </div>
+                    </div>
+                  )}
+
                   {/* Value Proposition */}
                   <div className="bg-pink-50 rounded-xl p-4 border border-pink-100">
                     <h4 className="font-semibold text-gray-800 mb-2">What you'll get:</h4>
@@ -334,23 +454,10 @@ const SignupForm: React.FC<SignupFormProps> = ({ onComplete }) => {
                   {/* Submit Button */}
                   <button
                     onClick={handleSubmit}
-                    disabled={isLoading}
-                    className="w-full bg-gradient-to-r from-pink-600 to-pink-700 text-white font-semibold py-5 rounded-2xl
-                             transition-all duration-300 transform hover:from-pink-700 hover:to-pink-800 hover:scale-[1.02] hover:shadow-xl
-                             disabled:from-pink-400 disabled:to-pink-500 disabled:cursor-not-allowed disabled:scale-100
-                             focus:outline-none focus:ring-4 focus:ring-pink-600/25 active:scale-[0.98]"
+                    disabled={isLoading || !formData.email || !formData.companyName}
+                    className={getButtonClass()}
                   >
-                    {isLoading ? (
-                      <div className="flex items-center justify-center space-x-3">
-                        <div className="w-6 h-6 border-3 border-white/30 border-t-white rounded-full animate-spin"></div>
-                        <span>Preparing Your Assessment...</span>
-                      </div>
-                    ) : (
-                      <div className="flex items-center justify-center space-x-2">
-                        <span>Begin Strategic Assessment</span>
-                        <span className="text-xl">→</span>
-                      </div>
-                    )}
+                    {getButtonContent()}
                   </button>
 
                   {/* Security & Terms */}

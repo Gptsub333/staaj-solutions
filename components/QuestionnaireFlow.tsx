@@ -14,7 +14,7 @@ import {
   ChevronLeftIcon
 } from '@heroicons/react/24/outline';
 import Image from 'next/image';
-
+import type { QuestionnaireData } from '@/types/auth';
 // Mock data for professional consulting elements
 const progressMilestones = [
   { step: 1, title: 'Business Overview', icon: '🏢' },
@@ -47,15 +47,7 @@ const insightCards = [
   }
 ];
 
-interface QuestionnaireData {
-  businessStage: string;
-  mainChallenge: string;
-  helpType: string;
-  teamInfo: string;
-  successVision: string;
-  industry: string;
-  position: string;
-}
+
 
 interface QuestionnaireFlowProps {
   onComplete: (data: QuestionnaireData) => void;
@@ -63,6 +55,8 @@ interface QuestionnaireFlowProps {
 }
 
 const QuestionnaireFlow: React.FC<QuestionnaireFlowProps> = ({ onComplete, userEmail }) => {
+
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<QuestionnaireData>({
     businessStage: '',
