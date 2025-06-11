@@ -797,88 +797,58 @@ const AISaaSGrowthConsulting = () => {
             </motion.div>
 
 
-            {/* Right Column - Hero Carousel */}
-            <motion.div
-              className="relative flex items-center justify-center min-h-[500px] md:min-h-[550px]"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={slideInRight}
-            >
-              <AnimatePresence initial={false} custom={directionHero}>
-                <motion.div
-                  key={currentHeroSlide}
-                  custom={directionHero}
-                  variants={carouselVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  className="absolute w-full max-w-md"
-                  drag="x"
-                  dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={0.7}
-                  onDragEnd={(e, { offset, velocity }) => {
-                    const swipe = swipePower(offset.x, velocity.x);
-                    if (swipe < -swipeConfidenceThreshold) {
-                      paginateHero(1);
-                    } else if (swipe > swipeConfidenceThreshold) {
-                      paginateHero(-1);
-                    }
-                  }}
-                >
-                  <div className="bg-gradient-to-br from-white via-blue-50 to-purple-50/80 p-6 md:p-8 rounded-2xl shadow-2xl border border-gray-200/60 text-center space-y-5">
-                    <motion.div
-                      className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center mx-auto shadow-lg"
-                    >
-                      {currentHeroItem.icon}
-                    </motion.div>
-                    <div>
-                      <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">{currentHeroItem.title}</h3>
-                      <p className="text-gray-600 leading-relaxed text-sm h-24 md:h-28 overflow-y-auto custom-scrollbar">{currentHeroItem.description}</p>
-                    </div>
-                    <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-lg p-3 md:p-4 text-left">
-                      <div className="text-sm font-semibold text-green-800 mb-1 flex items-center">
-                        {currentHeroItem.highlightIcon}
-                        {currentHeroItem.highlightTitle}
-                      </div>
-                      <div className="text-xs md:text-sm text-green-700">{currentHeroItem.highlightText}</div>
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
+            {/* Right Column */}
+<motion.div
+  className="relative flex items-center justify-center"
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true }}
+  variants={slideInRight}
+>
+  <motion.div
+    className="bg-gradient-to-br from-white via-blue-50 to-purple-50/80 p-8 rounded-2xl shadow-2xl border border-gray-200/60 text-center space-y-6 w-full max-w-md"
+    whileHover={{ y: -5, scale: 1.02 }}
+    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+  >
+    <motion.div
+      className="w-20 h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center mx-auto shadow-lg"
+      whileHover={{ scale: 1.05 }}
+    >
+      <Brain className="w-10 h-10 text-white" />
+    </motion.div>
+    
+    <div>
+      <h3 className="text-2xl font-bold text-gray-900 mb-3">
+        AI-Powered Growth Acceleration
+      </h3>
+      <p className="text-gray-600 leading-relaxed">
+        Transform your SaaS business with cutting-edge AI strategies that drive customer acquisition, 
+        enhance retention, and unlock new revenue streams.
+      </p>
+    </div>
 
+    <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-lg p-4 text-left">
+      <div className="text-sm font-semibold text-green-800 mb-1 flex items-center">
+        <TrendingUp className="w-4 h-4 mr-2" />
+        Growth Impact
+      </div>
+      <div className="text-sm text-green-700">
+        Our clients achieve an average of 40% growth in annual recurring revenue after implementing our AI solutions.
+      </div>
+    </div>
 
-              {/* Navigation Buttons */}
-              <motion.button
-                className="absolute left-0 md:-left-8 top-1/2 -translate-y-1/2 z-20 bg-white/70 hover:bg-white p-2 rounded-full shadow-md backdrop-blur-sm"
-                onClick={() => paginateHero(-1)}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <ChevronLeft className="w-5 h-5 text-gray-700" />
-              </motion.button>
-              <motion.button
-                className="absolute right-0 md:-right-8 top-1/2 -translate-y-1/2 z-20 bg-white/70 hover:bg-white p-2 rounded-full shadow-md backdrop-blur-sm"
-                onClick={() => paginateHero(1)}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <ChevronRight className="w-5 h-5 text-gray-700" />
-              </motion.button>
-             
-              {/* Dot Indicators */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex justify-center space-x-2 pb-4">
-                {heroCarouselItems.map((_, index) => (
-                  <motion.button
-                    key={index}
-                    onClick={() => setCurrentHeroSlide([index, index > heroSlideIndex ? 1 : -1])}
-                    className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${index === heroSlideIndex ? 'bg-indigo-600 scale-125' : 'bg-gray-400 hover:bg-gray-500'}`}
-                    aria-label={`Go to hero slide ${index + 1}`}
-                    whileHover={{ scale: 1.2 }}
-                  />
-                ))}
-              </div>
-            </motion.div>
+    <div className="flex items-center justify-center space-x-4 text-sm text-gray-600">
+      <div className="flex items-center">
+        <CheckCircle className="w-4 h-4 text-green-500 mr-1" />
+        Proven Results
+      </div>
+      <div className="flex items-center">
+        <Shield className="w-4 h-4 text-blue-500 mr-1" />
+        Enterprise Grade
+      </div>
+    </div>
+  </motion.div>
+</motion.div>
           </div>
           </div>
         </section>
