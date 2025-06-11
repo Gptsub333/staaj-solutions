@@ -972,7 +972,7 @@ const AISaaSGrowthConsulting = () => {
                 {/* Image Column */}
                 <div className="md:w-2/5 w-full h-64 md:h-auto bg-gray-100">
                   <img
-                    src={`/${index + 1}.png`} // Assumes images exist
+                    src={`/${index + 1}.jpeg`} 
                     alt={item.title}
                     className="w-full h-full object-cover"
                   />
