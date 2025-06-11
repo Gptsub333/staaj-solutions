@@ -12,7 +12,10 @@ import {
   Phone,
   Mail,
   X,
-  Menu
+  Menu,
+  MapPin,
+  Linkedin,
+  Twitter
 } from "lucide-react";
 import { useState } from "react";
 import { TypewriterText } from "@/components/ui/typewriter";
@@ -511,6 +514,72 @@ export const RetailPage = () => {
           </motion.div>
         </div>
       </section>
+            {/* Footer with Contact Section */}
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-lg font-semibold mb-4 flex items-center">
+                <img src="/logo2.png" alt="STAAJ AI Solutions" className="h-8 w-auto mr-2" />
+                <span>STAAJ AI Solutions</span>
+              </h3>
+              <p className="text-sm text-gray-400 mb-4">
+                Empowering SaaS companies to lead with AI—driving smarter growth, higher efficiency, and exceptional customer experiences.
+              </p>
+              <div className="flex space-x-4">
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                  <Linkedin className="w-5 h-5" />
+                </a>
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                  <Twitter className="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+           
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Services</h3>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><a href="#" className="hover:text-white transition-colors">AI Strategy & Roadmap</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Predictive Analytics</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Customer Acquisition & Retention</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Process Automation</a></li>
+              </ul>
+            </div>
+           
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Company</h3>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Success Stories</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
+              </ul>
+            </div>
+           
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Connect with Us</h3>
+              <div className="space-y-4 text-sm">
+                <div className="flex items-start">
+                  <Phone className="w-5 h-5 mr-3 text-gray-400 mt-0.5" />
+                  <span className="text-gray-300">+1 (800) 456-7890</span>
+                </div>
+                <div className="flex items-start">
+                  <Mail className="w-5 h-5 mr-3 text-gray-400 mt-0.5" />
+                  <span className="text-gray-300">contact@staajai.com</span>
+                </div>
+                <div className="flex items-start">
+                  <MapPin className="w-5 h-5 mr-3 text-gray-400 mt-0.5" />
+                  <span className="text-gray-300">123 AI Innovation Way, San Francisco, CA 94107</span>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+          <div className="mt-12 pt-8 border-t border-gray-800 text-center text-sm text-gray-400">
+            <p>&copy; {new Date().getFullYear()} STAAJ AI Solutions. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
