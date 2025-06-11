@@ -2063,92 +2063,114 @@ const MedTech = () => {
       <DotBackground density={1.2} opacity={0.25} color="#919294" />
      
       {/* Professional Navigation */}
-      <motion.nav
-        className="relative z-50 bg-white/95 backdrop-blur-lg border-b border-gray-200/50 sticky top-0 shadow-sm"
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-55px">
-            <div className="flex items-center">
-              <motion.div
-                className="flex items-center space-x-3"
-                whileHover={{ scale: 1.01 }}
-                transition={{ type: "spring", stiffness: 400, damping: 20 }}
-              >
-                <div className="relative">
-                  <img
-                    src="/logo2.png"
-                    alt="STAAJ Solutions"
-                    className="h-9 w-auto object-contain"
-                  />
-                </div>
-                <div className="hidden sm:block">
-                  <div className="text-xs text-gray-500 font-medium">Leading Medtech Consulting Firm</div>
-                </div>
-              </motion.div>
+    <motion.nav
+      className="relative z-50 bg-white/95 backdrop-blur-lg border-b border-gray-200/50 sticky top-0 shadow-sm py-4"
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center py-2">
+          <motion.div
+            className="flex items-center space-x-3"
+            whileHover={{ scale: 1.01 }}
+            transition={{ type: "spring", stiffness: 400, damping: 20 }}
+          >
+            <img
+              src="/logo2.png"
+              alt="STAAJ Solutions"
+              className="h-9 w-auto object-contain"
+            />
+            <div className="hidden sm:block">
+              <div className="text-xs text-gray-500 font-medium">
+                Leading Medtech Consulting Firm
+              </div>
             </div>
+          </motion.div>
 
+          <div className="hidden lg:flex items-center space-x-8">
+            <motion.a
+              href="#services"
+              className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+              whileHover={{ y: -1 }}
+            >
+              Services
+            </motion.a>
+            <motion.a
+              href="#why-us"
+              className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+              whileHover={{ y: -1 }}
+            >
+              Why Choose Us
+            </motion.a>
+            <motion.a
+              href="#faq"
+              className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+              whileHover={{ y: -1 }}
+            >
+              FAQ
+            </motion.a>
+          </div>
 
-            <div className="hidden lg:flex items-center space-x-8">
-              <motion.a href="#services" className="text-gray-700 hover:text-blue-600 font-medium transition-colors" whileHover={{ y: -1 }}>
-                Services
-              </motion.a>
-              <motion.a href="#why-us" className="text-gray-700 hover:text-blue-600 font-medium transition-colors" whileHover={{ y: -1 }}>
-                Why Choose Us
-              </motion.a>
-              <motion.a href="#faq" className="text-gray-700 hover:text-blue-600 font-medium transition-colors" whileHover={{ y: -1 }}>
-                FAQ
-              </motion.a>
-              {/*   */}
-            </div>
-
-
-            <div className="lg:hidden">
-              <motion.button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-gray-700 hover:text-gray-900 p-2 rounded-lg hover:bg-gray-50 transition-colors"
-                whileTap={{ scale: 0.95 }}
-              >
-                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </motion.button>
-            </div>
+          <div className="lg:hidden">
+            <motion.button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-gray-700 hover:text-gray-900 p-2 rounded-lg hover:bg-gray-50 transition-colors"
+              whileTap={{ scale: 0.95 }}
+            >
+              {isMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </motion.button>
           </div>
         </div>
+      </div>
 
-
-        {/* Mobile menu */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              className="lg:hidden bg-white border-t border-gray-100"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="px-4 py-4 space-y-2">
-                <motion.a href="#services" className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors" onClick={() => setIsMenuOpen(false)}>
-                  Services
-                </motion.a>
-                <motion.a href="#why-us" className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors" onClick={() => setIsMenuOpen(false)}>
-                  Why Choose Us
-                </motion.a>
-                <motion.a href="#faq" className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors" onClick={() => setIsMenuOpen(false)}>
-                  FAQ
-                </motion.a>
-                <motion.button
-                  className="block w-full text-left px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Book Consultation
-                </motion.button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.nav>
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            className="lg:hidden bg-white border-t border-gray-100"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="px-4 py-4 space-y-2">
+              <motion.a
+                href="#services"
+                className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Services
+              </motion.a>
+              <motion.a
+                href="#why-us"
+                className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Why Choose Us
+              </motion.a>
+              <motion.a
+                href="#faq"
+                className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                FAQ
+              </motion.a>
+              <motion.button
+                className="block w-full text-left px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Book Consultation
+              </motion.button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
 
 
       {/* Hero Section */}
