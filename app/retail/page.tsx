@@ -1,4 +1,4 @@
-import RetailPage from '@/components/RetailLandingPage';
+import {RetailPage} from '@/components/RetailLandingPage';
 
 export default function Page() {
   return <RetailPage />;
