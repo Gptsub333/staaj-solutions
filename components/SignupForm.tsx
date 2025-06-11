@@ -196,24 +196,6 @@ const SignupForm: React.FC<SignupFormProps> = ({ onComplete }) => {
                   </p>
                 </div>
 
-                {/* Progress Steps */}
-                <div className="flex items-center justify-center space-x-4 mb-8">
-                  <div className="flex items-center">
-                    <div className="w-8 h-8 bg-pink-600 rounded-full flex items-center justify-center text-white text-sm font-bold">1</div>
-                    <span className="ml-2 text-sm text-pink-600 font-medium">Basic Info</span>
-                  </div>
-                  <div className="w-8 h-0.5 bg-gray-200"></div>
-                  <div className="flex items-center">
-                    <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 text-sm">2</div>
-                    <span className="ml-2 text-sm text-gray-500">Assessment</span>
-                  </div>
-                  <div className="w-8 h-0.5 bg-gray-200"></div>
-                  <div className="flex items-center">
-                    <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 text-sm">3</div>
-                    <span className="ml-2 text-sm text-gray-500">Results</span>
-                  </div>
-                </div>
-
                 {/* Form */}
                 <div className="space-y-6">
                   {/* Company Name Input */}
@@ -292,7 +274,6 @@ const SignupForm: React.FC<SignupFormProps> = ({ onComplete }) => {
                   <div className="bg-pink-50 rounded-xl p-4 border border-pink-100">
                     <h4 className="font-semibold text-gray-800 mb-2">What you'll get:</h4>
                     <ul className="space-y-1 text-sm text-gray-600">
-                      <li className="flex items-center"><span className="text-pink-600 mr-2">✓</span>Personalized growth assessment</li>
                       <li className="flex items-center"><span className="text-pink-600 mr-2">✓</span>Custom strategic recommendations</li>
                       <li className="flex items-center"><span className="text-pink-600 mr-2">✓</span>30-minute consultation call</li>
                       <li className="flex items-center"><span className="text-pink-600 mr-2">✓</span>Industry benchmarking report</li>
