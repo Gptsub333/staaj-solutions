@@ -3,11 +3,11 @@
 import React, { useState, useEffect } from 'react';
 import SignupForm from '@/components/SignupForm';
 import QuestionnaireFlow from '@/components/QuestionnaireFlow';
-// import TechLanding from '../tech/page';
 import type { SignupData, QuestionnaireData, AuthStep } from '../../types/auth';
 import { AuthLayout } from '@/components/AuthLayout';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+
 const AuthPage: React.FC = () => {
   const [currentStep, setCurrentStep] = useState<AuthStep>('signup');
   const [signupData, setSignupData] = useState<SignupData>({
@@ -23,16 +23,15 @@ const AuthPage: React.FC = () => {
     industry: '',
     position: ''
   });
-   const router = useRouter();
+  const router = useRouter();
+
   const handleSignupComplete = (data: SignupData) => {
     setSignupData(data);
-    console.log('Signup data:', data);
     setCurrentStep('questionnaire');
   };
 
   const handleQuestionnaireComplete = (data: QuestionnaireData) => {
     setQuestionnaireData(data);
-    console.log('Questionnaire data:', data);
     setCurrentStep('landing'); // triggers HubSpot submission
   };
 
@@ -47,44 +46,73 @@ const AuthPage: React.FC = () => {
             helpType: questionnaireData.helpType,
             teamInfo: questionnaireData.teamInfo,
             successVision: questionnaireData.successVision,
-            industry_quest: questionnaireData.industry, // mapped as industry_quest for API
+            industry_quest: questionnaireData.industry,
             position: questionnaireData.position
           };
-
           const response = await axios.post('/api/signup', payload);
-
-          console.log('HubSpot API success:', response.data);
-
-          if (questionnaireData.industry === 'retail') {
-            router.push('/retail');
-          } else if (questionnaireData.industry === 'medtech') {
-            router.push('/medtech');
-          } else {
-            router.push('/tech'); // default or fallback
-          }
-
+          router.push('/landingpage');
         } catch (error: any) {
           console.error('HubSpot API error:', error.response?.data || error.message);
         }
       }
     };
-
     submitToHubspot();
+    // eslint-disable-next-line
   }, [currentStep]);
 
   return (
     <AuthLayout>
       {currentStep === 'signup' && <SignupForm onComplete={handleSignupComplete} />}
       {currentStep === 'questionnaire' && (
-        <QuestionnaireFlow 
+        <QuestionnaireFlow
           onComplete={handleQuestionnaireComplete}
           userEmail={signupData.email}
         />
       )}
-      {/* Optionally render a loader or confirmation for landing */}
       {currentStep === 'landing' && (
-        <div style={{ padding: '2rem', textAlign: 'center' }}>
-          <h2>Thank you! Redirecting to your dashboard...</h2>
+        <div className="flex flex-col items-center justify-center min-h-[60vh]">
+          <div className="relative flex flex-col items-center justify-center px-6 py-12 rounded-2xl shadow-xl bg-white/80 backdrop-blur-md border border-gray-200 max-w-md w-full">
+            {/* Animated loading spinner */}
+            <div className="mb-6">
+              <svg className="animate-spin h-12 w-12 text-pink-600" viewBox="0 0 50 50">
+                <circle
+                  className="opacity-30"
+                  cx="25"
+                  cy="25"
+                  r="20"
+                  stroke="currentColor"
+                  strokeWidth="5"
+                  fill="none"
+                />
+                <circle
+                  className="opacity-90"
+                  cx="25"
+                  cy="25"
+                  r="20"
+                  stroke="url(#loading-gradient)"
+                  strokeWidth="5"
+                  fill="none"
+                  strokeDasharray="31.4 94.2"
+                  strokeLinecap="round"
+                />
+                <defs>
+                  <linearGradient id="loading-gradient" x1="0" y1="0" x2="50" y2="50" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#a855f7" />
+                    <stop offset="1" stopColor="#ec4899" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 text-center">
+              Setting up your personalized experience...
+            </h2>
+            <p className="text-base text-gray-600 mb-4 text-center max-w-xs">
+              We’re securely connecting your details and preparing your AI-powered dashboard.
+            </p>
+            <p className="text-sm text-blue-600 font-medium text-center">
+              This will only take a moment.
+            </p>
+          </div>
         </div>
       )}
     </AuthLayout>
