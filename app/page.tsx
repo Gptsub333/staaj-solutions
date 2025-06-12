@@ -1,7 +1,6 @@
 import React from 'react';
-import { ArrowRight, Users, Target, TrendingUp, CheckCircle, Star, Zap, Award } from 'lucide-react';
+import { ArrowRight, Users, Target, TrendingUp, CheckCircle, Star, Zap, Award, Clock, BarChart3, Briefcase, Settings } from 'lucide-react';
 import Link from 'next/link';
-
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-white">
@@ -189,12 +188,10 @@ export default function LandingPage() {
               </div>
 
               <div className="animate-fade-in-up" style={{animationDelay: '0.4s'}}>
-                <Link href="/auth">
                 <button className="group bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-semibold py-4 px-8 rounded-lg text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2">
                   <span>Get Started</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
-                </Link>
               </div>
 
               {/* Trust Indicators */}
@@ -246,6 +243,156 @@ export default function LandingPage() {
                   <Award className="w-4 h-4 text-pink-600" />
                   <span className="text-sm font-medium text-gray-700">90-Day Results</span>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Service Cards Section */}
+      <div className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Core Services</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Choose the perfect solution to scale your business effectively
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* STAAJ Lite */}
+            <div className="bg-white rounded-xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border-2 border-red-100 hover:border-red-300 transform hover:scale-105 group">
+              <div className="w-16 h-16 bg-gradient-to-br from-red-100 to-pink-200 rounded-xl flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform duration-300">
+                <Clock className="w-8 h-8 text-red-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">STAAJ Lite</h3>
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                Customer Journey Excellence through streamlined processes and CRM optimization.
+              </p>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <span className="text-sm text-gray-600">30-day rapid deployment</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <span className="text-sm text-gray-600">HubSpot CRM integration</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <span className="text-sm text-gray-600">Process mapping & workflows</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <span className="text-sm text-gray-600">Team training & support</span>
+                </div>
+              </div>
+              <div className="text-center">
+                <span className="inline-block bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full font-medium">
+                  Quick Start
+                </span>
+              </div>
+            </div>
+
+            {/* STAAJ Pro */}
+            <div className="bg-white rounded-xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border-2 border-pink-100 hover:border-pink-300 transform hover:scale-105 group">
+              <div className="w-16 h-16 bg-gradient-to-br from-pink-100 to-red-200 rounded-xl flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform duration-300">
+                <BarChart3 className="w-8 h-8 text-pink-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">STAAJ Pro</h3>
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                End-to-End Lean Operations with real-time dashboards and process optimization.
+              </p>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <span className="text-sm text-gray-600">Real-time performance dashboards</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <span className="text-sm text-gray-600">Lean process optimization</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <span className="text-sm text-gray-600">Advanced CRM workflows</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <span className="text-sm text-gray-600">Strategic planning alignment</span>
+                </div>
+              </div>
+              <div className="text-center">
+                <span className="inline-block bg-pink-100 text-pink-800 text-xs px-3 py-1 rounded-full font-medium">
+                  Most Popular
+                </span>
+              </div>
+            </div>
+
+            {/* STAAJ Enterprise */}
+            <div className="bg-white rounded-xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border-2 border-orange-100 hover:border-orange-300 transform hover:scale-105 group">
+              <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-red-200 rounded-xl flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform duration-300">
+                <Briefcase className="w-8 h-8 text-orange-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">STAAJ Enterprise</h3>
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                Monthly Team Performance & Growth Support with continuous strategic guidance.
+              </p>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <span className="text-sm text-gray-600">Monthly KPI reviews</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <span className="text-sm text-gray-600">Team coaching & development</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <span className="text-sm text-gray-600">Strategic business planning</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <span className="text-sm text-gray-600">Quarterly roadmap support</span>
+                </div>
+              </div>
+              <div className="text-center">
+                <span className="inline-block bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full font-medium">
+                  Premium
+                </span>
+              </div>
+            </div>
+
+            {/* Custom Solutions */}
+            <div className="bg-white rounded-xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border-2 border-purple-100 hover:border-purple-300 transform hover:scale-105 group">
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-200 rounded-xl flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform duration-300">
+                <Settings className="w-8 h-8 text-purple-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Custom Solutions</h3>
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                Tailored services for unique business needs and specialized requirements.
+              </p>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <span className="text-sm text-gray-600">Fractional C-Suite services</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <span className="text-sm text-gray-600">Sales & marketing support</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <span className="text-sm text-gray-600">Technology planning</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <span className="text-sm text-gray-600">Training & development</span>
+                </div>
+              </div>
+              <div className="text-center">
+                <span className="inline-block bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full font-medium">
+                  Bespoke
+                </span>
               </div>
             </div>
           </div>
@@ -354,7 +501,6 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-
             {/* STAAJ Efficiency */}
             <div className="bg-white rounded-xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-pink-100 transform hover:scale-105 group">
               <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-red-200 rounded-xl flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform duration-300">
@@ -383,52 +529,7 @@ export default function LandingPage() {
         </div>
       </div>
 
-      {/* Industries We Serve */}
-      <div className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Industries We Serve</h2>
-            <p className="text-xl text-gray-600">
-              Specialized expertise for growing businesses
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-gradient-to-br from-red-50 to-pink-100 rounded-xl p-8 text-center hover:shadow-lg transition-all duration-300 border border-red-200 transform hover:scale-105 group">
-              <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform">
-                <span className="text-2xl">💻</span>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Technology</h3>
-              <p className="text-gray-600">SaaS, Apps, Platforms</p>
-            </div>
-
-            <div className="bg-gradient-to-br from-pink-50 to-red-100 rounded-xl p-8 text-center hover:shadow-lg transition-all duration-300 border border-pink-200 transform hover:scale-105 group">
-              <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform">
-                <span className="text-2xl">🛍️</span>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Retail</h3>
-              <p className="text-gray-600">E-commerce, Stores</p>
-            </div>
-
-            <div className="bg-gradient-to-br from-orange-50 to-red-100 rounded-xl p-8 text-center hover:shadow-lg transition-all duration-300 border border-orange-200 transform hover:scale-105 group">
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform">
-                <span className="text-2xl">💰</span>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Finance</h3>
-              <p className="text-gray-600">Fintech, Services</p>
-            </div>
-
-            <div className="bg-gradient-to-br from-red-50 to-orange-100 rounded-xl p-8 text-center hover:shadow-lg transition-all duration-300 border border-red-200 transform hover:scale-105 group">
-              <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform">
-                <span className="text-2xl">🏥</span>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Medical Tech</h3>
-              <p className="text-gray-600">Devices, Healthcare</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
+     
       {/* Final CTA */}
       <div className="bg-gradient-to-r from-red-600 via-pink-600 to-orange-600 py-20 relative overflow-hidden">
         {/* Animated background elements */}
