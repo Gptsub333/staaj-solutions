@@ -797,7 +797,7 @@ const GenericLandingPage = () => {
                   {/* Left Column - Service Info */}
                   <div className="lg:w-2/3">
                     <div className="flex items-center gap-4 mb-6">
-                      <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center text-white shadow-lg">
+                      <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-white shadow-lg border border-gray-200">
                         {services[selectedService].icon}
                       </div>
                       <div>
