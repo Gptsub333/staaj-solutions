@@ -1,11 +1,13 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef , useCallback} from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowRight, Download, CheckCircle, Star, Award, Lightbulb,
   LineChart, Users2, Target, BarChart, Users, Settings, Bot, Cloud,
-  Brain, Database, Shield, Network, Phone, Mail, Linkedin, Twitter, ChevronDown, ChevronUp, Menu, X, MapPin, Puzzle, TrendingUp,Clock,BookOpenCheck, Briefcase, Megaphone, Sparkles} from 'lucide-react';
+  Brain, Database, Shield, Network, Phone, Mail, Linkedin, Twitter, ChevronDown, ChevronUp, Menu, X, MapPin, Puzzle, TrendingUp,Clock,BookOpenCheck, Briefcase, Megaphone, Sparkles, BarChart3, ChevronLeft, ChevronRight, ExternalLink,} from 'lucide-react';
+import { useRouter } from 'next/navigation';
+
 
 // --- Animated Typewriter Component ---
 interface TypewriterTextProps {
@@ -27,7 +29,7 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-
+  
   useEffect(() => {
     const currentWord = words[currentWordIndex];
     const timer = setTimeout(() => {
@@ -172,6 +174,56 @@ const sparkleVariants = {
 const GenericLandingPage = () => {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState(0);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const serviceRefs: React.MutableRefObject<(HTMLDivElement | null)[]> = useRef([]);
+  const router = useRouter();
+  const sectionRef = useRef<HTMLDivElement | null>(null); 
+  const [showServiceSection, setShowServiceSection] = useState(false);
+   const [showServiceDetail, setShowServiceDetail] = React.useState(false);
+
+
+
+   useEffect(() => {
+    if (typeof window === "undefined") return;
+    const hash = window.location.hash;
+    if (hash.startsWith("#services")) {
+      setShowServiceDetail(true);
+      const match = hash.match(/service=([a-zA-Z0-9_-]+)/);
+      const svcKey = match ? match[1] : "overview";
+      const found = services.findIndex(s => s.key === svcKey);
+      setSelectedService(found !== -1 ? found : 0);
+      setTimeout(() => {
+        sectionRef.current?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  }, [sectionRef]);
+
+  // Update URL/hash only if detail is open
+  useEffect(() => {
+    if (!showServiceDetail) return;
+    const key = services[selectedService].key;
+    router.replace(
+      `${window.location.pathname}${window.location.search}#services?service=${key}`,
+      { scroll: false }
+    );
+  }, [selectedService, showServiceDetail, router]);
+
+  // Navbar handler to open detail view
+  const handleNavToServices = React.useCallback(() => {
+    setShowServiceDetail(true);
+    setSelectedService(0);
+    setTimeout(() => {
+      sectionRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+    router.replace(`${window.location.pathname}${window.location.search}#services?service=overview`, { scroll: false });
+  }, [router, sectionRef]);
+
+  // Close detail view and clear hash
+  const handleCloseDetail = () => {
+    setShowServiceDetail(false);
+    router.replace(`${window.location.pathname}${window.location.search}`, { scroll: false });
+  };
 
   // Typewriter for all industries
   const typewriterWords = [
@@ -219,45 +271,97 @@ const GenericLandingPage = () => {
   // Services (all-industry)
   const services = [
   {
-    icon: <Target className="w-8 h-8" />,
-    title: "Customer Journey Analysis",
-    description: "Map your customer touchpoints and identify optimization opportunities. Unlock a seamless, high-value journey.",
-    color: "from-pink-500 to-rose-500"
+    key: 'overview',
+    title: 'STAAJ Solutions',
+    subtitle: 'Service Overview',
+    icon: <BookOpenCheck className="w-12 h-12 text-blue-700" />,
+    summary: 'Empowering businesses to scale effectively through people-first strategies, operational maturity, and data-driven insights.',
+    objective: '',
+    features: [
+      'STAAJ Lite: Rapid deployment (30 days) of customer journey excellence using HubSpot CRM.',
+      'STAAJ Pro: Comprehensive end-to-end operations with real-time dashboards and lean process optimization.',
+      'STAAJ Enterprise: Annual program featuring monthly KPI reviews, team coaching, and strategic planning by seasoned experts.',
+      'Custom Solutions: Tailored services for unique business needs, including CRM integrations, AI workflows, and training.',
+    ],
+    ideal: 'Businesses of all sizes looking for scalable, effective, people-driven growth.',
+    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80',
+    link: '/staaj-services?service=overview'
   },
   {
-    icon: <BarChart className="w-8 h-8" />,
-    title: "Operational Maturity Review",
-    description: "Evaluate your processes and systems for scalability and resilience. Accelerate your operational excellence.",
-    color: "from-purple-500 to-pink-500"
+    key: 'lite',
+    title: 'STAAJ Lite',
+    subtitle: 'Customer Journey Excellence',
+    icon: <Clock className="w-12 h-12 text-red-600" />,
+    summary: 'Rapid deployment (30 days) of customer journey excellence using HubSpot CRM.',
+    objective: 'Enhance customer experience through streamlined processes and effective CRM utilization.',
+    features: [
+      'Quick Implementation: Launch within 30 days.',
+      'CRM Integration: Optimized HubSpot setup.',
+      'Process Mapping: Design and implement customer journey workflows.',
+      'Team Training: Equip staff with best practices.',
+      'Ongoing Support: Continuous optimization and feedback.',
+    ],
+    ideal: 'Small to medium-sized businesses aiming to improve customer interactions and satisfaction.',
+    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80',
+    link: '/staaj-services?service=lite'
   },
   {
-    icon: <Clock className="w-8 h-8" />,
-    title: "Time & Resource Optimization",
-    description: "Streamline workflows and maximize your team's productivity and output.",
-    color: "from-blue-500 to-purple-500"
+    key: 'pro',
+    title: 'STAAJ Pro',
+    subtitle: 'End-to-End Lean Operations',
+    icon: <BarChart3 className="w-12 h-12 text-pink-600" />,
+    summary: 'Comprehensive end-to-end operations with real-time dashboards and lean process optimization.',
+    objective: 'Achieve operational maturity through streamlined processes and data-driven insights.',
+    features: [
+      'Comprehensive Dashboards: Real-time performance metrics.',
+      'Lean Process Optimization: Eliminate inefficiencies and reduce waste.',
+      'Advanced CRM Workflows: Enhanced automation and customer engagement.',
+      'Team Development: Ongoing training and support.',
+      'Strategic Planning: Align operations with business goals.',
+    ],
+    ideal: 'Growing businesses seeking to scale operations efficiently and effectively.',
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80',
+    link: '/staaj-services?service=pro'
   },
   {
-    icon: <Briefcase className="w-8 h-8" />,
-    title: "Sales & Business Operations",
-    description: "Align your sales strategy with key operational capabilities for growth.",
-    color: "from-indigo-500 to-blue-500"
+    key: 'enterprise',
+    title: 'STAAJ Enterprise',
+    subtitle: 'Monthly Team Performance & Growth Support',
+    icon: <Briefcase className="w-12 h-12 text-orange-600" />,
+    summary: 'Annual program featuring monthly KPI reviews, team coaching, and strategic planning by seasoned experts.',
+    objective: 'Sustain growth and operational excellence through continuous support and strategic planning.',
+    features: [
+      'Monthly KPI Reviews: Assess and optimize key performance indicators.',
+      'Team Coaching: Develop internal capabilities and leadership.',
+      'Strategic Business Planning: Adapt to market changes and drive competitive advantage.',
+      'Employee & Self-Care Surveys: Monitor and improve team well-being.',
+      'Quarterly Roadmap Support: Ensure alignment with long-term goals.',
+    ],
+    ideal: 'Established businesses aiming to maintain momentum and navigate complex challenges.',
+    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80',
+    link: '/staaj-services?service=enterprise'
   },
   {
-    icon: <Megaphone className="w-8 h-8" />,
-    title: "Marketing Awareness Strategy",
-    description: "Build brand visibility and customer engagement frameworks to drive new business.",
-    color: "from-green-500 to-indigo-500"
+    key: 'custom',
+    title: 'Custom Solutions',
+    subtitle: 'Tailored Services for Unique Needs',
+    icon: <Settings className="w-12 h-12 text-purple-700" />,
+    summary: 'Tailored services for unique business needs, including CRM integrations, AI workflows, and training.',
+    objective: 'Provide bespoke solutions to address specific business challenges and objectives.',
+    features: [
+      'Customized CRM Integrations: Tailor CRM systems to business requirements.',
+      'AI Workflows: Implement artificial intelligence to enhance operations.',
+      'Team Training: Develop skills and knowledge within the team.',
+      'Strategic Partnerships: Build and manage business relationships.',
+      'Technology Planning: Plan and implement technology strategies.',
+    ],
+    ideal: 'Businesses with unique needs that require specialized solutions beyond standard offerings.',
+    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80',
+    link: '/staaj-services?service=custom'
   },
-  {
-    icon: <BookOpenCheck className="w-8 h-8" />,
-    title: "Custom Solutions",
-    description: "Bespoke services: CRM integrations, AI workflows, technology planning, and strategic partnerships.",
-    color: "from-yellow-400 to-orange-500"
-  }
 ];
-  
- 
-  // Why Choose Us
+
+// Why Choose Us
   const whyChooseUs = [
     {
       icon: <Award className="w-8 h-8" />,
@@ -332,12 +436,7 @@ const GenericLandingPage = () => {
       answer: "Our broad, hands-on experience, custom approach, and commitment to measurable outcomes set us apart. We partner closely to deliver real business value."
     }
   ];
-  const WHYUS_IMAGES = [
-  "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",   // industry experience
-  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",   // impact
-  "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",   // custom solution
-  "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80"    // partner
-];
+  
   // Framer Motion variants
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -383,7 +482,11 @@ const GenericLandingPage = () => {
         </motion.div>
       </div>
       <div className="hidden lg:flex items-center space-x-8">
-        <motion.a href="#services" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">Services</motion.a>
+       <motion.a
+          href="#services"
+          onClick={e => { e.preventDefault(); handleNavToServices(); }}
+          className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+        >Services</motion.a>
         <motion.a href="#why-us" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">Why Us</motion.a>
         <motion.a href="#faq" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">FAQ</motion.a>
       </div>
@@ -434,7 +537,6 @@ const GenericLandingPage = () => {
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
-          // poster = "/images/image.png"
         >
           <source src="https://www.pexels.com/download/video/3192305/" type="video/mp4" />
         </video>
@@ -464,10 +566,16 @@ const GenericLandingPage = () => {
               <TypewriterText words={typewriterWords} />
             </motion.div>
             {/* CTA Buttons */}
-             <motion.div className="text-base text-white/90 font-medium mb-7" variants={fadeIn} initial="hidden" animate="visible">
-              We help organizations of every size unlock efficiency, automate operations, and scale new heights with tailored AI solutions.
+             <motion.div
+              className="mb-7 text-base md:text-lg text-white/90 font-medium"
+              variants={fadeIn}
+              initial="hidden"
+              animate="visible"
+            >
+              <p>
+                Discover how your organization can streamline operations, enhance customer experiences and unlock new opportunities through AI-driven solutions. Our team partners with you from strategy to implementation, ensuring measurable results for businesses of every size and sector.
+              </p>
             </motion.div>
-            
             {/* Trust Indicators */}
             <motion.div className="flex flex-wrap items-center gap-5" variants={fadeIn} initial="hidden" animate="visible">
               <div className="flex items-center text-sm text-white">
@@ -577,9 +685,14 @@ const GenericLandingPage = () => {
           </motion.div>
         </div>
       </section>
-  <section id="services" className="py-16 bg-gradient-to-br from-gray-50 via-pink-25 to-white relative overflow-hidden">
+      {/* Service */}
+  <section
+      ref={sectionRef}
+      id="services"
+      className="py-16 bg-gradient-to-br from-gray-50 via-pink-25 to-white relative overflow-hidden"
+    >
       {/* Background Elements */}
-      <div className="absolute inset-0 opacity-30">
+      <div className="absolute inset-0 opacity-30 pointer-events-none">
         <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-pink-200 to-rose-200 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-rose-200 to-pink-300 rounded-full blur-3xl" />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-gradient-to-br from-pink-100 to-rose-100 rounded-full blur-3xl opacity-50" />
@@ -605,8 +718,7 @@ const GenericLandingPage = () => {
             Our Signature Service Suite
             <Sparkles className="w-4 h-4" />
           </motion.div>
-          
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -615,8 +727,7 @@ const GenericLandingPage = () => {
           >
             Transformative Solutions for Every Stage of Growth
           </motion.h2>
-          
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -629,72 +740,126 @@ const GenericLandingPage = () => {
           </motion.p>
         </div>
 
-        {/* Services Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="space-y-6"
-        >
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              variants={cardVariants}
-              whileHover="hover"
-              initial="rest"
-              className="group"
-            >
-              <div className="bg-white/80 backdrop-blur-sm rounded-3xl border border-pink-100/50 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden">
-                <div className="flex flex-col lg:flex-row items-center gap-6 p-6 lg:p-8">
-                  {/* Icon Section */}
-                  <motion.div 
-                    variants={iconVariants}
-                    className="flex-shrink-0"
-                  >
-                    <div className="relative">
-                      <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center text-white shadow-lg">
-                        {service.icon}
-                      </div>
-                      <motion.div
-                        variants={sparkleVariants}
-                        animate="animate"
-                        className="absolute -top-2 -right-2 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center"
-                      >
-                        <Sparkles className="w-2.5 h-2.5 text-yellow-600" />
-                      </motion.div>
-                    </div>
-                  </motion.div>
+        {/* Service Navigator */}
+        <div className="mb-8">
+          <div className="flex flex-wrap justify-center gap-2 mb-6">
+            {services.map((service, index) => (
+              <button
+                key={service.key}
+                onClick={() => setSelectedService(index)}
+                className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+                  selectedService === index
+                    ? 'bg-gradient-to-r from-pink-500 to-rose-600 text-white shadow-lg'
+                    : 'bg-white/80 text-gray-600 hover:bg-pink-50 hover:text-pink-600 border border-pink-200/50'
+                }`}
+              >
+                {service.title}
+              </button>
+            ))}
+          </div>
+        </div>
 
-                  {/* Content Section */}
-                  <div className="flex-grow text-center lg:text-left">
-                    <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-3 group-hover:text-pink-600 transition-colors duration-300">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-600 text-base mb-4 leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
-
-                  {/* Arrow */}
-                  <motion.div
-                    initial={{ x: 0 }}
-                    whileHover={{ x: 5 }}
-                    transition={{ duration: 0.2 }}
-                    className="flex-shrink-0 hidden lg:block"
-                  >
-                    <div className="w-12 h-12 bg-gradient-to-br from-pink-100 to-rose-100 rounded-full flex items-center justify-center group-hover:from-pink-500 group-hover:to-rose-600 transition-all duration-300">
-                      <ArrowRight className="w-5 h-5 text-pink-600 group-hover:text-white transition-colors duration-300" />
-                    </div>
-                  </motion.div>
+        {/* Featured Service Display */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={selectedService}
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -50, scale: 0.9 }}
+            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+            className="mb-12"
+          >
+            <div className="bg-white/90 backdrop-blur-sm rounded-3xl border border-pink-200/50 shadow-2xl overflow-hidden">
+              {/* Service Navigation */}
+              <div className="flex items-center justify-between p-4 bg-gradient-to-r from-pink-50 to-rose-50 border-b border-pink-200/50">
+                <button
+                  onClick={() => setSelectedService(selectedService === 0 ? services.length - 1 : selectedService - 1)}
+                  className="p-2 rounded-full bg-white/80 hover:bg-white shadow-md hover:shadow-lg transition-all duration-200"
+                >
+                  <ChevronLeft className="w-5 h-5 text-pink-600" />
+                </button>
+                <div className="text-center">
+                  <h3 className="text-sm font-semibold text-pink-700">
+                    Service {selectedService + 1} of {services.length}
+                  </h3>
                 </div>
-
-                {/* Bottom Gradient Line */}
-                <div className="h-1 bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                <button
+                  onClick={() => setSelectedService(selectedService === services.length - 1 ? 0 : selectedService + 1)}
+                  className="p-2 rounded-full bg-white/80 hover:bg-white shadow-md hover:shadow-lg transition-all duration-200"
+                >
+                  <ChevronRight className="w-5 h-5 text-pink-600" />
+                </button>
               </div>
-            </motion.div>
-          ))}
-        </motion.div>
+
+              {/* Service Content */}
+              <div className="p-8">
+                <div className="flex flex-col lg:flex-row gap-8">
+                  {/* Left Column - Service Info */}
+                  <div className="lg:w-2/3">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center text-white shadow-lg">
+                        {services[selectedService].icon}
+                      </div>
+                      <div>
+                        <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
+                          {services[selectedService].title}
+                        </h3>
+                        <p className="text-pink-600 font-semibold">
+                          {services[selectedService].subtitle}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                      {services[selectedService].summary}
+                    </p>
+                    {services[selectedService].objective && (
+                      <div className="mb-6">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Objective</h4>
+                        <p className="text-gray-600 leading-relaxed">
+                          {services[selectedService].objective}
+                        </p>
+                      </div>
+                    )}
+                    <div className="mb-6">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-4">Key Features</h4>
+                      <div className="space-y-3">
+                        {services[selectedService].features.map((feature, index) => (
+                          <motion.div
+                            key={index}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                            className="flex items-start gap-3"
+                          >
+                            <div className="w-2 h-2 bg-gradient-to-r from-pink-500 to-rose-600 rounded-full mt-2 flex-shrink-0" />
+                            <p className="text-gray-600 leading-relaxed">{feature}</p>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl p-4 border border-pink-200/50">
+                      <h4 className="text-sm font-semibold text-pink-700 mb-2">Ideal For</h4>
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        {services[selectedService].ideal}
+                      </p>
+                    </div>
+                  </div>
+                  {/* Right Column - Image */}
+                  <div className="lg:w-1/3">
+                    <div className="relative rounded-2xl overflow-hidden shadow-lg">
+                      <img
+                        src={services[selectedService].image}
+                        alt={services[selectedService].title}
+                        className="w-full h-64 lg:h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
 
         {/* Bottom Call-to-Action */}
         <motion.div
@@ -712,7 +877,7 @@ const GenericLandingPage = () => {
               </div>
               <div className="hidden sm:block w-px h-6 bg-pink-300" />
               <div className="flex items-center gap-2 text-rose-700 font-semibold text-sm">
-                <BarChart className="w-4 h-4" />
+                <BarChart3 className="w-4 h-4" />
                 Data-Driven Results
               </div>
               <div className="hidden sm:block w-px h-6 bg-pink-300" />
@@ -725,7 +890,6 @@ const GenericLandingPage = () => {
         </motion.div>
       </motion.div>
     </section>
-
       {/* FAQ */}
       <section id="faq" className="py-16 bg-gray-50 relative overflow-hidden">
         <DotBackground density={1} opacity={0.2} color="#919294" />
@@ -778,26 +942,27 @@ const GenericLandingPage = () => {
             ))}
           </motion.div>
         </div>
-      </section>
+      </section> 
+   
 
       {/* CTA */}
-      <section className="py-16 bg-gradient-to-r from-purple-600 via-pink-600 to-pink-500 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerChildren}>
-            <motion.h2 className="text-3xl md:text-4xl font-bold mb-4" variants={fadeIn}>
-              Ready to Begin Your AI Journey?
-            </motion.h2>
-            <motion.p className="text-lg mb-8 text-white/90 max-w-2xl mx-auto" variants={fadeIn}>
-              Let’s talk about how AI can transform your business—no matter your industry or starting point.
-            </motion.p>
-              {/* CTA Buttons */}
-             <motion.div className="text-base text-white/90 font-medium mb-7" variants={fadeIn} initial="hidden" animate="visible">
-              We help organizations of every size unlock efficiency, automate operations, and scale new heights with tailored AI solutions.
-            </motion.div>
-            
-          </motion.div>
-        </div>
-      </section>
+     <section className="py-16 bg-gradient-to-r from-purple-600 via-pink-600 to-pink-500 text-white">
+  <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerChildren}>
+      <motion.h2 className="text-3xl md:text-4xl font-bold mb-4" variants={fadeIn}>
+        Ready to Begin Your AI Journey?
+      </motion.h2>
+      <motion.p className="text-lg mb-8 text-white/90 max-w-2xl mx-auto" variants={fadeIn}>
+        Whether you're optimizing workflows, improving customer touchpoints, or reimagining your business with data, our experts are here to guide you. Let's explore the tangible benefits of AI for your unique goals.
+      </motion.p>
+      <motion.div className="text-white/80 text-base md:text-lg font-medium" variants={fadeIn}>
+        <p>
+          We believe in partnership and transparency. Reach out to us to learn how our AI consulting services can help you achieve sustainable growth, innovation, and operational excellence.
+        </p>
+      </motion.div>
+    </motion.div>
+  </div>
+</section>  
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
