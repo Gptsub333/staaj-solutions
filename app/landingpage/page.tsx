@@ -169,6 +169,38 @@ const sparkleVariants = {
   }
 };
 
+const smoothVariants = {
+  // Reduced motion for better performance
+  fadeInUp: {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -10 }
+  },
+  scaleIn: {
+    initial: { opacity: 0, scale: 0.98 },
+    animate: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0.98 }
+  },
+  slideIn: {
+    initial: { opacity: 0, x: 20 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -20 }
+  }
+};
+
+// Optimized transition settings
+const smoothTransition = {
+  type: "tween",
+  ease: [0.25, 0.1, 0.25, 1],
+  duration: 0.4
+};
+
+const quickTransition = {
+  type: "tween",
+  ease: [0.25, 0.1, 0.25, 1],
+  duration: 0.2
+};
+
 
 // --- Main Component ---
 const GenericLandingPage = () => {
@@ -456,6 +488,14 @@ const GenericLandingPage = () => {
     setExpandedFaq(expandedFaq === index ? null : index);
   };
 
+   const navigateService = (direction: string) => {
+    if (direction === 'prev') {
+      setSelectedService(selectedService === 0 ? services.length - 1 : selectedService - 1);
+    } else {
+      setSelectedService(selectedService === services.length - 1 ? 0 : selectedService + 1);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white relative overflow-hidden">
      {/* Navigation */}
@@ -685,211 +725,266 @@ const GenericLandingPage = () => {
           </motion.div>
         </div>
       </section>
-      {/* Service */}
-  <section
-      ref={sectionRef}
-      id="services"
-      className="py-16 bg-gradient-to-br from-gray-50 via-pink-25 to-white relative overflow-hidden"
-    >
-      {/* Background Elements */}
-      <div className="absolute inset-0 opacity-30 pointer-events-none">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-pink-200 to-rose-200 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-rose-200 to-pink-300 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-gradient-to-br from-pink-100 to-rose-100 rounded-full blur-3xl opacity-50" />
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+   {/* Services Section */}
+      <section
+        ref={sectionRef}
+        id="services"
+        className="py-16 bg-gradient-to-br from-gray-50 via-pink-25 to-white relative overflow-hidden"
       >
-        {/* Header */}
-        <div className="text-center mb-12">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 mb-4 bg-gradient-to-r from-pink-50 to-rose-50 text-pink-700 rounded-full text-sm font-semibold border border-pink-200 shadow-lg backdrop-blur-sm"
-          >
-            <Sparkles className="w-4 h-4" />
-            Our Signature Service Suite
-            <Sparkles className="w-4 h-4" />
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-pink-600 via-rose-600 to-pink-700 bg-clip-text text-transparent mb-4 leading-tight"
-          >
-            Transformative Solutions for Every Stage of Growth
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-base text-gray-600 max-w-3xl mx-auto leading-relaxed"
-          >
-            STAAJ Solutions delivers high-value, low-cost transformation in{' '}
-            <span className="font-bold text-pink-600 bg-pink-50 px-2 py-1 rounded-lg">30 days</span>.
-            We combine people-first expertise with best-practice technology to accelerate your business journey.
-          </motion.p>
+        {/* Optimized Background Elements - Reduced blur for better performance */}
+        <div className="absolute inset-0 opacity-20 pointer-events-none">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-pink-200 to-rose-200 rounded-full blur-2xl" />
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-rose-200 to-pink-300 rounded-full blur-2xl" />
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-gradient-to-br from-pink-100 to-rose-100 rounded-full blur-2xl opacity-40" />
         </div>
 
-        {/* Service Navigator */}
-        <div className="mb-8">
-          <div className="flex flex-wrap justify-center gap-2 mb-6">
-            {services.map((service, index) => (
-              <button
-                key={service.key}
-                onClick={() => setSelectedService(index)}
-                className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                  selectedService === index
-                    ? 'bg-gradient-to-r from-pink-500 to-rose-600 text-white shadow-lg'
-                    : 'bg-white/80 text-gray-600 hover:bg-pink-50 hover:text-pink-600 border border-pink-200/50'
-                }`}
-              >
-                {service.title}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Featured Service Display */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={selectedService}
-            initial={{ opacity: 0, y: 50, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -50, scale: 0.9 }}
-            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-            className="mb-12"
-          >
-            <div className="bg-white/90 backdrop-blur-sm rounded-3xl border border-pink-200/50 shadow-2xl overflow-hidden">
-              {/* Service Navigation */}
-              <div className="flex items-center justify-between p-4 bg-gradient-to-r from-pink-50 to-rose-50 border-b border-pink-200/50">
-                <button
-                  onClick={() => setSelectedService(selectedService === 0 ? services.length - 1 : selectedService - 1)}
-                  className="p-2 rounded-full bg-white/80 hover:bg-white shadow-md hover:shadow-lg transition-all duration-200"
-                >
-                  <ChevronLeft className="w-5 h-5 text-pink-600" />
-                </button>
-                <div className="text-center">
-                  <h3 className="text-sm font-semibold text-pink-700">
-                    Service {selectedService + 1} of {services.length}
-                  </h3>
-                </div>
-                <button
-                  onClick={() => setSelectedService(selectedService === services.length - 1 ? 0 : selectedService + 1)}
-                  className="p-2 rounded-full bg-white/80 hover:bg-white shadow-md hover:shadow-lg transition-all duration-200"
-                >
-                  <ChevronRight className="w-5 h-5 text-pink-600" />
-                </button>
-              </div>
-
-              {/* Service Content */}
-              <div className="p-8">
-                <div className="flex flex-col lg:flex-row gap-8">
-                  {/* Left Column - Service Info */}
-                  <div className="lg:w-2/3">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-white shadow-lg border border-gray-200">
-                        {services[selectedService].icon}
-                      </div>
-                      <div>
-                        <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
-                          {services[selectedService].title}
-                        </h3>
-                        <p className="text-pink-600 font-semibold">
-                          {services[selectedService].subtitle}
-                        </p>
-                      </div>
-                    </div>
-                    <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                      {services[selectedService].summary}
-                    </p>
-                    {services[selectedService].objective && (
-                      <div className="mb-6">
-                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Objective</h4>
-                        <p className="text-gray-600 leading-relaxed">
-                          {services[selectedService].objective}
-                        </p>
-                      </div>
-                    )}
-                    <div className="mb-6">
-                      <h4 className="text-lg font-semibold text-gray-900 mb-4">Key Features</h4>
-                      <div className="space-y-3">
-                        {services[selectedService].features.map((feature, index) => (
-                          <motion.div
-                            key={index}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                            className="flex items-start gap-3"
-                          >
-                            <div className="w-2 h-2 bg-gradient-to-r from-pink-500 to-rose-600 rounded-full mt-2 flex-shrink-0" />
-                            <p className="text-gray-600 leading-relaxed">{feature}</p>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl p-4 border border-pink-200/50">
-                      <h4 className="text-sm font-semibold text-pink-700 mb-2">Ideal For</h4>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        {services[selectedService].ideal}
-                      </p>
-                    </div>
-                  </div>
-                  {/* Right Column - Image */}
-                  <div className="lg:w-1/3">
-                    <div className="relative rounded-2xl overflow-hidden shadow-lg">
-                      <img
-                        src={services[selectedService].image}
-                        alt={services[selectedService].title}
-                        className="w-full h-64 lg:h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Bottom Call-to-Action */}
         <motion.div
-          className="mt-12 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          initial={smoothVariants.fadeInUp.initial}
+          whileInView={smoothVariants.fadeInUp.animate}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ ...smoothTransition, duration: 0.6 }}
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
         >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-5 bg-gradient-to-r from-pink-50 to-rose-50 rounded-2xl border border-pink-200/50 shadow-lg backdrop-blur-sm">
-            <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2 text-pink-700 font-semibold text-sm">
-                <Users className="w-4 h-4" />
-                People-First Expertise
-              </div>
-              <div className="hidden sm:block w-px h-6 bg-pink-300" />
-              <div className="flex items-center gap-2 text-rose-700 font-semibold text-sm">
-                <BarChart3 className="w-4 h-4" />
-                Data-Driven Results
-              </div>
-              <div className="hidden sm:block w-px h-6 bg-pink-300" />
-              <div className="flex items-center gap-2 text-pink-700 font-semibold text-sm">
-                <Clock className="w-4 h-4" />
-                Delivered in 30 Days
+          {/* Header */}
+          <div className="text-center mb-12">
+            <motion.div
+              initial={smoothVariants.scaleIn.initial}
+              whileInView={smoothVariants.scaleIn.animate}
+              viewport={{ once: true }}
+              transition={{ ...smoothTransition, delay: 0.1 }}
+              className="inline-flex items-center gap-2 px-4 py-2 mb-4 bg-gradient-to-r from-pink-50 to-rose-50 text-pink-700 rounded-full text-sm font-semibold border border-pink-200 shadow-md backdrop-blur-sm"
+            >
+              <Sparkles className="w-4 h-4" />
+              Our Signature Service Suite
+              <Sparkles className="w-4 h-4" />
+            </motion.div>
+            <motion.h2
+              initial={smoothVariants.fadeInUp.initial}
+              whileInView={smoothVariants.fadeInUp.animate}
+              viewport={{ once: true }}
+              transition={{ ...smoothTransition, delay: 0.2 }}
+              className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-pink-600 via-rose-600 to-pink-700 bg-clip-text text-transparent mb-4 leading-tight"
+            >
+              Transformative Solutions for Every Stage of Growth
+            </motion.h2>
+            <motion.p
+              initial={smoothVariants.fadeInUp.initial}
+              whileInView={smoothVariants.fadeInUp.animate}
+              viewport={{ once: true }}
+              transition={{ ...smoothTransition, delay: 0.3 }}
+              className="text-base text-gray-600 max-w-3xl mx-auto leading-relaxed"
+            >
+              STAAJ Solutions delivers high-value, low-cost transformation in{' '}
+              <span className="font-bold text-pink-600 bg-pink-50 px-2 py-1 rounded-lg">30 days</span>.
+              We combine people-first expertise with best-practice technology to accelerate your business journey.
+            </motion.p>
+          </div>
+
+          {/* Service Navigator - Optimized for smoother interactions */}
+          <motion.div 
+            className="mb-8"
+            initial={smoothVariants.fadeInUp.initial}
+            whileInView={smoothVariants.fadeInUp.animate}
+            viewport={{ once: true }}
+            transition={{ ...smoothTransition, delay: 0.4 }}
+          >
+            <div className="flex flex-wrap justify-center gap-2 mb-6">
+              {services.map((service, index) => (
+                <motion.button
+                  key={service.key}
+                  onClick={() => setSelectedService(index)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={quickTransition}
+                  className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
+                    selectedService === index
+                      ? 'bg-gradient-to-r from-pink-500 to-rose-600 text-white shadow-lg'
+                      : 'bg-white/80 text-gray-600 hover:bg-pink-50 hover:text-pink-600 border border-pink-200/50'
+                  }`}
+                >
+                  {service.title}
+                </motion.button>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Featured Service Display - Optimized for smoother transitions */}
+          <div className="mb-12 relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={selectedService}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={smoothTransition}
+                className="absolute inset-0"
+              >
+                <div className="bg-white/90 backdrop-blur-sm rounded-3xl border border-pink-200/50 shadow-xl overflow-hidden">
+                  {/* Service Navigation - Improved button interactions */}
+                  <div className="flex items-center justify-between p-4 bg-gradient-to-r from-pink-50 to-rose-50 border-b border-pink-200/50">
+                    <motion.button
+                      onClick={() => navigateService('prev')}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={quickTransition}
+                      className="p-2 rounded-full bg-white/80 hover:bg-white shadow-md hover:shadow-lg transition-all duration-200"
+                    >
+                      <ChevronLeft className="w-5 h-5 text-pink-600" />
+                    </motion.button>
+                    <div className="text-center">
+                      <h3 className="text-sm font-semibold text-pink-700">
+                        Service {selectedService + 1} of {services.length}
+                      </h3>
+                    </div>
+                    <motion.button
+                      onClick={() => navigateService('next')}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={quickTransition}
+                      className="p-2 rounded-full bg-white/80 hover:bg-white shadow-md hover:shadow-lg transition-all duration-200"
+                    >
+                      <ChevronRight className="w-5 h-5 text-pink-600" />
+                    </motion.button>
+                  </div>
+
+                  {/* Service Content - Fixed height to prevent layout shifts */}
+                  <div className="p-8 min-h-[500px]">
+                    <div className="flex flex-col lg:flex-row gap-8 h-full">
+                      {/* Left Column - Service Info */}
+                      <div className="lg:w-2/3">
+                        <motion.div 
+                          className="flex items-center gap-4 mb-6"
+                          initial={smoothVariants.slideIn.initial}
+                          animate={smoothVariants.slideIn.animate}
+                          transition={{ ...smoothTransition, delay: 0.1 }}
+                        >
+                          <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-white shadow-lg border border-gray-200">
+                            {services[selectedService].icon}
+                          </div>
+                          <div>
+                            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
+                              {services[selectedService].title}
+                            </h3>
+                            <p className="text-pink-600 font-semibold">
+                              {services[selectedService].subtitle}
+                            </p>
+                          </div>
+                        </motion.div>
+                        
+                        <motion.p 
+                          className="text-gray-600 text-lg mb-6 leading-relaxed"
+                          initial={smoothVariants.fadeInUp.initial}
+                          animate={smoothVariants.fadeInUp.animate}
+                          transition={{ ...smoothTransition, delay: 0.2 }}
+                        >
+                          {services[selectedService].summary}
+                        </motion.p>
+                        
+                        {services[selectedService].objective && (
+                          <motion.div 
+                            className="mb-6"
+                            initial={smoothVariants.fadeInUp.initial}
+                            animate={smoothVariants.fadeInUp.animate}
+                            transition={{ ...smoothTransition, delay: 0.3 }}
+                          >
+                            <h4 className="text-lg font-semibold text-gray-900 mb-2">Objective</h4>
+                            <p className="text-gray-600 leading-relaxed">
+                              {services[selectedService].objective}
+                            </p>
+                          </motion.div>
+                        )}
+                        
+                        <motion.div 
+                          className="mb-6"
+                          initial={smoothVariants.fadeInUp.initial}
+                          animate={smoothVariants.fadeInUp.animate}
+                          transition={{ ...smoothTransition, delay: 0.4 }}
+                        >
+                          <h4 className="text-lg font-semibold text-gray-900 mb-4">Key Features</h4>
+                          <div className="space-y-3">
+                            {services[selectedService].features.map((feature, index) => (
+                              <motion.div
+                                key={index}
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ ...quickTransition, delay: index * 0.05 }}
+                                className="flex items-start gap-3"
+                              >
+                                <div className="w-2 h-2 bg-gradient-to-r from-pink-500 to-rose-600 rounded-full mt-2 flex-shrink-0" />
+                                <p className="text-gray-600 leading-relaxed">{feature}</p>
+                              </motion.div>
+                            ))}
+                          </div>
+                        </motion.div>
+                        
+                        <motion.div 
+                          className="bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl p-4 border border-pink-200/50"
+                          initial={smoothVariants.scaleIn.initial}
+                          animate={smoothVariants.scaleIn.animate}
+                          transition={{ ...smoothTransition, delay: 0.5 }}
+                        >
+                          <h4 className="text-sm font-semibold text-pink-700 mb-2">Ideal For</h4>
+                          <p className="text-gray-600 text-sm leading-relaxed">
+                            {services[selectedService].ideal}
+                          </p>
+                        </motion.div>
+                      </div>
+                      
+                      {/* Right Column - Image */}
+                      <motion.div 
+                        className="lg:w-1/3"
+                        initial={smoothVariants.scaleIn.initial}
+                        animate={smoothVariants.scaleIn.animate}
+                        transition={{ ...smoothTransition, delay: 0.3 }}
+                      >
+                        <div className="relative rounded-2xl overflow-hidden shadow-lg h-64 lg:h-full">
+                          <img
+                            src={services[selectedService].image}
+                            alt={services[selectedService].title}
+                            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                            loading="lazy"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                        </div>
+                      </motion.div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+            {/* Spacer to maintain layout */}
+            <div className="invisible min-h-[600px]" />
+          </div>
+
+          {/* Bottom Call-to-Action */}
+          <motion.div
+            className="mt-25 text-center"
+            initial={smoothVariants.fadeInUp.initial}
+            whileInView={smoothVariants.fadeInUp.animate}
+            viewport={{ once: true }}
+            transition={{ ...smoothTransition, delay: 0.2 }}
+          >
+            <div className="mt-20 inline-flex flex-col sm:flex-row items-center gap-4 p-5 bg-gradient-to-r from-pink-50 to-rose-50 rounded-2xl border border-pink-200/50 shadow-lg backdrop-blur-sm">
+              <div className="flex items-center gap-6">
+                <div className="flex items-center gap-2 text-pink-700 font-semibold text-sm">
+                  <Users className="w-4 h-4" />
+                  People-First Expertise
+                </div>
+                <div className="hidden sm:block w-px h-6 bg-pink-300" />
+                <div className="flex items-center gap-2 text-rose-700 font-semibold text-sm">
+                  <BarChart3 className="w-4 h-4" />
+                  Data-Driven Results
+                </div>
+                <div className="hidden sm:block w-px h-6 bg-pink-300" />
+                <div className="flex items-center gap-2 text-pink-700 font-semibold text-sm">
+                  <Clock className="w-4 h-4" />
+                  Delivered in 30 Days
+                </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
-      </motion.div>
-    </section>
+      </section>
       {/* FAQ */}
       <section id="faq" className="py-16 bg-gray-50 relative overflow-hidden">
         <DotBackground density={1} opacity={0.2} color="#919294" />
