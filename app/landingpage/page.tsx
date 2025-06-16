@@ -434,6 +434,7 @@ const GenericLandingPage = () => {
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
+          // poster = "/images/image.png"
         >
           <source src="https://www.pexels.com/download/video/3192305/" type="video/mp4" />
         </video>
@@ -463,28 +464,10 @@ const GenericLandingPage = () => {
               <TypewriterText words={typewriterWords} />
             </motion.div>
             {/* CTA Buttons */}
-            <motion.div className="flex flex-col sm:flex-row gap-3 mb-7" variants={fadeIn} initial="hidden" animate="visible">
-              <motion.button
-                className="bg-gradient-to-r from-purple-500 via-pink-600 to-pink-500 text-white px-7 py-3 rounded-xl text-lg font-bold shadow-xl hover:shadow-2xl transition-all duration-300"
-                whileHover={{ scale: 1.05, y: -3 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <span className="flex items-center justify-center">
-                  Book Free AI Consultation
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </span>
-              </motion.button>
-              <motion.button
-                className="bg-white/90 backdrop-blur-sm text-gray-800 px-7 py-3 rounded-xl text-lg font-semibold border-2 border-gray-200 hover:border-blue-300 transition-all duration-300"
-                whileHover={{ scale: 1.05, y: -3 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <span className="flex items-center justify-center">
-                  <Download className="mr-2 h-5 w-5" />
-                  AI Capabilities Brochure
-                </span>
-              </motion.button>
+             <motion.div className="text-base text-white/90 font-medium mb-7" variants={fadeIn} initial="hidden" animate="visible">
+              We help organizations of every size unlock efficiency, automate operations, and scale new heights with tailored AI solutions.
             </motion.div>
+            
             {/* Trust Indicators */}
             <motion.div className="flex flex-wrap items-center gap-5" variants={fadeIn} initial="hidden" animate="visible">
               <div className="flex items-center text-sm text-white">
@@ -807,22 +790,11 @@ const GenericLandingPage = () => {
             <motion.p className="text-lg mb-8 text-white/90 max-w-2xl mx-auto" variants={fadeIn}>
               Let’s talk about how AI can transform your business—no matter your industry or starting point.
             </motion.p>
-            <motion.div className="flex flex-col sm:flex-row justify-center gap-4" variants={fadeIn}>
-              <motion.button
-                className="bg-white text-pink-600 px-8 py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition-all"
-                whileHover={{ scale: 1.05, y: -3 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Book Your Consultation
-              </motion.button>
-              <motion.button
-                className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-pink-600 transition-colors"
-                whileHover={{ scale: 1.02, y: -1 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Download AI Brochure
-              </motion.button>
+              {/* CTA Buttons */}
+             <motion.div className="text-base text-white/90 font-medium mb-7" variants={fadeIn} initial="hidden" animate="visible">
+              We help organizations of every size unlock efficiency, automate operations, and scale new heights with tailored AI solutions.
             </motion.div>
+            
           </motion.div>
         </div>
       </section>
