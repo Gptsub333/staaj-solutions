@@ -220,7 +220,7 @@ const QuestionnaireFlow: React.FC<QuestionnaireFlowProps> = ({ onComplete, userE
 
   return (
     <div className="lg:h-full flex items-start lg:pt-0"
-    style={{ marginTop: "17rem" }} 
+    style={{ marginTop: "-10rem" }} 
   >
     <div className={`transition-all duration-1000 delay-300 w-full ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
       <div className="bg-white rounded-3xl shadow-2xl p-8 border border-pink-100 relative overflow-hidden">

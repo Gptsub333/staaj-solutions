@@ -5,8 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowRight, Download, CheckCircle, Star, Award, Lightbulb,
   LineChart, Users2, Target, BarChart, Users, Settings, Bot, Cloud,
-  Brain, Database, Shield, Network, Phone, Mail, Linkedin, Twitter, ChevronDown, ChevronUp, Menu, X, MapPin, Puzzle, TrendingUp 
-} from 'lucide-react';
+  Brain, Database, Shield, Network, Phone, Mail, Linkedin, Twitter, ChevronDown, ChevronUp, Menu, X, MapPin, Puzzle, TrendingUp,Clock,BookOpenCheck, Briefcase, Megaphone, Sparkles} from 'lucide-react';
 
 // --- Animated Typewriter Component ---
 interface TypewriterTextProps {
@@ -115,6 +114,60 @@ const AnimatedCounter: React.FC<AnimatedCounterProps> = ({ value, duration = 200
   );
 };
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1
+    }
+  }
+};
+
+const cardVariants = {
+  hidden: { 
+    opacity: 0, 
+    x: -50,
+    scale: 0.95
+  },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.1, 0.25, 1]
+    }
+  }
+};
+
+const iconVariants = {
+  rest: { scale: 1, rotate: 0 },
+  hover: { 
+    scale: 1.1, 
+    rotate: 5,
+    transition: {
+      duration: 0.3,
+      ease: "easeInOut"
+    }
+  }
+};
+
+const sparkleVariants = {
+  animate: {
+    scale: [1, 1.2, 1],
+    rotate: [0, 180, 360],
+    opacity: [0.4, 0.8, 0.4],
+    transition: {
+      duration: 3,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  }
+};
+
+
 // --- Main Component ---
 const GenericLandingPage = () => {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
@@ -165,108 +218,45 @@ const GenericLandingPage = () => {
 
   // Services (all-industry)
   const services = [
-    {
-      icon: <LineChart className="w-8 h-8" />,
-      title: "AI Strategy & Roadmap",
-      description: "Define your vision and build a step-by-step plan to adopt and scale AI for sustainable growth.",
-      features: [
-        "Opportunity assessment",
-        "Strategic planning",
-        "Tech stack recommendations",
-        "Implementation roadmap",
-        "Risk mitigation"
-      ],
-      timeline: "4-6 weeks",
-      roi: "Strategic clarity",
-      color: "from-blue-500 to-blue-600"
-    },
-    {
-      icon: <BarChart className="w-8 h-8" />,
-      title: "Data-Driven Insights",
-      description: "Leverage data analytics to forecast trends, optimize processes, and drive informed decisions.",
-      features: [
-        "Descriptive & predictive analytics",
-        "Dashboards & reporting",
-        "Forecasting models",
-        "Anomaly detection",
-        "Real-time monitoring"
-      ],
-      timeline: "4-8 weeks",
-      roi: "Better decisions",
-      color: "from-purple-500 to-purple-600"
-    },
-    {
-      icon: <Users className="w-8 h-8" />,
-      title: "Customer Experience Optimization",
-      description: "Personalize engagement and retention using AI-powered tools for all sectors.",
-      features: [
-        "Segmentation & targeting",
-        "Churn prediction",
-        "Personalized journeys",
-        "Feedback analysis",
-        "Sentiment detection"
-      ],
-      timeline: "6-10 weeks",
-      roi: "Stronger loyalty",
-      color: "from-green-500 to-green-600"
-    },
-    {
-      icon: <Settings className="w-8 h-8" />,
-      title: "Process Automation",
-      description: "Automate routine tasks and complex workflows for efficiency, cost savings, and scalability.",
-      features: [
-        "Robotic process automation",
-        "Document & email automation",
-        "AI-powered support",
-        "Workflow optimization",
-        "Resource allocation"
-      ],
-      timeline: "6-12 weeks",
-      roi: "Cost reduction",
-      color: "from-pink-500 to-pink-600"
-    }
-  ];
-
-  // Additional AI Services
-  const aiServices = [
-    {
-      icon: <Bot className="w-6 h-6" />,
-      title: "AI Assistants & Chatbots",
-      description: "Automated support and interaction",
-      color: "from-blue-400 to-blue-500"
-    },
-    {
-      icon: <Cloud className="w-6 h-6" />,
-      title: "Cloud AI Integration",
-      description: "Scalable AI for any platform",
-      color: "from-green-400 to-green-500"
-    },
-    {
-      icon: <Brain className="w-6 h-6" />,
-      title: "Custom ML Solutions",
-      description: "Tailored to your needs",
-      color: "from-purple-400 to-purple-500"
-    },
-    {
-      icon: <Database className="w-6 h-6" />,
-      title: "Data Architecture",
-      description: "AI-ready data pipelines",
-      color: "from-pink-400 to-pink-500"
-    },
-    {
-      icon: <Shield className="w-6 h-6" />,
-      title: "AI Security",
-      description: "Responsible and compliant AI",
-      color: "from-indigo-400 to-indigo-500"
-    },
-    {
-      icon: <Network className="w-6 h-6" />,
-      title: "AI as a Service",
-      description: "Subscription-based AI tools",
-      color: "from-orange-400 to-orange-500"
-    }
-  ];
-
+  {
+    icon: <Target className="w-8 h-8" />,
+    title: "Customer Journey Analysis",
+    description: "Map your customer touchpoints and identify optimization opportunities. Unlock a seamless, high-value journey.",
+    color: "from-pink-500 to-rose-500"
+  },
+  {
+    icon: <BarChart className="w-8 h-8" />,
+    title: "Operational Maturity Review",
+    description: "Evaluate your processes and systems for scalability and resilience. Accelerate your operational excellence.",
+    color: "from-purple-500 to-pink-500"
+  },
+  {
+    icon: <Clock className="w-8 h-8" />,
+    title: "Time & Resource Optimization",
+    description: "Streamline workflows and maximize your team's productivity and output.",
+    color: "from-blue-500 to-purple-500"
+  },
+  {
+    icon: <Briefcase className="w-8 h-8" />,
+    title: "Sales & Business Operations",
+    description: "Align your sales strategy with key operational capabilities for growth.",
+    color: "from-indigo-500 to-blue-500"
+  },
+  {
+    icon: <Megaphone className="w-8 h-8" />,
+    title: "Marketing Awareness Strategy",
+    description: "Build brand visibility and customer engagement frameworks to drive new business.",
+    color: "from-green-500 to-indigo-500"
+  },
+  {
+    icon: <BookOpenCheck className="w-8 h-8" />,
+    title: "Custom Solutions",
+    description: "Bespoke services: CRM integrations, AI workflows, technology planning, and strategic partnerships.",
+    color: "from-yellow-400 to-orange-500"
+  }
+];
+  
+ 
   // Why Choose Us
   const whyChooseUs = [
     {
@@ -342,7 +332,12 @@ const GenericLandingPage = () => {
       answer: "Our broad, hands-on experience, custom approach, and commitment to measurable outcomes set us apart. We partner closely to deliver real business value."
     }
   ];
-
+  const WHYUS_IMAGES = [
+  "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",   // industry experience
+  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",   // impact
+  "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",   // custom solution
+  "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80"    // partner
+];
   // Framer Motion variants
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -364,72 +359,72 @@ const GenericLandingPage = () => {
 
   return (
     <div className="min-h-screen bg-white relative overflow-hidden">
-      {/* Navigation */}
-      <motion.nav
-        className="relative z-50 bg-white/95 backdrop-blur-lg border-b border-gray-200/50 sticky top-0 shadow-sm"
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <div className="flex items-center">
-              <motion.div className="flex items-center space-x-3" whileHover={{ scale: 1.01 }}>
-                <div className="relative">
-                  <img
-                    src="/logo2.png"
-                    alt="Your Company"
-                    className="h-9 w-auto object-contain"
-                  />
-                </div>
-                <div className="hidden sm:block">
-                  <div className="text-xs text-gray-500 font-medium">AI Consulting for Every Industry</div>
-                </div>
-              </motion.div>
-            </div>
-            <div className="hidden lg:flex items-center space-x-8">
-              <motion.a href="#services" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">Services</motion.a>
-              <motion.a href="#why-us" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">Why Us</motion.a>
-              <motion.a href="#faq" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">FAQ</motion.a>
-            </div>
-            <div className="lg:hidden">
-              <motion.button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-gray-700 hover:text-gray-900 p-2 rounded-lg hover:bg-gray-50 transition-colors"
-                whileTap={{ scale: 0.95 }}
-              >
-                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </motion.button>
-            </div>
+     {/* Navigation */}
+<motion.nav
+  className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-b border-gray-200/50 shadow-sm"
+  initial={{ y: -100, opacity: 0 }}
+  animate={{ y: 0, opacity: 1 }}
+  transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex justify-between items-center h-20">
+      <div className="flex items-center">
+        <motion.div className="flex items-center space-x-3" whileHover={{ scale: 1.01 }}>
+          <div className="relative">
+            <img
+              src="/logo2.png"
+              alt="Your Company"
+              className="h-9 w-auto object-contain"
+            />
           </div>
+          <div className="hidden sm:block">
+            <div className="text-xs text-gray-500 font-medium">AI Consulting for Every Industry</div>
+          </div>
+        </motion.div>
+      </div>
+      <div className="hidden lg:flex items-center space-x-8">
+        <motion.a href="#services" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">Services</motion.a>
+        <motion.a href="#why-us" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">Why Us</motion.a>
+        <motion.a href="#faq" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">FAQ</motion.a>
+      </div>
+      <div className="lg:hidden">
+        <motion.button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="text-gray-700 hover:text-gray-900 p-2 rounded-lg hover:bg-gray-50 transition-colors"
+          whileTap={{ scale: 0.95 }}
+        >
+          {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </motion.button>
+      </div>
+    </div>
+  </div>
+  <AnimatePresence>
+    {isMenuOpen && (
+      <motion.div
+        className="lg:hidden bg-white border-t border-gray-100"
+        initial={{ opacity: 0, height: 0 }}
+        animate={{ opacity: 1, height: 'auto' }}
+        exit={{ opacity: 0, height: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <div className="px-4 py-4 space-y-2">
+          <motion.a href="#services" className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors" onClick={() => setIsMenuOpen(false)}>
+            Services
+          </motion.a>
+          <motion.a href="#why-us" className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors" onClick={() => setIsMenuOpen(false)}>
+            Why Us
+          </motion.a>
+          <motion.a href="#faq" className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors" onClick={() => setIsMenuOpen(false)}>
+            FAQ
+          </motion.a>
+          <motion.button className="block w-full text-left px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
+            Book AI Consultation
+          </motion.button>
         </div>
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              className="lg:hidden bg-white border-t border-gray-100"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="px-4 py-4 space-y-2">
-                <motion.a href="#services" className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors" onClick={() => setIsMenuOpen(false)}>
-                  Services
-                </motion.a>
-                <motion.a href="#why-us" className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors" onClick={() => setIsMenuOpen(false)}>
-                  Why Us
-                </motion.a>
-                <motion.a href="#faq" className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors" onClick={() => setIsMenuOpen(false)}>
-                  FAQ
-                </motion.a>
-                <motion.button className="block w-full text-left px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
-                  Book AI Consultation
-                </motion.button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.nav>
+      </motion.div>
+    )}
+  </AnimatePresence>
+</motion.nav>
 
       {/* HERO SECTION */}
       <section className="relative py-0 min-h-[calc(100vh-5rem)] flex items-center overflow-hidden">
@@ -440,7 +435,7 @@ const GenericLandingPage = () => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
-          <source src="/ai-background.mp4" type="video/mp4" />
+          <source src="https://www.pexels.com/download/video/3192305/" type="video/mp4" />
         </video>
         {/* Overlay for better text legibility */}
         <div className="absolute inset-0 w-full h-full z-0 bg-gradient-to-br from-[#222a3d]/70 via-[#1c1f2a]/50 to-[#4066d6]/30 pointer-events-none" />
@@ -599,86 +594,154 @@ const GenericLandingPage = () => {
           </motion.div>
         </div>
       </section>
+  <section id="services" className="py-16 bg-gradient-to-br from-gray-50 via-pink-25 to-white relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-pink-200 to-rose-200 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-rose-200 to-pink-300 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-gradient-to-br from-pink-100 to-rose-100 rounded-full blur-3xl opacity-50" />
+      </div>
 
-      {/* Services */}
-      <section id="services" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div className="text-center mb-12" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
-            <span className="inline-block px-3 py-1 mb-4 bg-blue-50 text-blue-700 rounded-full text-sm font-medium border border-blue-200">
-              Our Services
-            </span>
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">
-              AI Solutions for Every Need
-            </h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
-              From strategy to operations, we offer end-to-end AI consulting and implementation for any organization or business process.
-            </p>
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+      >
+        {/* Header */}
+        <div className="text-center mb-12">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-4 py-2 mb-4 bg-gradient-to-r from-pink-50 to-rose-50 text-pink-700 rounded-full text-sm font-semibold border border-pink-200 shadow-lg backdrop-blur-sm"
+          >
+            <Sparkles className="w-4 h-4" />
+            Our Signature Service Suite
+            <Sparkles className="w-4 h-4" />
           </motion.div>
-          <motion.div className="space-y-8" variants={staggerChildren} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                className="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-gray-200/80 hover:shadow-xl transition-all duration-300 group"
-                variants={fadeIn}
-                whileHover={{ y: -4, scale: 1.01 }}
-              >
-                <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
-                  <div className="lg:w-2/5 flex-shrink-0">
-                    <div className="flex items-start mb-3">
-                      <div className={`bg-gradient-to-r ${service.color} text-white group-hover:scale-110 transition-transform duration-200 mr-3 mt-1 p-3 rounded-lg shadow-sm`}>
-                        {React.cloneElement(service.icon, { className: "w-7 h-7" })}
+          
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-pink-600 via-rose-600 to-pink-700 bg-clip-text text-transparent mb-4 leading-tight"
+          >
+            Transformative Solutions for Every Stage of Growth
+          </motion.h2>
+          
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-base text-gray-600 max-w-3xl mx-auto leading-relaxed"
+          >
+            STAAJ Solutions delivers high-value, low-cost transformation in{' '}
+            <span className="font-bold text-pink-600 bg-pink-50 px-2 py-1 rounded-lg">30 days</span>.
+            We combine people-first expertise with best-practice technology to accelerate your business journey.
+          </motion.p>
+        </div>
+
+        {/* Services Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="space-y-6"
+        >
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              variants={cardVariants}
+              whileHover="hover"
+              initial="rest"
+              className="group"
+            >
+              <div className="bg-white/80 backdrop-blur-sm rounded-3xl border border-pink-100/50 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden">
+                <div className="flex flex-col lg:flex-row items-center gap-6 p-6 lg:p-8">
+                  {/* Icon Section */}
+                  <motion.div 
+                    variants={iconVariants}
+                    className="flex-shrink-0"
+                  >
+                    <div className="relative">
+                      <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center text-white shadow-lg">
+                        {service.icon}
                       </div>
-                      <div>
-                        <h3 className="text-xl xl:text-2xl font-bold text-gray-900 mb-1">{service.title}</h3>
-                        <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs mb-3">
-                          <span className="font-semibold text-green-600">{service.roi}</span>
-                          <span className="text-gray-500">{service.timeline}</span>
-                        </div>
-                      </div>
+                      <motion.div
+                        variants={sparkleVariants}
+                        animate="animate"
+                        className="absolute -top-2 -right-2 w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center"
+                      >
+                        <Sparkles className="w-2.5 h-2.5 text-yellow-600" />
+                      </motion.div>
                     </div>
-                    <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+                  </motion.div>
+
+                  {/* Content Section */}
+                  <div className="flex-grow text-center lg:text-left">
+                    <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-3 group-hover:text-pink-600 transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-600 text-base mb-4 leading-relaxed">
                       {service.description}
                     </p>
                   </div>
-                  <div className="lg:w-3/5 space-y-4">
-                    <div>
-                      <h4 className="text-base font-semibold text-gray-800 mb-2">Key Capabilities:</h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                        {service.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-start">
-                            <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                            <span className="text-sm text-gray-600">{feature}</span>
-                          </div>
-                        ))}
-                      </div>
+
+                  {/* Arrow */}
+                  <motion.div
+                    initial={{ x: 0 }}
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.2 }}
+                    className="flex-shrink-0 hidden lg:block"
+                  >
+                    <div className="w-12 h-12 bg-gradient-to-br from-pink-100 to-rose-100 rounded-full flex items-center justify-center group-hover:from-pink-500 group-hover:to-rose-600 transition-all duration-300">
+                      <ArrowRight className="w-5 h-5 text-pink-600 group-hover:text-white transition-colors duration-300" />
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
-              </motion.div>
-            ))}
-          </motion.div>
-          {/* Additional Services */}
-          <motion.div className="mt-16" variants={fadeIn}>
-            <h3 className="text-lg font-semibold text-gray-800 mb-6 text-center">Additional AI Services</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {aiServices.map((service, index) => (
-                <motion.div
-                  key={index}
-                  className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-all text-center"
-                  variants={scaleIn}
-                  whileHover={{ y: -2, scale: 1.03 }}
-                >
-                  <div className={`bg-gradient-to-r ${service.color} w-10 h-10 mx-auto rounded-lg flex items-center justify-center mb-3 text-white`}>
-                    {service.icon}
-                  </div>
-                  <h4 className="font-semibold text-gray-800 text-sm mb-1">{service.title}</h4>
-                  <p className="text-xs text-gray-600">{service.description}</p>
-                </motion.div>
-              ))}
+
+                {/* Bottom Gradient Line */}
+                <div className="h-1 bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Bottom Call-to-Action */}
+        <motion.div
+          className="mt-12 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-5 bg-gradient-to-r from-pink-50 to-rose-50 rounded-2xl border border-pink-200/50 shadow-lg backdrop-blur-sm">
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2 text-pink-700 font-semibold text-sm">
+                <Users className="w-4 h-4" />
+                People-First Expertise
+              </div>
+              <div className="hidden sm:block w-px h-6 bg-pink-300" />
+              <div className="flex items-center gap-2 text-rose-700 font-semibold text-sm">
+                <BarChart className="w-4 h-4" />
+                Data-Driven Results
+              </div>
+              <div className="hidden sm:block w-px h-6 bg-pink-300" />
+              <div className="flex items-center gap-2 text-pink-700 font-semibold text-sm">
+                <Clock className="w-4 h-4" />
+                Delivered in 30 Days
+              </div>
             </div>
-          </motion.div>
-        </div>
-      </section>
+          </div>
+        </motion.div>
+      </motion.div>
+    </section>
 
       {/* FAQ */}
       <section id="faq" className="py-16 bg-gray-50 relative overflow-hidden">

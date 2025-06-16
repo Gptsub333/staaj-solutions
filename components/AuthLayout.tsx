@@ -3,11 +3,11 @@
 import React, { ReactNode, useState, useEffect } from 'react';
 import Image from 'next/image';
 
-// Shared sidebar content
+// Sidebar with distinct animation (scale + fade, origin-left)
 const SidebarContent: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
-  
+
   const journeySteps = [
     { 
       icon: '🎯', 
@@ -30,7 +30,7 @@ const SidebarContent: React.FC = () => {
     { 
       icon: '💼', 
       title: 'Sales & Business Operations', 
-      description: 'Align your sales strategy with operational capabilities',
+      description: 'Align your sales strategy with operational capabilities for growth',
       color: 'from-indigo-500 to-blue-500'
     },
     { 
@@ -53,72 +53,97 @@ const SidebarContent: React.FC = () => {
       name: 'Sarah Mitchell', 
       role: 'CEO', 
       company: 'TechFlow Solutions', 
-      content: 'The comprehensive approach transformed how we understand our customers and operations.' 
+      content: 'The comprehensive approach transformed how we understand our customers and operations.',
+      color: 'from-emerald-500 to-teal-500'
     },
     { 
       name: 'David Chen', 
       role: 'Operations Director', 
       company: 'Growth Dynamics', 
-      content: 'Their systematic framework identified gaps we never knew existed. Revenue increased 40%.' 
+      content: 'Their systematic framework identified gaps we never knew existed. Revenue increased 40%.',
+      color: 'from-amber-500 to-orange-500'
     },
     { 
       name: 'Lisa Rodriguez', 
       role: 'Founder', 
       company: 'Innovate Labs', 
-      content: 'From customer journey to marketing strategy - they covered everything we needed to scale.' 
+      content: 'From customer journey to marketing strategy - they covered everything we needed to scale.',
+      color: 'from-violet-500 to-purple-500'
     }
   ];
 
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [testimonialProgress, setTestimonialProgress] = useState(0);
 
   useEffect(() => {
     setIsVisible(true);
-    
+
     // Cycle through journey steps
     const stepInterval = setInterval(() => {
       setCurrentStep(i => (i + 1) % journeySteps.length);
     }, 3000);
 
-    // Cycle through testimonials
+    // Cycle through testimonials with animated progress
     const testimonialInterval = setInterval(() => {
       setCurrentTestimonial(i => (i + 1) % testimonials.length);
+      setTestimonialProgress(0); // Reset progress when switching testimonials
     }, 5000);
+
+    // Animate testimonial progress
+    const progressInterval = setInterval(() => {
+      setTestimonialProgress(prev => {
+        if (prev >= 100) return 0;
+        return prev + 2; // Increment by 2% every 100ms for smooth animation
+      });
+    }, 100);
 
     return () => {
       clearInterval(stepInterval);
       clearInterval(testimonialInterval);
+      clearInterval(progressInterval);
     };
   }, []);
 
   return (
-    <div className={`space-y-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>      
+    <aside
+      className={`
+        space-y-8
+        transition-transform transition-opacity duration-1000 ease-out
+        ${isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}
+        origin-left
+      `}
+      style={{ willChange: 'opacity, transform' }}
+    >
       {/* Hero */}
       <div className="space-y-6">
         <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-pink-100 to-purple-100 rounded-full">
           <span className="text-pink-600 font-medium text-sm">🚀 Comprehensive Business Transformation</span>
         </div>
         <h1 className="text-5xl font-bold text-gray-800 leading-tight">
-          Scale Your Business with <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 block">Strategic Clarity</span>
+          Scale Your Business with{' '}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 block">
+            Strategic Clarity
+          </span>
         </h1>
         <p className="text-xl text-gray-600 leading-relaxed">
           Our proven framework examines every aspect of your business to unlock sustainable growth and operational excellence.
         </p>
       </div>
 
-      {/* Journey Framework Showcase */}
+      {/* Journey Framework Showcase - KEEPS ORIGINAL TOP PROGRESS BAR */}
       <div className="bg-white rounded-2xl shadow-xl border border-pink-100 p-8 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-2 bg-gray-100 rounded-t-2xl">
-          <div 
+          <div
             className={`h-full bg-gradient-to-r ${journeySteps[currentStep].color} transition-all duration-500 rounded-t-2xl`}
-            style={{width: `${((currentStep + 1) / journeySteps.length) * 100}%`}}
+            style={{ width: `${((currentStep + 1) / journeySteps.length) * 100}%` }}
           />
         </div>
-        
+
         <div className="pt-4">
           <h3 className="text-lg font-semibold text-gray-800 mb-6">Our 5-Pillar Framework</h3>
-          
+
           {/* Current Step Display */}
-          <div className="mb-8 p-6 bg-gradient-to-br from-pink-50 to-purple-50 rounded-xl">
+          <div className="mb-8 p-6 bg-gradient-to-br from-pink-50 to-purple-50 rounded-xl animate-stepfadein">
             <div className="flex items-start space-x-4">
               <div className={`w-16 h-16 bg-gradient-to-r ${journeySteps[currentStep].color} rounded-xl flex items-center justify-center text-2xl shadow-lg`}>
                 {journeySteps[currentStep].icon}
@@ -133,24 +158,28 @@ const SidebarContent: React.FC = () => {
           {/* All Steps Overview */}
           <div className="grid grid-cols-1 gap-3">
             {journeySteps.map((step, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-300 ${
-                  idx === currentStep 
-                    ? 'bg-gradient-to-r from-pink-100 to-purple-100 scale-105' 
+                  idx === currentStep
+                    ? 'bg-gradient-to-r from-pink-100 to-purple-100 scale-105'
                     : 'bg-gray-50 hover:bg-gray-100'
                 }`}
               >
-                <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm ${
-                  idx === currentStep 
-                    ? `bg-gradient-to-r ${step.color} text-white shadow-md` 
-                    : 'bg-white text-gray-600'
-                }`}>
+                <div
+                  className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm ${
+                    idx === currentStep
+                      ? `bg-gradient-to-r ${step.color} text-white shadow-md`
+                      : 'bg-white text-gray-600'
+                  }`}
+                >
                   {step.icon}
                 </div>
-                <span className={`text-sm font-medium ${
-                  idx === currentStep ? 'text-gray-800' : 'text-gray-600'
-                }`}>
+                <span
+                  className={`text-sm font-medium ${
+                    idx === currentStep ? 'text-gray-800' : 'text-gray-600'
+                  }`}
+                >
                   {step.title}
                 </span>
               </div>
@@ -162,38 +191,95 @@ const SidebarContent: React.FC = () => {
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {stats.map((stat, idx) => (
-          <div 
-            key={idx} 
-            className={`text-center p-4 rounded-xl bg-white shadow-lg border border-pink-100 transition-all duration-500 hover:shadow-xl hover:scale-105 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`} 
+          <div
+            key={idx}
+            className={`
+              text-center p-4 rounded-xl bg-white shadow-lg border border-pink-100 transition-all duration-500 hover:shadow-xl hover:scale-105
+              ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
+            `}
             style={{ transitionDelay: `${idx * 100}ms` }}
           >
             <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 mb-1">
-              {stat.number}{stat.suffix}
+              {stat.number}
+              {stat.suffix}
             </div>
             <div className="text-sm text-gray-600">{stat.label}</div>
           </div>
         ))}
       </div>
 
-      {/* Testimonial */}
+      {/* Testimonial - NEW CIRCULAR PROGRESS ANIMATION */}
       <div className="bg-white rounded-xl shadow-lg border border-pink-100 p-6 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-1 bg-pink-100">
-          <div 
-            className="h-full bg-gradient-to-r from-pink-600 to-purple-600 transition-all duration-5000 ease-linear" 
-            style={{width: `${((currentTestimonial + 1) / testimonials.length) * 100}%`}} 
-          />
+        {/* Circular Progress Indicator */}
+        <div className="absolute top-4 right-4 w-12 h-12">
+          <svg className="w-12 h-12 transform -rotate-90" viewBox="0 0 48 48">
+            <circle
+              cx="24"
+              cy="24"
+              r="20"
+              stroke="#f3f4f6"
+              strokeWidth="3"
+              fill="none"
+            />
+            <circle
+              cx="24"
+              cy="24"
+              r="20"
+              stroke="url(#testimonialGradient)"
+              strokeWidth="3"
+              fill="none"
+              strokeLinecap="round"
+              strokeDasharray={`${2 * Math.PI * 20}`}
+              strokeDashoffset={`${2 * Math.PI * 20 * (1 - testimonialProgress / 100)}`}
+              className="transition-all duration-100 ease-linear"
+            />
+            <defs>
+              <linearGradient id="testimonialGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#ec4899" />
+                <stop offset="100%" stopColor="#8b5cf6" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className={`w-6 h-6 bg-gradient-to-r ${testimonials[currentTestimonial].color} rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg`}>
+              {currentTestimonial + 1}
+            </div>
+          </div>
         </div>
-        <div className="pt-4 flex items-start space-x-4">
-          <div className="w-12 h-12 bg-gradient-to-r from-pink-600 to-purple-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
+
+        {/* Testimonial Dots Indicator */}
+        <div className="flex space-x-2 mb-4">
+          {testimonials.map((_, idx) => (
+            <div
+              key={idx}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                idx === currentTestimonial
+                  ? `bg-gradient-to-r ${testimonials[currentTestimonial].color} scale-125`
+                  : 'bg-gray-300'
+              }`}
+            />
+          ))}
+        </div>
+
+        <div className="flex items-start space-x-4 animate-testimonialfadein">
+          <div className={`w-12 h-12 bg-gradient-to-r ${testimonials[currentTestimonial].color} rounded-full flex items-center justify-center text-white font-bold shadow-lg`}>
             {testimonials[currentTestimonial].name[0]}
           </div>
-          <div>
+          <div className="flex-1">
             <p className="text-gray-700 italic mb-2">"{testimonials[currentTestimonial].content}"</p>
             <p className="font-semibold text-gray-800">{testimonials[currentTestimonial].name}</p>
-            <p className="text-sm text-gray-600">{testimonials[currentTestimonial].role}, {testimonials[currentTestimonial].company}</p>
+            <p className="text-sm text-gray-600">
+              {testimonials[currentTestimonial].role}, {testimonials[currentTestimonial].company}
+            </p>
           </div>
+        </div>
+
+        {/* Bottom progress bar with different style */}
+        <div className="mt-4 w-full h-1 bg-gray-100 rounded-full">
+          <div
+            className={`h-full bg-gradient-to-r ${testimonials[currentTestimonial].color} rounded-full transition-all duration-100 ease-linear`}
+            style={{ width: `${testimonialProgress}%` }}
+          />
         </div>
       </div>
 
@@ -218,11 +304,11 @@ const SidebarContent: React.FC = () => {
           <p className="text-xs text-gray-600">Support</p>
         </div>
       </div>
-    </div>
+    </aside>
   );
 };
 
-export const AuthLayout: React.FC<{children: ReactNode}> = ({ children }) => (
+export const AuthLayout: React.FC<{ children: ReactNode }> = ({ children }) => (
   <div className="min-h-screen bg-gradient-to-br from-white via-pink-50/20 to-purple-50/20">
     {/* Header */}
     <div className="relative overflow-hidden bg-white border-b border-pink-100">
@@ -230,7 +316,7 @@ export const AuthLayout: React.FC<{children: ReactNode}> = ({ children }) => (
       <div className="relative max-w-7xl mx-auto px-4 py-8 flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <div className="w-12 h-12 relative">
-            <Image src="/logo.png" alt="STAAJ Solutions Logo" fill className="object-contain" priority/>
+            <Image src="/logo.png" alt="STAAJ Solutions Logo" fill className="object-contain" priority />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-gray-800">STAAJ Solutions</h1>
@@ -245,9 +331,13 @@ export const AuthLayout: React.FC<{children: ReactNode}> = ({ children }) => (
     </div>
 
     <div className="max-w-7xl mx-auto px-4 py-12">
+      {/* 2-column grid: sidebar animates, form stays static */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <SidebarContent />
-        {children}
+        {/* Make sure the form column has NO animation classes */}
+        <section className="w-full flex justify-center items-center">
+          {children}
+        </section>
       </div>
     </div>
 

@@ -51,10 +51,10 @@ export default function LandingPage() {
 
           @keyframes logo-glow {
             0%, 100% {
-              filter: drop-shadow(0 0 5px rgba(220, 38, 127, 0.3));
+              filter: drop-shadow(0 0 8px rgba(220, 38, 127, 0.3));
             }
             50% {
-              filter: drop-shadow(0 0 20px rgba(220, 38, 127, 0.6)) drop-shadow(0 0 30px rgba(239, 68, 68, 0.4));
+              filter: drop-shadow(0 0 24px rgba(220, 38, 127, 0.6)) drop-shadow(0 0 30px rgba(239, 68, 68, 0.4));
             }
           }
 
@@ -154,18 +154,23 @@ export default function LandingPage() {
           {/* Navigation */}
           <nav className="flex items-center justify-between py-6">
             <div className="flex items-center space-x-4">
-              {/* Logo with interesting animations */}
+              {/* Logo: keep square aspect, center, and clarity */}
               <div className="relative">
-                <img 
-                  src="/logo.png"
-                  alt="STAAJ Solutions Logo"
-                  className="h-10 w-10 logo-hover-effect animate-logo-glow mix-blend-multiply"
-                />
+                <div className="w-12 h-12 overflow-hidden rounded-lg bg-white flex items-center justify-center shadow-lg logo-hover-effect animate-logo-glow border border-pink-200">
+                  <img 
+                    src="/logo.png"
+                    alt="STAAJ Solutions Logo"
+                    className="object-contain w-full h-full"
+                    style={{ aspectRatio: "1 / 1" }}
+                    draggable={false}
+                  />
+                </div>
                 {/* Animated ring around logo */}
-                <div className="absolute -inset-2 border-2 border-pink-300 rounded-full opacity-20 animate-logo-pulse"></div>
+                <div className="absolute -inset-2 border-2 border-pink-300 rounded-full opacity-20 animate-logo-pulse pointer-events-none"></div>
               </div>
-              <div className="text-2xl font-bold text-gray-900">
-                STAAJ<span className="text-red-600">Solutions</span>
+              <div className="text-2xl font-bold text-gray-900 flex items-center">
+                <span className="font-extrabold tracking-tight">STAAJ</span>
+                <span className="text-red-600 font-extrabold tracking-tight">Solutions</span>
               </div>
             </div>
           </nav>
@@ -402,17 +407,21 @@ export default function LandingPage() {
       </div>
 
       {/* Key Stats */}
-      <div className="py-20 bg-white">
+      <div className="bg-white mt-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             {/* Logo in stats section */}
             <div className="flex justify-center mb-6">
-              <img 
-                src="/logo.png" 
-                alt="STAAJ Solutions" 
-                className="h-16 w-16 animate-logo-bounce opacity-80 mix-blend-multiply"
-              />
-            </div>
+  <div className="w-16 h-16 overflow-hidden rounded-lg bg-white flex items-center justify-center shadow-lg border border-pink-200 animate-logo-bounce opacity-80 mix-blend-multiply">
+    <img 
+      src="/logo.png"
+      alt="STAAJ Solutions"
+      className="object-contain w-full h-full"
+      style={{ aspectRatio: "1 / 1" }}
+      draggable={false}
+    />
+  </div>
+</div>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Trusted by Growing Businesses</h2>
             <p className="text-lg text-gray-600">Our proven track record speaks for itself</p>
           </div>
