@@ -2,103 +2,140 @@
 
 import React, { ReactNode, useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
-// Sidebar with distinct animation (scale + fade, origin-left)
+// PPTFM Framework Data
+const PPTFM_ITEMS = [
+  {
+    label: 'People',
+    icon: (
+      <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
+        <circle cx="8" cy="8" r="3" stroke="#be185d" strokeWidth="2" />
+        <circle cx="16" cy="8" r="3" stroke="#be185d" strokeWidth="2" />
+        <path d="M2 20c0-2.5 4-4 6-4s6 1.5 6 4" stroke="#be185d" strokeWidth="2" />
+        <path d="M14 20c0-2.5 4-4 6-4" stroke="#be185d" strokeWidth="2" />
+      </svg>
+    ),
+    color: 'from-pink-500 to-rose-500',
+    description: 'Build the right team and align them to what matters most.'
+  },
+  {
+    label: 'Process',
+    icon: (
+      <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="3" stroke="#be185d" strokeWidth="2"/>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="#be185d" strokeWidth="2"/>
+      </svg>
+    ),
+    color: 'from-purple-500 to-pink-500',
+    description: 'Streamline how work gets done—eliminate friction, boost flow.'
+  },
+  {
+    label: 'Technology',
+    icon: (
+      <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="12" rx="2" stroke="#be185d" strokeWidth="2"/>
+        <path d="M2 19h20" stroke="#be185d" strokeWidth="2"/>
+      </svg>
+    ),
+    color: 'from-blue-500 to-purple-500',
+    description: 'Implement scalable tech that supports growth without the overwhelm.'
+  },
+  {
+    label: 'Finance',
+    icon: (
+      <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
+        <rect x="2" y="12" width="4" height="8" rx="1" stroke="#be185d" strokeWidth="2"/>
+        <rect x="8" y="8" width="4" height="12" rx="1" stroke="#be185d" strokeWidth="2"/>
+        <rect x="14" y="4" width="4" height="16" rx="1" stroke="#be185d" strokeWidth="2"/>
+        <path d="M20 18c.5-2.5-1-7-4-8" stroke="#be185d" strokeWidth="2"/>
+      </svg>
+    ),
+    color: 'from-indigo-500 to-blue-500',
+    description: 'Spend smarter, scale profitably, and track your runway with clarity.'
+  },
+  {
+    label: 'Metrics',
+    icon: (
+      <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
+        <rect x="3" y="16" width="3" height="5" rx="1" stroke="#be185d" strokeWidth="2"/>
+        <rect x="8.5" y="11" width="3" height="10" rx="1" stroke="#be185d" strokeWidth="2"/>
+        <rect x="14" y="7" width="3" height="14" rx="1" stroke="#be185d" strokeWidth="2"/>
+      </svg>
+    ),
+    color: 'from-green-500 to-indigo-500',
+    description: 'Measure what matters. Use insights to guide real-time decisions.'
+  }
+];
+
+const testimonials = [
+  {
+    name: 'Subhanjan Sarkar',
+    role: 'Founder',
+    company: 'PitchLink',
+    date: 'May 3, 2024',
+    content: `STAAJ has significantly expanded PitchLink's reach, connecting us with a diverse audience and generating valuable feedback. We're excited to collaborate further with STAAJ to overcome the challenges of prospect engagement and create numerous success stories together.`,
+    color: 'from-emerald-500 to-teal-500'
+  },
+  {
+    name: 'John Kellog',
+    role: 'Founder & CEO',
+    company: '',
+    date: 'May 1, 2024',
+    content: `Enter STAAJ Solutions. With unparalleled expertise, their process crafted a strategy that's enhancing our visibility, connecting us with like-hearted individuals ready to support our mission. STAAJ has provided the expertise, guidance and implementation of a plan that will build our presence to gain the exposure needed to attract the attention of those who have interest. Their passion doesn't just match their skill—it amplifies it, intertwining with our dedication to the communities we serve.`,
+    color: 'from-amber-500 to-orange-500'
+  },
+  {
+    name: 'Jack Chen',
+    role: 'Co-Founder',
+    company: '',
+    date: 'May 2, 2024',
+    content: `Most importantly, STAAJ has given us some hope in the startup ecosystem. That there are authentic folks who genuinely want to help other businesses succeed.`,
+    color: 'from-violet-500 to-purple-500'
+  },
+  {
+    name: 'Bernard Mendez',
+    role: 'Founder',
+    company: '',
+    date: 'May 8, 2024',
+    content: `This year STAAJ has helped us create a visual board to lay out our current state as a company. Then we went through 5 areas and break down what were currently doing and worked on how to create better systems and find accountability in each area. It really helped us find the areas we needed additional support and spread out responsibility so it was digestible and easier to manage.`,
+    color: 'from-blue-500 to-purple-600'
+  },
+  {
+    name: 'Tom Hawkett',
+    role: 'Chief Connection Advisor',
+    company: '',
+    date: 'May 10, 2024',
+    content: `STAAJ has enabled us to design & develop out our sales & marketing processes to be able to deploy at a high level. We see STAAJ as a key strategic partner going forward as they enable our clients to grow sales and scale effectively.`,
+    color: 'from-pink-600 to-rose-500'
+  }
+];
+
 const SidebarContent: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [currentStep, setCurrentStep] = useState(0);
-
-  const journeySteps = [
-    { 
-      icon: '🎯', 
-      title: 'Customer Journey Analysis', 
-      description: 'Map your customer touchpoints and identify optimization opportunities',
-      color: 'from-pink-500 to-rose-500'
-    },
-    { 
-      icon: '📊', 
-      title: 'Operational Maturity Review', 
-      description: 'Evaluate your current processes and systems for scalability',
-      color: 'from-purple-500 to-pink-500'
-    },
-    { 
-      icon: '⏱️', 
-      title: 'Time & Resource Optimization', 
-      description: 'Streamline workflows and maximize your team\'s productivity',
-      color: 'from-blue-500 to-purple-500'
-    },
-    { 
-      icon: '💼', 
-      title: 'Sales & Business Operations', 
-      description: 'Align your sales strategy with operational capabilities for growth',
-      color: 'from-indigo-500 to-blue-500'
-    },
-    { 
-      icon: '📢', 
-      title: 'Marketing Awareness Strategy', 
-      description: 'Build brand visibility and customer engagement frameworks',
-      color: 'from-green-500 to-indigo-500'
-    }
-  ];
-
-  const stats = [
-    { number: '90', label: 'Day Framework', suffix: '' },
-    { number: '500', label: 'Businesses Served', suffix: '+' },
-    { number: '3x', label: 'Average Growth', suffix: '' },
-    { number: '24/7', label: 'Expert Support', suffix: '' }
-  ];
-
-  const testimonials = [
-    { 
-      name: 'Sarah Mitchell', 
-      role: 'CEO', 
-      company: 'TechFlow Solutions', 
-      content: 'The comprehensive approach transformed how we understand our customers and operations.',
-      color: 'from-emerald-500 to-teal-500'
-    },
-    { 
-      name: 'David Chen', 
-      role: 'Operations Director', 
-      company: 'Growth Dynamics', 
-      content: 'Their systematic framework identified gaps we never knew existed. Revenue increased 40%.',
-      color: 'from-amber-500 to-orange-500'
-    },
-    { 
-      name: 'Lisa Rodriguez', 
-      role: 'Founder', 
-      company: 'Innovate Labs', 
-      content: 'From customer journey to marketing strategy - they covered everything we needed to scale.',
-      color: 'from-violet-500 to-purple-500'
-    }
-  ];
-
+  const [current, setCurrent] = useState(0);
+  const [expanded, setExpanded] = useState<number | null>(null);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [testimonialProgress, setTestimonialProgress] = useState(0);
 
   useEffect(() => {
     setIsVisible(true);
 
-    // Cycle through journey steps
-    const stepInterval = setInterval(() => {
-      setCurrentStep(i => (i + 1) % journeySteps.length);
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % PPTFM_ITEMS.length);
     }, 3000);
 
-    // Cycle through testimonials with animated progress
     const testimonialInterval = setInterval(() => {
       setCurrentTestimonial(i => (i + 1) % testimonials.length);
-      setTestimonialProgress(0); // Reset progress when switching testimonials
-    }, 5000);
+      setTestimonialProgress(0);
+    }, 6000);
 
-    // Animate testimonial progress
     const progressInterval = setInterval(() => {
-      setTestimonialProgress(prev => {
-        if (prev >= 100) return 0;
-        return prev + 2; // Increment by 2% every 100ms for smooth animation
-      });
-    }, 100);
+      setTestimonialProgress(prev => (prev >= 100 ? 0 : prev + 2));
+    }, 120);
 
     return () => {
-      clearInterval(stepInterval);
+      clearInterval(interval);
       clearInterval(testimonialInterval);
       clearInterval(progressInterval);
     };
@@ -130,85 +167,95 @@ const SidebarContent: React.FC = () => {
         </p>
       </div>
 
-      {/* Journey Framework Showcase - KEEPS ORIGINAL TOP PROGRESS BAR */}
-      <div className="bg-white rounded-2xl shadow-xl border border-pink-100 p-8 relative overflow-hidden">
+      {/* PPTFM Framework Section */}
+      <div className="bg-white rounded-2xl shadow-xl border border-pink-100 p-8 relative overflow-hidden w-full max-w-xl mx-auto z-10">
+        {/* Top Progress Bar */}
         <div className="absolute top-0 left-0 w-full h-2 bg-gray-100 rounded-t-2xl">
           <div
-            className={`h-full bg-gradient-to-r ${journeySteps[currentStep].color} transition-all duration-500 rounded-t-2xl`}
-            style={{ width: `${((currentStep + 1) / journeySteps.length) * 100}%` }}
+            className={`h-full bg-gradient-to-r ${PPTFM_ITEMS[current].color} transition-all duration-500 rounded-t-2xl`}
+            style={{ width: `${((current + 1) / PPTFM_ITEMS.length) * 100}%` }}
           />
         </div>
 
         <div className="pt-4">
-          <h3 className="text-lg font-semibold text-gray-800 mb-6">Our 5-Pillar Framework</h3>
+          <h3 className="text-lg font-semibold text-gray-800 mb-6 text-center">Our 5-Pillar Framework: <span className="text-pink-600 font-bold">PPTFM</span></h3>
 
-          {/* Current Step Display */}
-          <div className="mb-8 p-6 bg-gradient-to-br from-pink-50 to-purple-50 rounded-xl animate-stepfadein">
-            <div className="flex items-start space-x-4">
-              <div className={`w-16 h-16 bg-gradient-to-r ${journeySteps[currentStep].color} rounded-xl flex items-center justify-center text-2xl shadow-lg`}>
-                {journeySteps[currentStep].icon}
-              </div>
-              <div>
-                <h4 className="font-bold text-gray-800 text-lg mb-2">{journeySteps[currentStep].title}</h4>
-                <p className="text-gray-600">{journeySteps[currentStep].description}</p>
-              </div>
+          {/* Current Pillar Highlight */}
+          <div className="mb-8 p-6 bg-gradient-to-br from-pink-50 to-purple-50 rounded-xl animate-stepfadein flex items-start gap-4">
+            <div className={`w-16 h-16 bg-gradient-to-r ${PPTFM_ITEMS[current].color} rounded-xl flex items-center justify-center text-2xl shadow-lg`}>
+              {PPTFM_ITEMS[current].icon}
+            </div>
+            <div>
+              <h4 className="font-bold text-gray-800 text-lg mb-2">{PPTFM_ITEMS[current].label}</h4>
+              <p className="text-gray-600">{PPTFM_ITEMS[current].description}</p>
             </div>
           </div>
 
-          {/* All Steps Overview */}
+          {/* All Pillars Overview (accordion style, no repeat icon or title in dropdown) */}
           <div className="grid grid-cols-1 gap-3">
-            {journeySteps.map((step, idx) => (
+            {PPTFM_ITEMS.map((item, idx) => (
               <div
-                key={idx}
-                className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-300 ${
-                  idx === currentStep
+                key={item.label}
+                className={`flex flex-col rounded-lg transition-all duration-300 cursor-pointer
+                  ${idx === current
                     ? 'bg-gradient-to-r from-pink-100 to-purple-100 scale-105'
-                    : 'bg-gray-50 hover:bg-gray-100'
-                }`}
+                    : 'bg-gray-50 hover:bg-gray-100'}
+                `}
               >
                 <div
-                  className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm ${
-                    idx === currentStep
-                      ? `bg-gradient-to-r ${step.color} text-white shadow-md`
-                      : 'bg-white text-gray-600'
-                  }`}
+                  className="flex items-center space-x-3 p-3"
+                  tabIndex={0}
+                  onClick={() => setExpanded(expanded === idx ? null : idx)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') setExpanded(expanded === idx ? null : idx);
+                  }}
+                  aria-expanded={expanded === idx}
+                  aria-controls={`pptfm-details-${idx}`}
                 >
-                  {step.icon}
+                  <div
+                    className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm ${
+                      idx === current
+                        ? `bg-gradient-to-r ${item.color} text-white shadow-md`
+                        : 'bg-white text-gray-600'
+                    }`}
+                  >
+                    {item.icon}
+                  </div>
+                  <span
+                    className={`text-sm font-medium ${
+                      idx === current ? 'text-gray-800' : 'text-gray-600'
+                    }`}
+                  >
+                    {item.label}
+                  </span>
+                  <svg
+                    className={`ml-auto transition-transform ${expanded === idx ? 'rotate-180' : ''}`}
+                    width="18" height="18" fill="none" viewBox="0 0 24 24"
+                  >
+                    <path d="M6 9l6 6 6-6" stroke="#be185d" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
                 </div>
-                <span
-                  className={`text-sm font-medium ${
-                    idx === currentStep ? 'text-gray-800' : 'text-gray-600'
-                  }`}
-                >
-                  {step.title}
-                </span>
+                {expanded === idx && (
+                  <div
+                    id={`pptfm-details-${idx}`}
+                    className="animate-fadein px-4 pb-3"
+                  >
+                    <p className="text-sm text-gray-700">{item.description}</p>
+                  </div>
+                )}
               </div>
             ))}
           </div>
         </div>
+        <style>{`
+          .animate-fadein { animation: fadein 0.18s cubic-bezier(0.4,0,0.2,1); }
+          @keyframes fadein { from { opacity: 0; transform: translateY(-8px);} to { opacity: 1; transform: translateY(0);} }
+          .animate-stepfadein { animation: stepfadein 0.3s cubic-bezier(0.4,0,0.2,1); }
+          @keyframes stepfadein { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
+        `}</style>
       </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {stats.map((stat, idx) => (
-          <div
-            key={idx}
-            className={`
-              text-center p-4 rounded-xl bg-white shadow-lg border border-pink-100 transition-all duration-500 hover:shadow-xl hover:scale-105
-              ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
-            `}
-            style={{ transitionDelay: `${idx * 100}ms` }}
-          >
-            <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-purple-600 mb-1">
-              {stat.number}
-              {stat.suffix}
-            </div>
-            <div className="text-sm text-gray-600">{stat.label}</div>
-          </div>
-        ))}
-      </div>
-
-      {/* Testimonial - NEW CIRCULAR PROGRESS ANIMATION */}
+      {/* Testimonials */}
       <div className="bg-white rounded-xl shadow-lg border border-pink-100 p-6 relative overflow-hidden">
         {/* Circular Progress Indicator */}
         <div className="absolute top-4 right-4 w-12 h-12">
@@ -246,7 +293,6 @@ const SidebarContent: React.FC = () => {
             </div>
           </div>
         </div>
-
         {/* Testimonial Dots Indicator */}
         <div className="flex space-x-2 mb-4">
           {testimonials.map((_, idx) => (
@@ -260,7 +306,6 @@ const SidebarContent: React.FC = () => {
             />
           ))}
         </div>
-
         <div className="flex items-start space-x-4 animate-testimonialfadein">
           <div className={`w-12 h-12 bg-gradient-to-r ${testimonials[currentTestimonial].color} rounded-full flex items-center justify-center text-white font-bold shadow-lg`}>
             {testimonials[currentTestimonial].name[0]}
@@ -269,39 +314,18 @@ const SidebarContent: React.FC = () => {
             <p className="text-gray-700 italic mb-2">"{testimonials[currentTestimonial].content}"</p>
             <p className="font-semibold text-gray-800">{testimonials[currentTestimonial].name}</p>
             <p className="text-sm text-gray-600">
-              {testimonials[currentTestimonial].role}, {testimonials[currentTestimonial].company}
+              {testimonials[currentTestimonial].role}
+              {testimonials[currentTestimonial].company ? `, ${testimonials[currentTestimonial].company}` : ''}
+              {testimonials[currentTestimonial].date ? ` · ${testimonials[currentTestimonial].date}` : ''}
             </p>
           </div>
         </div>
-
-        {/* Bottom progress bar with different style */}
+        {/* Bottom progress bar */}
         <div className="mt-4 w-full h-1 bg-gray-100 rounded-full">
           <div
             className={`h-full bg-gradient-to-r ${testimonials[currentTestimonial].color} rounded-full transition-all duration-100 ease-linear`}
             style={{ width: `${testimonialProgress}%` }}
           />
-        </div>
-      </div>
-
-      {/* Trust Elements */}
-      <div className="flex items-center justify-center space-x-6 opacity-70">
-        <div className="text-center">
-          <div className="w-16 h-16 bg-gradient-to-r from-pink-100 to-purple-100 rounded-full flex items-center justify-center mb-2">
-            <span className="text-pink-600 font-bold text-xs">PROVEN</span>
-          </div>
-          <p className="text-xs text-gray-600">Framework</p>
-        </div>
-        <div className="text-center">
-          <div className="w-16 h-16 bg-gradient-to-r from-pink-100 to-purple-100 rounded-full flex items-center justify-center mb-2">
-            <span className="text-pink-600 font-bold text-xs">★★★★★</span>
-          </div>
-          <p className="text-xs text-gray-600">5.0 Rating</p>
-        </div>
-        <div className="text-center">
-          <div className="w-16 h-16 bg-gradient-to-r from-pink-100 to-purple-100 rounded-full flex items-center justify-center mb-2">
-            <span className="text-pink-600 font-bold text-xs">EXPERT</span>
-          </div>
-          <p className="text-xs text-gray-600">Support</p>
         </div>
       </div>
     </aside>
@@ -315,17 +339,27 @@ export const AuthLayout: React.FC<{ children: ReactNode }> = ({ children }) => (
       <div className="absolute inset-0 bg-gradient-to-r from-pink-600/5 via-purple-600/5 to-transparent" />
       <div className="relative max-w-7xl mx-auto px-4 py-8 flex items-center justify-between">
         <div className="flex items-center space-x-4">
-          <div className="w-12 h-12 relative">
-            <Image src="/logo.png" alt="STAAJ Solutions Logo" fill className="object-contain" priority />
-          </div>
-          <div>
-            <h1 className="text-2xl font-bold text-gray-800">STAAJ Solutions</h1>
-            <p className="text-sm text-gray-600">Strategic Business Transformation</p>
-          </div>
+          <Link href="/" className="block w-48 h-12 relative transition-transform hover:scale-105" title="Go to homepage">
+            <Image
+              src="/logo2.png"
+              alt="STAAJ Solutions Logo"
+              fill
+              className="object-contain"
+              priority
+              sizes="192px"
+              style={{ objectFit: 'contain' }}
+            />
+          </Link>
         </div>
         <div className="hidden md:flex items-center space-x-8">
-          <span className="text-sm text-gray-600">📞 Ready to Scale?</span>
-          <span className="text-sm text-gray-600">✉️ Start Your Journey</span>
+          <Link
+            href="https://meetings.hubspot.com/booking-staaj?uuid=f8f41247-2e47-4139-8985-27421d59959a"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-pink-600 font-semibold rounded-lg px-4 py-2 bg-pink-50 hover:bg-pink-100 border border-pink-200 transition shadow-sm"
+          >
+            📞 Ready to Scale? Book a Call
+          </Link>
         </div>
       </div>
     </div>
@@ -334,24 +368,9 @@ export const AuthLayout: React.FC<{ children: ReactNode }> = ({ children }) => (
       {/* 2-column grid: sidebar animates, form stays static */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <SidebarContent />
-        {/* Make sure the form column has NO animation classes */}
         <section className="w-full flex justify-center items-center">
           {children}
         </section>
-      </div>
-    </div>
-
-    <div className="mt-6 text-center py-8">
-      <div className="flex items-center justify-center space-x-6 opacity-50">
-        <div className="px-4 py-2 bg-white rounded-lg shadow-sm border border-pink-100">
-          <span className="text-xs font-semibold text-gray-600">SME Growth</span>
-        </div>
-        <div className="px-4 py-2 bg-white rounded-lg shadow-sm border border-pink-100">
-          <span className="text-xs font-semibold text-gray-600">Operational Excellence</span>
-        </div>
-        <div className="px-4 py-2 bg-white rounded-lg shadow-sm border border-pink-100">
-          <span className="text-xs font-semibold text-gray-600">Strategic Planning</span>
-        </div>
       </div>
     </div>
   </div>

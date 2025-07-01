@@ -8,6 +8,8 @@ const HUBSPOT_TOKEN = process.env.HUBSPOT_PRIVATE_TOKEN;
 interface QuestionnaireData {
   email: string;
   companyName: string;
+  firstName?: string;
+  lastName?: string;
   businessStage?: string;
   mainChallenge?: string;
   helpType?: string;
@@ -25,6 +27,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const {
     email,
     companyName,
+    firstName,
+    lastName,
     businessStage,
     mainChallenge,
     helpType,
@@ -63,12 +67,14 @@ Position: ${position || 'N/A'}
     if (check.data) {
       const contactId = check.data.id;
 
-      // Step 2: Update contact properties
+      // Step 2: Update existing contact
       const properties: Record<string, string> = {
         company: companyName,
         questionnaire_summary: summary,
       };
 
+      if (firstName) properties.firstname = firstName;
+      if (lastName) properties.lastname = lastName;
       if (businessStage) properties.business_stage = businessStage;
       if (mainChallenge) properties.main_challenge = mainChallenge;
       if (helpType) properties.help_type = helpType;
@@ -97,10 +103,10 @@ Position: ${position || 'N/A'}
         error: err.response?.data || err.message,
       });
     }
-    // Contact not found — proceed to form submission
+    // If 404 (contact not found), fall through to creation
   }
 
-  // Step 3: Submit form to create new contact
+  // Step 3: Create new contact via form submission
   try {
     const fields = [
       { name: 'email', value: email },
@@ -108,6 +114,8 @@ Position: ${position || 'N/A'}
       { name: 'questionnaire_summary', value: summary },
     ];
 
+    if (firstName) fields.push({ name: 'firstname', value: firstName });
+    if (lastName) fields.push({ name: 'lastname', value: lastName });
     if (businessStage) fields.push({ name: 'business_stage', value: businessStage });
     if (mainChallenge) fields.push({ name: 'main_challenge', value: mainChallenge });
     if (helpType) fields.push({ name: 'help_type', value: helpType });

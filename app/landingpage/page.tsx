@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef , useCallback} from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   ArrowRight, Download, CheckCircle, Star, Award, Lightbulb, Heart,
   LineChart, Users2, Target, BarChart, Users, Settings, Bot, Cloud,
@@ -360,7 +361,7 @@ const GenericLandingPage = () => {
       description: "**Sam Spampinato**\nFounder and President\nSam leads STAAJ with a focus on clarity, results, and real relationships. He brings years of experience scaling businesses and helps clients think bigger while staying grounded in what works.\n\n**Bryna Kielar**\nFounder and Chief Operating Officer\nBryna keeps everything running smoothly. She's an expert in operations and team leadership, and she helps clients turn big goals into simple, workable plans.\n\n**Garrett Finley**\nCo-Founder and Head of Customer Excellence\nGarrett makes sure every client feels supported and seen. He blends process expertise with a deep commitment to service, helping teams work smarter and communicate better.\n\n**Alex Wiehman**\nCo-Founder and Brand Marketing Architect\nAlex helps clients find their voice and connect with the right audience. He brings creative energy and strategic thinking to every project, making sure brands grow with purpose.",
       stats: "",
       details: 
-        "",
+        [],
       finalLine: ""
     },
     {
@@ -489,6 +490,7 @@ const faqs = [
     <div className="flex justify-between items-center h-20">
       <div className="flex items-center">
         <motion.div className="flex items-center space-x-3" whileHover={{ scale: 1.01 }}>
+          <Link href = "/">
           <div className="relative">
             <Image
               src="/logo2.png"
@@ -499,6 +501,7 @@ const faqs = [
               priority
             />
           </div>
+          </Link>
         </motion.div>
       </div>
       <div className="hidden lg:flex items-center space-x-8">

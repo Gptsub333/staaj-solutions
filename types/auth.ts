@@ -2,6 +2,8 @@
 export interface SignupData {
   email: string;
   companyName: string;
+  firstName: string;
+  lastName: string;
 }
 
 export interface QuestionnaireData {
