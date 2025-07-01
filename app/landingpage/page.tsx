@@ -2,10 +2,11 @@
 
 import React, { useState, useEffect, useRef , useCallback} from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import {
-  ArrowRight, Download, CheckCircle, Star, Award, Lightbulb,
+  ArrowRight, Download, CheckCircle, Star, Award, Lightbulb, Heart,
   LineChart, Users2, Target, BarChart, Users, Settings, Bot, Cloud,
-  Brain, Database, Shield, Network, Phone, Mail, Linkedin, Twitter, ChevronDown, ChevronUp, Menu, X, MapPin, Puzzle, TrendingUp,Clock,BookOpenCheck, Briefcase, Megaphone, Sparkles, BarChart3, ChevronLeft, ChevronRight, ExternalLink,} from 'lucide-react';
+  Brain, Database, Shield, Network, Phone, Mail, Linkedin, Twitter, Facebook, Instagram, ChevronDown, ChevronUp, Menu, X, MapPin, Puzzle, TrendingUp,Clock,BookOpenCheck, Briefcase, Megaphone, Sparkles, BarChart3, ChevronLeft, ChevronRight, ExternalLink,} from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 
@@ -259,45 +260,11 @@ const GenericLandingPage = () => {
 
   // Typewriter for all industries
   const typewriterWords = [
-    "accelerate growth with AI",
     "optimize your workflow",
     "unlock new business value",
     "enhance customer experience",
-    "automate operations",
     "make smarter decisions",
     "grow your impact"
-  ];
-
-  // Market Statistics (generic, not industry-specific)
-  const marketStatistics = [
-    {
-      title: "AI Market Value",
-      value: "$200B",
-      growth: "+36% CAGR",
-      description: "Estimated by 2030",
-      icon: <TrendingUp className="w-5 h-5" />
-    },
-    {
-      title: "Productivity Boost",
-      value: "40%",
-      growth: "Average with AI",
-      description: "Improvement across sectors",
-      icon: <LineChart className="w-5 h-5" />
-    },
-    {
-      title: "Businesses Transformed",
-      value: "1000+",
-      growth: "AI-driven success",
-      description: "Companies worldwide",
-      icon: <Users2 className="w-5 h-5" />
-    },
-    {
-      title: "Faster Time-to-Market",
-      value: "60%",
-      growth: "Reduction possible",
-      description: "With process automation",
-      icon: <Target className="w-5 h-5" />
-    }
   ];
 
   // Services (all-industry)
@@ -307,16 +274,16 @@ const GenericLandingPage = () => {
     title: 'STAAJ Solutions',
     subtitle: 'Service Overview',
     icon: <BookOpenCheck className="w-12 h-12 text-blue-700" />,
-    summary: 'Empowering businesses to scale effectively through people-first strategies, operational maturity, and data-driven insights.',
-    objective: '',
+    summary: 'Built on 90-Day Wins. ',
+    objective: 'Each tier of our service is powered by our PPTFM foundation: Product, People, Technology, Finance, and Metrics. That\'s how we help businesses grow smarter, not harder.',
     features: [
-      'STAAJ Lite: Rapid deployment (30 days) of customer journey excellence using HubSpot CRM.',
-      'STAAJ Pro: Comprehensive end-to-end operations with real-time dashboards and lean process optimization.',
-      'STAAJ Enterprise: Annual program featuring monthly KPI reviews, team coaching, and strategic planning by seasoned experts.',
-      'Custom Solutions: Tailored services for unique business needs, including CRM integrations, AI workflows, and training.',
+      'STAAJ Lite - A strategic starting point for small teams that need structure and support without the overhead.',
+      'STAAJ Pro - A hands-on partnership to drive growth, streamline operations, and build your roadmap to scale.',
+      'STAAJ Enterprise - An embedded executive team delivering full-scale transformation.',
+      'Custom Solutions - Bring us your business problems, we\'ll help you solution them with tailored strategies.',
     ],
     ideal: 'Businesses of all sizes looking for scalable, effective, people-driven growth.',
-    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80',
+    image: '/staaj-solutions.png',
     link: '/staaj-services?service=overview'
   },
   {
@@ -324,17 +291,13 @@ const GenericLandingPage = () => {
     title: 'STAAJ Lite',
     subtitle: 'Customer Journey Excellence',
     icon: <Clock className="w-12 h-12 text-red-600" />,
-    summary: 'Rapid deployment (30 days) of customer journey excellence using HubSpot CRM.',
-    objective: 'Enhance customer experience through streamlined processes and effective CRM utilization.',
+    summary: 'STAAJ Lite (Road to $1M Revenue)\nHelping early-stage founders go from scrappy to scalable.',
+    objective: 'Who it\'s for:\nFounders and CEOs of small teams (4-10 people) building their first $1M in annual revenue.\n\nWhat they get:\n• Confidence to scale without burnout\n• Simple systems to support growth\n• Weekly guidance from seasoned experts\n• Clear, data-informed decisions\n• Help shaping go-to-market and operational basics\n\nWhy it matters:\nYou don\'t need a giant team to act like a pro. We help you build like the CEO you want to be.',
     features: [
-      'Quick Implementation: Launch within 30 days.',
-      'CRM Integration: Optimized HubSpot setup.',
-      'Process Mapping: Design and implement customer journey workflows.',
-      'Team Training: Equip staff with best practices.',
-      'Ongoing Support: Continuous optimization and feedback.',
+      
     ],
     ideal: 'Small to medium-sized businesses aiming to improve customer interactions and satisfaction.',
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80',
+    image: '/staaj-lite.png',
     link: '/staaj-services?service=lite'
   },
   {
@@ -342,35 +305,25 @@ const GenericLandingPage = () => {
     title: 'STAAJ Pro',
     subtitle: 'End-to-End Lean Operations',
     icon: <BarChart3 className="w-12 h-12 text-pink-600" />,
-    summary: 'Comprehensive end-to-end operations with real-time dashboards and lean process optimization.',
-    objective: 'Achieve operational maturity through streamlined processes and data-driven insights.',
+    summary: 'STAAJ Pro (Road to $5M Revenue)\nFueling teams ready for serious growth.',
+    objective: 'Who it\'s for:\nLeaders of growing companies (10-30 people) aiming to cross the $5M mark with solid systems.\n\nWhat they get:\n• Personalized growth roadmap\n• Strategic help across marketing, ops, and sales\n• Hands-on workshops to unblock progress\n• More efficient workflows\n• Support to scale team culture and performance\n\nWhy it matters:\nYou\'ve proven your idea works—now it\'s time to grow smarter, not just bigger.',
     features: [
-      'Comprehensive Dashboards: Real-time performance metrics.',
-      'Lean Process Optimization: Eliminate inefficiencies and reduce waste.',
-      'Advanced CRM Workflows: Enhanced automation and customer engagement.',
-      'Team Development: Ongoing training and support.',
-      'Strategic Planning: Align operations with business goals.',
+      
     ],
     ideal: 'Growing businesses seeking to scale operations efficiently and effectively.',
-    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80',
+    image: '/staaj-pro.png',
     link: '/staaj-services?service=pro'
   },
   {
     key: 'enterprise',
     title: 'STAAJ Enterprise',
-    subtitle: 'Monthly Team Performance & Growth Support',
+    subtitle: 'Road to $10M+ Revenue',
     icon: <Briefcase className="w-12 h-12 text-orange-600" />,
-    summary: 'Annual program featuring monthly KPI reviews, team coaching, and strategic planning by seasoned experts.',
-    objective: 'Sustain growth and operational excellence through continuous support and strategic planning.',
-    features: [
-      'Monthly KPI Reviews: Assess and optimize key performance indicators.',
-      'Team Coaching: Develop internal capabilities and leadership.',
-      'Strategic Business Planning: Adapt to market changes and drive competitive advantage.',
-      'Employee & Self-Care Surveys: Monitor and improve team well-being.',
-      'Quarterly Roadmap Support: Ensure alignment with long-term goals.',
-    ],
+    summary: 'STAAJ Enterprise (Road to $10M+ Revenue)\nEnterprise-level expertise for scaling companies.',
+    objective: 'Who it\'s for:\nEstablished businesses (30-50+ people) looking to cross into 8-figure territory with confidence.\n\nWhat they get:\n• Full executive team support without the full-time cost\n• Revenue operations that drive measurable ROI\n• Better data visibility to guide strategy\n• Workflow optimization across departments\n• Scalable structure for sustainable growth\n\nWhy it matters:\nYou\'re past "startup." Now it\'s about legacy. We help you lead with clarity and stay ahead of the curve.',
+    features: [],
     ideal: 'Established businesses aiming to maintain momentum and navigate complex challenges.',
-    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80',
+    image: '/staaj-enterprise.png',
     link: '/staaj-services?service=enterprise'
   },
   {
@@ -378,17 +331,11 @@ const GenericLandingPage = () => {
     title: 'Custom Solutions',
     subtitle: 'Tailored Services for Unique Needs',
     icon: <Settings className="w-12 h-12 text-purple-700" />,
-    summary: 'Tailored services for unique business needs, including CRM integrations, AI workflows, and training.',
-    objective: 'Provide bespoke solutions to address specific business challenges and objectives.',
-    features: [
-      'Customized CRM Integrations: Tailor CRM systems to business requirements.',
-      'AI Workflows: Implement artificial intelligence to enhance operations.',
-      'Team Training: Develop skills and knowledge within the team.',
-      'Strategic Partnerships: Build and manage business relationships.',
-      'Technology Planning: Plan and implement technology strategies.',
-    ],
+    summary: 'Custom Solutions\nTailored strategies for unique challenges, solutioned in 90-day sprints.',
+    objective: 'Who it\'s for:\nAny organization facing a specific hurdle, pivot, or opportunity that doesn\'t fit a one-size-fits-all plan.\n\nWhat they get:\n• Targeted problem-solving with expert support\n• Rapid-response workshops and action plans\n• Flexible team involvement based on the issue\n• Cross-functional expertise across PPT\n\nWhy it matters:\nNot every business challenge fits a template. When things get complex, we help you solution with speed, clarity, and confidence.',
+    features: [],
     ideal: 'Businesses with unique needs that require specialized solutions beyond standard offerings.',
-    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80',
+    image: '/custom-solutions.png',
     link: '/staaj-services?service=custom'
   },
 ];
@@ -397,78 +344,111 @@ const GenericLandingPage = () => {
   const whyChooseUs = [
     {
       icon: <Award className="w-8 h-8" />,
-      title: "Broad Industry Expertise",
-      description: "Our AI consultants have hands-on experience across finance, healthcare, retail, logistics, education, and more.",
-      stats: "15+ Years Average Industry Experience",
+      title: "What We Do",
+      description: "STAAJ Solutions helps small and midsize businesses scale with less chaos and more clarity.\n\nFounded in 2023, our team has built and led companies in tech, retail, and healthcare. We work directly with you each week, using our proven framework to identify what's blocking progress and build the systems to move forward.",
+      stats: "",
       details: [
-        "Deep vertical and cross-industry know-how",
-        "Proven history delivering business value",
-        "Solutions tailored for any organization"
-      ]
+        "We act like your executive team without the full-time cost",
+        "We tailor strategies to your stage and business goals",
+        "We stay close to the work until it's done right",
+      ],
+      finalLine: "No fluff, just hands-on help that drives results."
     },
     {
       icon: <TrendingUp className="w-8 h-8" />,
-      title: "Measurable Impact",
-      description: "We help organizations of all sizes achieve transformative results—improved efficiency, growth, and innovation.",
-      stats: "Up to 40% Faster Results",
-      details: [
-        "Accelerated project delivery",
-        "Quick wins and long-term ROI",
-        "Clear metrics and reporting"
-      ]
+      title: "Our People",
+      description: "**Sam Spampinato**\nFounder and President\nSam leads STAAJ with a focus on clarity, results, and real relationships. He brings years of experience scaling businesses and helps clients think bigger while staying grounded in what works.\n\n**Bryna Kielar**\nFounder and Chief Operating Officer\nBryna keeps everything running smoothly. She's an expert in operations and team leadership, and she helps clients turn big goals into simple, workable plans.\n\n**Garrett Finley**\nCo-Founder and Head of Customer Excellence\nGarrett makes sure every client feels supported and seen. He blends process expertise with a deep commitment to service, helping teams work smarter and communicate better.\n\n**Alex Wiehman**\nCo-Founder and Brand Marketing Architect\nAlex helps clients find their voice and connect with the right audience. He brings creative energy and strategic thinking to every project, making sure brands grow with purpose.",
+      stats: "",
+      details: 
+        "",
+      finalLine: ""
     },
     {
       icon: <Puzzle className="w-8 h-8" />,
-      title: "Custom Solutions for You",
-      description: "Every engagement is unique. We design, build, and optimize solutions to fit your business, not a template.",
-      stats: "100% Tailored Approach",
+      title: "Our Process",
+      description: "Our process is built on collaboration and designed to plug seamlessly into your existing business. We act as an extension of your team, bringing structure, clarity, and momentum without disrupting what already works.",
+      stats: "",
       details: [
-        "Flexible methodology",
-        "Integrate with your existing tools",
-        "Ongoing optimization"
-      ]
+        "Discovery: We start by getting to know your business and your goals, identifying gaps and opportunities with your team.",
+        "Roadmap: We co-create a clear plan that fits your stage, your culture, and your resources.",
+        "Ongoing Support: We stay closely involved to keep things aligned, adjust strategies, and ensure consistent progress."
+      ],
+      finalLine: "Our approach is fully turnkey and designed to deliver results without adding complexity."
     },
     {
       icon: <Users className="w-8 h-8" />,
-      title: "Partner for the Long Run",
-      description: "We’re with you from strategy to implementation and continuous improvement.",
-      stats: "End-to-End Support",
+      title: "Our Commitment",
+      description: "We work shoulder to shoulder with your team to solve real problems, support sustainable growth, and simplify how your business runs.\n\nWe stay involved to make sure the momentum continues well beyond the early stages.",
+      stats: "",
       details: [
-        "Collaborative process",
-        "Training and enablement",
-        "Continuous support"
-      ]
+        "Tangible progress your team will notice",
+        "Clear wins that move your business forward",
+        "A trusted partner who evolves with you"
+      ],
+      finalLine: "We measure our success by your success. We're here for the long haul."
     }
   ];
 
-  // FAQs (generic)
-  const faqs = [
-    {
-      question: "How do you ensure solutions fit any industry?",
-      answer: "We start with a discovery session to understand your specific needs, challenges, and context—then design AI solutions tailored for your goals, data, and workflows."
-    },
-    {
-      question: "Can you help migrate legacy systems to AI-powered processes?",
-      answer: "Yes. We specialize in seamless integration and transformation, ensuring minimal disruption while maximizing new capabilities."
-    },
-    {
-      question: "When will we see value from AI adoption?",
-      answer: "Most organizations see measurable results within weeks or months, depending on the project scope. We focus on quick wins and sustainable improvements."
-    },
-    {
-      question: "What data requirements do you have?",
-      answer: "We can work with organizations at any stage of data maturity. If needed, we’ll help you improve data collection, quality, and readiness alongside the AI project."
-    },
-    {
-      question: "How do you ensure responsibility and compliance?",
-      answer: "We follow responsible AI practices—bias testing, transparency, and regulatory alignment are built into every project."
-    },
-    {
-      question: "What makes your consulting different?",
-      answer: "Our broad, hands-on experience, custom approach, and commitment to measurable outcomes set us apart. We partner closely to deliver real business value."
-    }
-  ];
-  
+// Updated FAQs for STAAJ Solutions
+const faqs = [
+  {
+    question: "What is STAAJ Solutions?",
+    answer: "We are a dedicated team of professionals who help organizations streamline their processes, improve team efficiency, and create sustainable growth systems."
+  },
+  {
+    question: "What does \"people-first\" mean?",
+    answer: "We believe that successful operations depend on empowered, well‑organized teams working with clear systems and processes."
+  },
+  {
+    question: "How do you pronounce STAAJ?",
+    answer: "Same way you pronounce 'STAGE'."
+  },
+  {
+    question: "How long has STAAJ Solutions been in business?",
+    answer: "We were founded in 2023 by trusted professionals with decades of experience."
+  },
+  {
+    question: "What types of problems do you solve?",
+    answer: "- Outdated processes that no longer serve your growing business\n- Team confusion and lack of clarity around roles and priorities\n- Leadership bottlenecks where everything requires owner approval\n- Revenue growth stagnation despite market demand\n- Scaling challenges that lead to burnout and inefficiency"
+  },
+  {
+    question: "What services do you offer?",
+    answer: "- Process optimization and systematization\n- Team structure and workflow design\n- Leadership delegation frameworks\n- Revenue growth strategy implementation\n- Operational efficiency audits and improvements"
+  },
+  {
+    question: "Do you work with businesses of all sizes?",
+    answer: "We work with growing businesses that are ready to scale. Our solutions are designed for companies with between 4 and 100 employees."
+  },
+  {
+    question: "What industries do you serve?",
+    answer: "Our expertise is in the tech sector, retail, call centers, and healthcare."
+  },
+  {
+    question: "How quickly can you deliver results?",
+    answer: "We deliver high‑value solutions in as little as 30 days."
+  },
+  {
+    question: "What does the implementation process look like?",
+    answer: "- Initial assessment of your current operations and challenges\n- Strategic planning and solution design\n- Implementation of new systems and processes\n- Team training and change management\n- Ongoing support and optimization"
+  },
+  {
+    question: "Do you work remotely or on‑site?",
+    answer: "We primarily work with you remotely; however, we offer custom on‑site solutions to meet your needs."
+  },
+  {
+    question: "How involved does our team need to be during implementation?",
+    answer: "Your team's involvement is crucial for success. We work collaboratively with your key team members to ensure solutions are practical, sustainable, and well‑adopted."
+  },
+  {
+    question: "How much do your services cost?",
+    answer: "We offer high‑value, low‑cost solutions designed to provide significant return on investment. Pricing varies based on your specific needs and scope of work – contact us for a customized quote."
+  },
+  {
+    question: "What kind of ROI can we expect?",
+    answer: "Our clients typically see improvements in efficiency, reduced operational bottlenecks, clearer team accountability, and accelerated revenue growth. Many experience significant time savings and reduced stress within the first 30 days."
+  }
+];
+
   // Framer Motion variants
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -510,14 +490,14 @@ const GenericLandingPage = () => {
       <div className="flex items-center">
         <motion.div className="flex items-center space-x-3" whileHover={{ scale: 1.01 }}>
           <div className="relative">
-            <img
+            <Image
               src="/logo2.png"
               alt="Your Company"
+              width={100}
+              height={36}
               className="h-9 w-auto object-contain"
+              priority
             />
-          </div>
-          <div className="hidden sm:block">
-            <div className="text-xs text-gray-500 font-medium">AI Consulting for Every Industry</div>
           </div>
         </motion.div>
       </div>
@@ -571,15 +551,13 @@ const GenericLandingPage = () => {
 
       {/* HERO SECTION */}
       <section className="relative py-0 min-h-[calc(100vh-5rem)] flex items-center overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
+        <Image
+          src="/landingpage.png"
+          alt="Landing Page Background"
+          fill
           className="absolute inset-0 w-full h-full object-cover z-0"
-        >
-          <source src="https://www.pexels.com/download/video/3192305/" type="video/mp4" />
-        </video>
+          priority
+        />
         {/* Overlay for better text legibility */}
         <div className="absolute inset-0 w-full h-full z-0 bg-gradient-to-br from-[#222a3d]/70 via-[#1c1f2a]/50 to-[#4066d6]/30 pointer-events-none" />
         {/* Content */}
@@ -592,7 +570,7 @@ const GenericLandingPage = () => {
               animate="visible"
             >
               <Lightbulb className="w-4 h-4 mr-2" />
-              AI Solutions for Every Industry
+              Powered by experience, Supported by technology
             </motion.div>
             <motion.h1
               className="text-4xl md:text-5xl xl:text-6xl font-bold text-white leading-tight tracking-tight mb-4"
@@ -600,7 +578,7 @@ const GenericLandingPage = () => {
               initial="hidden"
               animate="visible"
             >
-              Transform <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-pink-400 bg-clip-text text-transparent">Your Business</span> with AI
+              <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-pink-400 bg-clip-text text-transparent">Real Experts.</span> Real Talk. <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-pink-400 bg-clip-text text-transparent">Real Results.</span>
             </motion.h1>
             <motion.div className="text-lg md:text-xl text-white/90 font-medium min-h-[2.2em] mb-8" variants={fadeIn} initial="hidden" animate="visible">
               <TypewriterText words={typewriterWords} />
@@ -613,61 +591,76 @@ const GenericLandingPage = () => {
               animate="visible"
             >
               <p>
-                Discover how your organization can streamline operations, enhance customer experiences and unlock new opportunities through AI-driven solutions. Our team partners with you from strategy to implementation, ensuring measurable results for businesses of every size and sector.
+                Discover how your organization can streamline operations, enhance customer experiences and unlock new opportunities through expert-led solutions. Our team partners with you from strategy to implementation, ensuring measurable results for businesses of every size and sector.
               </p>
             </motion.div>
-            {/* Trust Indicators */}
-            <motion.div className="flex flex-wrap items-center gap-5" variants={fadeIn} initial="hidden" animate="visible">
-              <div className="flex items-center text-sm text-white">
-                <CheckCircle className="w-4 h-4 text-green-400 mr-1" />
-                1000+ Organizations Served
-              </div>
-              <div className="flex items-center text-sm text-white">
-                <Star className="w-4 h-4 text-yellow-400 mr-1" />
-                4.9/5 Client Satisfaction
-              </div>
-              <div className="flex items-center text-sm text-white">
-                <Award className="w-4 h-4 text-blue-200 mr-1" />
-                15+ Years AI Experience
-              </div>
-            </motion.div>
+
           </div>
         </div>
       </section>
 
-      {/* Market Statistics */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div className="text-center mb-12" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
-            <span className="inline-block px-3 py-1 mb-4 bg-purple-50 text-purple-700 rounded-full text-sm font-medium border border-purple-200">
-              AI for Everyone
-            </span>
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">
-              The Opportunity Across All Sectors
-            </h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
-              AI is transforming every industry, unlocking new efficiencies, growth, and innovation for organizations worldwide.
-            </p>
-          </motion.div>
-          <motion.div className="grid md:grid-cols-4 gap-6 mb-12" variants={staggerChildren} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            {marketStatistics.map((stat, index) => (
-              <motion.div
-                key={index}
-                className="bg-gradient-to-br from-white to-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-all duration-200 group"
-                variants={scaleIn}
-                whileHover={{ y: -4, scale: 1.02 }}
+      {/* Get Started */}
+      <section className="py-20 bg-gradient-to-br bg-gray-50 relative">
+        <DotBackground density={1} opacity={0.2} color="#919294" />
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerChildren}>
+            <motion.h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight" variants={fadeIn}>
+              Ready to Scale with Confidence?
+            </motion.h2>
+            <motion.p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto font-medium" variants={fadeIn}>
+              Join successful business leaders who trust STAAJ Solutions to help them reach their full potential.
+            </motion.p>
+            <motion.div variants={fadeIn}>
+              <motion.button
+                onClick={() => router.push('/auth')}
+                className="group bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-semibold py-4 px-8 rounded-lg text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center mx-auto space-x-2 relative overflow-hidden"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                animate={{
+                  boxShadow: [
+                    "0 10px 25px rgba(220, 38, 127, 0.3)",
+                    "0 15px 35px rgba(220, 38, 127, 0.5)",
+                    "0 10px 25px rgba(220, 38, 127, 0.3)"
+                  ]
+                }}
+                transition={{
+                  boxShadow: {
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }
+                }}
               >
-                <div className="text-center">
-                  <div className="text-blue-600 mb-2 flex justify-center">{stat.icon}</div>
-                  <div className="text-2xl font-bold text-gray-900 mb-1">
-                    <AnimatedCounter value={stat.value} />
-                  </div>
-                  <div className="text-sm font-semibold text-gray-700 mb-2">{stat.title}</div>
-                  <div className="text-xs text-green-600 font-medium mb-2">{stat.growth}</div>
-                  <div className="text-xs text-gray-500">{stat.description}</div>
-                </div>
-              </motion.div>
-            ))}
+                {/* Pulsing Background Effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-pink-400 to-red-500 rounded-lg opacity-0"
+                  animate={{
+                    opacity: [0, 0.3, 0],
+                    scale: [1, 1.05, 1]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                <motion.div
+                  animate={{
+                    scale: [1, 1.2, 1],
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="relative z-10"
+                >
+                  <Heart className="w-5 h-5 fill-current" />
+                </motion.div>
+                <span className="relative z-10 font-semibold">Get Started</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform relative z-10" />
+              </motion.button>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -681,22 +674,28 @@ const GenericLandingPage = () => {
               Why Work With Us
             </span>
             <h2 className="text-3xl font-bold text-gray-900 mb-3">
-              AI Consulting for Any Organization
+              Consulting for Any Organisation
             </h2>
             <p className="text-gray-600 max-w-3xl mx-auto">
-              We combine broad industry knowledge with deep AI expertise to deliver solutions for any business or sector.
+              We combine broad industry knowledge with deep operational expertise to deliver solutions for any business or sector.
             </p>
           </motion.div>
           <motion.div className="space-y-12 md:space-y-16" variants={staggerChildren} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             {whyChooseUs.map((item, index) => (
               <motion.div
                 key={index}
-                className={`bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300 group overflow-hidden flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-stretch`}
+                className={`bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300 group overflow-hidden flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-stretch min-h-[600px] md:min-h-[500px]`}
                 variants={fadeIn}
               >
                 {/* Image Column */}
-                <div className="md:w-2/5 w-full h-64 md:h-auto bg-gray-100 flex items-center justify-center">
-                  <img src={`/images/generic-${index + 1}.png`} alt={item.title} className="w-full h-full object-cover" />
+                <div className="md:w-2/5 w-full h-80 md:h-auto bg-gray-100 flex items-center justify-center p-4">
+                  <div className="w-full h-full max-w-md max-h-80 relative">
+                    <img 
+                      src={`/images/generic-${index + 1}.png`} 
+                      alt={item.title} 
+                      className="w-full h-full object-contain rounded-lg" 
+                    />
+                  </div>
                 </div>
                 {/* Text Column */}
                 <div className="md:w-3/5 w-full p-6 md:p-8 flex flex-col justify-center">
@@ -704,7 +703,43 @@ const GenericLandingPage = () => {
                     {React.cloneElement(item.icon, { className: "w-7 h-7 md:w-8 md:h-8" })}
                   </div>
                   <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 md:mb-3">{item.title}</h3>
-                  <p className="text-gray-600 leading-relaxed mb-3 md:mb-4 text-sm md:text-base">{item.description}</p>
+                  <div className="text-gray-600 leading-relaxed mb-3 md:mb-4 text-sm md:text-base">
+                    {item.description.split('\n\n').map((paragraph, pIndex) => {
+                      const lines = paragraph.split('\n');
+                      return (
+                        <div key={pIndex} className={pIndex > 0 ? 'mt-4' : ''}>
+                          {lines.map((line, lIndex) => {
+                            // Check if this is a bold name (starts and ends with **)
+                            if (line.startsWith('**') && line.endsWith('**')) {
+                              const name = line.slice(2, -2);
+                              return (
+                                <h4 key={lIndex} className="text-lg md:text-xl font-bold text-gray-900 mb-1">
+                                  {name}
+                                </h4>
+                              );
+                            }
+                            // Check if this is a title line (comes after a name, no ** formatting)
+                            else if (lIndex === 1 && lines[0].startsWith('**')) {
+                              return (
+                                <p key={lIndex} className="text-sm md:text-base font-semibold text-indigo-600 mb-2">
+                                  {line}
+                                </p>
+                              );
+                            }
+                            // Regular content line
+                            else if (line.trim()) {
+                              return (
+                                <p key={lIndex} className="text-gray-600 leading-relaxed">
+                                  {line}
+                                </p>
+                              );
+                            }
+                            return null;
+                          })}
+                        </div>
+                      );
+                    })}
+                  </div>
                   <div className="text-sm md:text-base font-semibold text-indigo-700 mb-4">{item.stats}</div>
                   {item.details && item.details.length > 0 && (
                     <div>
@@ -717,6 +752,11 @@ const GenericLandingPage = () => {
                           </li>
                         ))}
                       </ul>
+                      {item.finalLine && (
+                        <p className="mt-4 text-sm md:text-base font-medium text-indigo-700 italic">
+                          {item.finalLine}
+                        </p>
+                      )}
                     </div>
                   )}
                 </div>
@@ -731,6 +771,7 @@ const GenericLandingPage = () => {
         id="services"
         className="py-16 bg-gradient-to-br from-gray-50 via-pink-25 to-white relative overflow-hidden"
       >
+        <DotBackground density={1} opacity={0.2} color="#919294" />
         {/* Optimized Background Elements - Reduced blur for better performance */}
         <div className="absolute inset-0 opacity-20 pointer-events-none">
           <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-pink-200 to-rose-200 rounded-full blur-2xl" />
@@ -774,7 +815,7 @@ const GenericLandingPage = () => {
               transition={{ ...smoothTransition, delay: 0.3 }}
               className="text-base text-gray-600 max-w-3xl mx-auto leading-relaxed"
             >
-              STAAJ Solutions delivers high-value, low-cost transformation in{' '}
+              STAAJ Solutions delivers high-value, low-cost transformation in as little as{' '}
               <span className="font-bold text-pink-600 bg-pink-50 px-2 py-1 rounded-lg">30 days</span>.
               We combine people-first expertise with best-practice technology to accelerate your business journey.
             </motion.p>
@@ -847,9 +888,9 @@ const GenericLandingPage = () => {
                     </motion.button>
                   </div>
 
-                  {/* Service Content - Fixed height to prevent layout shifts */}
-                  <div className="p-8 min-h-[500px]">
-                    <div className="flex flex-col lg:flex-row gap-8 h-full">
+                  {/* Service Content - Scrollable to show all content */}
+                  <div className="p-8 max-h-[600px] overflow-y-auto">
+                    <div className="flex flex-col lg:flex-row gap-8 min-h-full">
                       {/* Left Column - Service Info */}
                       <div className="lg:w-2/3">
                         <motion.div 
@@ -871,14 +912,25 @@ const GenericLandingPage = () => {
                           </div>
                         </motion.div>
                         
-                        <motion.p 
-                          className="text-gray-600 text-lg mb-6 leading-relaxed"
-                          initial={smoothVariants.fadeInUp.initial}
-                          animate={smoothVariants.fadeInUp.animate}
-                          transition={{ ...smoothTransition, delay: 0.2 }}
-                        >
-                          {services[selectedService].summary}
-                        </motion.p>
+                        {services[selectedService].summary && (
+                          <motion.div 
+                            className="text-gray-600 text-lg mb-6 leading-relaxed"
+                            initial={smoothVariants.fadeInUp.initial}
+                            animate={smoothVariants.fadeInUp.animate}
+                            transition={{ ...smoothTransition, delay: 0.2 }}
+                          >
+                            {services[selectedService].summary.split('\n').map((line, index) => (
+                              <div key={index}>
+                                {index === 0 ? (
+                                  <span className="font-bold text-pink-600">{line}</span>
+                                ) : (
+                                  <span>{line}</span>
+                                )}
+                                {index < services[selectedService].summary.split('\n').length - 1 && <br />}
+                              </div>
+                            ))}
+                          </motion.div>
+                        )}
                         
                         {services[selectedService].objective && (
                           <motion.div 
@@ -887,47 +939,79 @@ const GenericLandingPage = () => {
                             animate={smoothVariants.fadeInUp.animate}
                             transition={{ ...smoothTransition, delay: 0.3 }}
                           >
-                            <h4 className="text-lg font-semibold text-gray-900 mb-2">Objective</h4>
-                            <p className="text-gray-600 leading-relaxed">
-                              {services[selectedService].objective}
-                            </p>
+                            <div className="text-gray-600 leading-relaxed space-y-4">
+                              {services[selectedService].objective.split('\n\n').map((section, sectionIndex) => (
+                                <div key={sectionIndex}>
+                                  {section.split('\n').map((line, lineIndex) => {
+                                    if (line.endsWith(':')) {
+                                      // This is a section header like "Who it's for:", "What they get:", etc.
+                                      return (
+                                        <h4 key={lineIndex} className="font-semibold text-gray-900 mb-2">
+                                          {line}
+                                        </h4>
+                                      );
+                                    } else if (line.startsWith('•')) {
+                                      // This is a bullet point
+                                      return (
+                                        <div key={lineIndex} className="flex items-start gap-2 ml-4">
+                                          <span className="text-pink-600 mt-1">•</span>
+                                          <span>{line.substring(2)}</span>
+                                        </div>
+                                      );
+                                    } else if (line.trim()) {
+                                      // This is regular text
+                                      return (
+                                        <p key={lineIndex} className="mb-2">
+                                          {line}
+                                        </p>
+                                      );
+                                    }
+                                    return null;
+                                  })}
+                                </div>
+                              ))}
+                            </div>
                           </motion.div>
                         )}
                         
-                        <motion.div 
-                          className="mb-6"
-                          initial={smoothVariants.fadeInUp.initial}
-                          animate={smoothVariants.fadeInUp.animate}
-                          transition={{ ...smoothTransition, delay: 0.4 }}
-                        >
-                          <h4 className="text-lg font-semibold text-gray-900 mb-4">Key Features</h4>
-                          <div className="space-y-3">
-                            {services[selectedService].features.map((feature, index) => (
-                              <motion.div
-                                key={index}
-                                initial={{ opacity: 0, x: -10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ ...quickTransition, delay: index * 0.05 }}
-                                className="flex items-start gap-3"
-                              >
-                                <div className="w-2 h-2 bg-gradient-to-r from-pink-500 to-rose-600 rounded-full mt-2 flex-shrink-0" />
-                                <p className="text-gray-600 leading-relaxed">{feature}</p>
-                              </motion.div>
-                            ))}
-                          </div>
-                        </motion.div>
+                        {services[selectedService].features && services[selectedService].features.length > 0 && (
+                          <motion.div 
+                            className="mb-6"
+                            initial={smoothVariants.fadeInUp.initial}
+                            animate={smoothVariants.fadeInUp.animate}
+                            transition={{ ...smoothTransition, delay: 0.4 }}
+                          >
+                            <h4 className="text-lg font-semibold text-gray-900 mb-4">Key Features</h4>
+                            <div className="space-y-3">
+                              {services[selectedService].features.map((feature, index) => (
+                                <motion.div
+                                  key={index}
+                                  initial={{ opacity: 0, x: -10 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  transition={{ ...quickTransition, delay: index * 0.05 }}
+                                  className="flex items-start gap-3"
+                                >
+                                  <div className="w-2 h-2 bg-gradient-to-r from-pink-500 to-rose-600 rounded-full mt-2 flex-shrink-0" />
+                                  <p className="text-gray-600 leading-relaxed">{feature}</p>
+                                </motion.div>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
                         
-                        <motion.div 
-                          className="bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl p-4 border border-pink-200/50"
-                          initial={smoothVariants.scaleIn.initial}
-                          animate={smoothVariants.scaleIn.animate}
-                          transition={{ ...smoothTransition, delay: 0.5 }}
-                        >
-                          <h4 className="text-sm font-semibold text-pink-700 mb-2">Ideal For</h4>
-                          <p className="text-gray-600 text-sm leading-relaxed">
-                            {services[selectedService].ideal}
-                          </p>
-                        </motion.div>
+                        {services[selectedService].ideal && (
+                          <motion.div 
+                            className="bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl p-4 border border-pink-200/50"
+                            initial={smoothVariants.scaleIn.initial}
+                            animate={smoothVariants.scaleIn.animate}
+                            transition={{ ...smoothTransition, delay: 0.5 }}
+                          >
+                            <h4 className="text-sm font-semibold text-pink-700 mb-2">Ideal For</h4>
+                            <p className="text-gray-600 text-sm leading-relaxed">
+                              {services[selectedService].ideal}
+                            </p>
+                          </motion.div>
+                        )}
                       </div>
                       
                       {/* Right Column - Image */}
@@ -953,40 +1037,13 @@ const GenericLandingPage = () => {
               </motion.div>
             </AnimatePresence>
             {/* Spacer to maintain layout */}
-            <div className="invisible min-h-[600px]" />
+            <div className="invisible min-h-[650px]" />
           </div>
 
-          {/* Bottom Call-to-Action */}
-          <motion.div
-            className="mt-25 text-center"
-            initial={smoothVariants.fadeInUp.initial}
-            whileInView={smoothVariants.fadeInUp.animate}
-            viewport={{ once: true }}
-            transition={{ ...smoothTransition, delay: 0.2 }}
-          >
-            <div className="mt-20 inline-flex flex-col sm:flex-row items-center gap-4 p-5 bg-gradient-to-r from-pink-50 to-rose-50 rounded-2xl border border-pink-200/50 shadow-lg backdrop-blur-sm">
-              <div className="flex items-center gap-6">
-                <div className="flex items-center gap-2 text-pink-700 font-semibold text-sm">
-                  <Users className="w-4 h-4" />
-                  People-First Expertise
-                </div>
-                <div className="hidden sm:block w-px h-6 bg-pink-300" />
-                <div className="flex items-center gap-2 text-rose-700 font-semibold text-sm">
-                  <BarChart3 className="w-4 h-4" />
-                  Data-Driven Results
-                </div>
-                <div className="hidden sm:block w-px h-6 bg-pink-300" />
-                <div className="flex items-center gap-2 text-pink-700 font-semibold text-sm">
-                  <Clock className="w-4 h-4" />
-                  Delivered in 30 Days
-                </div>
-              </div>
-            </div>
-          </motion.div>
         </motion.div>
       </section>
       {/* FAQ */}
-      <section id="faq" className="py-16 bg-gray-50 relative overflow-hidden">
+      <section id="faq" className="py-16 relative overflow-hidden">
         <DotBackground density={1} opacity={0.2} color="#919294" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div className="text-center mb-12" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
@@ -997,7 +1054,7 @@ const GenericLandingPage = () => {
               Frequently Asked Questions
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Everything you need to know about our AI consulting services for all industries and organizations.
+              Everything you need to know about our expert consulting services for all industries and organizations.
             </p>
           </motion.div>
           <motion.div className="space-y-4" variants={staggerChildren} initial="hidden" whileInView="visible" viewport={{ once: true }}>
@@ -1045,75 +1102,185 @@ const GenericLandingPage = () => {
   <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
     <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerChildren}>
       <motion.h2 className="text-3xl md:text-4xl font-bold mb-4" variants={fadeIn}>
-        Ready to Begin Your AI Journey?
+        Ready to Begin Your STAAJ Journey?
       </motion.h2>
       <motion.p className="text-lg mb-8 text-white/90 max-w-2xl mx-auto" variants={fadeIn}>
-        Whether you're optimizing workflows, improving customer touchpoints, or reimagining your business with data, our experts are here to guide you. Let's explore the tangible benefits of AI for your unique goals.
+        Join successful business leaders who trust STAAJ Solutions to help them reach their full potential.
       </motion.p>
-      <motion.div className="text-white/80 text-base md:text-lg font-medium" variants={fadeIn}>
-        <p>
-          We believe in partnership and transparency. Reach out to us to learn how our AI consulting services can help you achieve sustainable growth, innovation, and operational excellence.
-        </p>
+      <motion.div variants={fadeIn}>
+        <motion.button
+          onClick={() => router.push('/auth')}
+          className="group bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-semibold py-4 px-8 rounded-lg text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center mx-auto space-x-2 relative overflow-hidden"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          animate={{
+            boxShadow: [
+              "0 10px 25px rgba(220, 38, 127, 0.3)",
+              "0 15px 35px rgba(220, 38, 127, 0.5)",
+              "0 10px 25px rgba(220, 38, 127, 0.3)"
+            ]
+          }}
+          transition={{
+            boxShadow: {
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }
+          }}
+        >
+          {/* Pulsing Background Effect */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-pink-400 to-red-500 rounded-lg opacity-0"
+            animate={{
+              opacity: [0, 0.3, 0],
+              scale: [1, 1.05, 1]
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="relative z-10"
+          >
+            <Heart className="w-5 h-5 fill-current" />
+          </motion.div>
+          <span className="relative z-10 font-semibold">Get Started</span>
+          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform relative z-10" />
+        </motion.button>
       </motion.div>
     </motion.div>
   </div>
 </section>  
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <footer className="bg-gradient-to-br from-gray-50 to-white border-t border-gray-200 py-12 relative">
+        <DotBackground density={1} opacity={0.2} color="#919294" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-lg font-semibold mb-4 flex items-center">
-                <img src="/logo2.png" alt="Your Company" className="h-8 w-auto mr-2" />
-                <span>Your Company</span>
+              <h3 className="text-lg font-semibold mb-4 flex items-center text-gray-900">
+                <img src="/logo2.png" alt="STAAJ Solutions" className="h-8 w-auto mr-2" />
               </h3>
-              <p className="text-sm text-gray-400 mb-4">
-                Empowering organizations to lead with AI—driving smarter growth, higher efficiency, and better outcomes.
+              <p className="text-sm text-gray-600 mb-6 leading-relaxed">
+                Empowering organizations to scale with confidence through people-first strategies and innovative solutions.
               </p>
-              <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors"><Linkedin className="w-5 h-5" /></a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors"><Twitter className="w-5 h-5" /></a>
+              <div className="flex space-x-3">
+                <a href="https://www.linkedin.com/company/staaj-solutions/" className="p-2 bg-white rounded-lg border border-gray-200 text-gray-600 hover:text-pink-600 hover:border-pink-200 hover:shadow-md transition-all duration-200">
+                  <Linkedin className="w-4 h-4" />
+                </a>
+                <a href="https://x.com/Staajsolutions" className="p-2 bg-white rounded-lg border border-gray-200 text-gray-600 hover:text-blue-500 hover:border-blue-200 hover:shadow-md transition-all duration-200">
+                  <Twitter className="w-4 h-4" />
+                </a>
+                <a href="https://www.facebook.com/staajsolutions" className="p-2 bg-white rounded-lg border border-gray-200 text-gray-600 hover:text-blue-600 hover:border-blue-200 hover:shadow-md transition-all duration-200">
+                  <Facebook className="w-4 h-4" />
+                </a>
+                <a href="https://www.instagram.com/staajsolutions/" className="p-2 bg-white rounded-lg border border-gray-200 text-gray-600 hover:text-pink-500 hover:border-pink-200 hover:shadow-md transition-all duration-200">
+                  <Instagram className="w-4 h-4" />
+                </a>
               </div>
             </div>
+
             <div>
-              <h3 className="text-lg font-semibold mb-4">Services</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">AI Strategy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Data Analytics</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Customer Experience</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Process Automation</a></li>
+              <h3 className="text-lg font-semibold mb-4 text-gray-900">Services</h3>
+              <ul className="space-y-3 text-sm">
+                <li><a href="#services" className="text-gray-600 hover:text-pink-600 transition-colors duration-200 flex items-center group">
+                  <span className="w-1.5 h-1.5 bg-pink-400 rounded-full mr-2 group-hover:bg-pink-600 transition-colors"></span>
+                  STAAJ Lite
+                </a></li>
+                <li><a href="#services" className="text-gray-600 hover:text-pink-600 transition-colors duration-200 flex items-center group">
+                  <span className="w-1.5 h-1.5 bg-pink-400 rounded-full mr-2 group-hover:bg-pink-600 transition-colors"></span>
+                  STAAJ Pro
+                </a></li>
+                <li><a href="#services" className="text-gray-600 hover:text-pink-600 transition-colors duration-200 flex items-center group">
+                  <span className="w-1.5 h-1.5 bg-pink-400 rounded-full mr-2 group-hover:bg-pink-600 transition-colors"></span>
+                  STAAJ Enterprise
+                </a></li>
+                <li><a href="#services" className="text-gray-600 hover:text-pink-600 transition-colors duration-200 flex items-center group">
+                  <span className="w-1.5 h-1.5 bg-pink-400 rounded-full mr-2 group-hover:bg-pink-600 transition-colors"></span>
+                  Custom Solutions
+                </a></li>
               </ul>
             </div>
+
             <div>
-              <h3 className="text-lg font-semibold mb-4">Company</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Success Stories</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
+              <h3 className="text-lg font-semibold mb-4 text-gray-900">Company</h3>
+              <ul className="space-y-3 text-sm">
+                <li><a href="#why-us" className="text-gray-600 hover:text-pink-600 transition-colors duration-200 flex items-center group">
+                  <span className="w-1.5 h-1.5 bg-pink-400 rounded-full mr-2 group-hover:bg-pink-600 transition-colors"></span>
+                  About Us
+                </a></li>
+                <li><a href="#why-us" className="text-gray-600 hover:text-pink-600 transition-colors duration-200 flex items-center group">
+                  <span className="w-1.5 h-1.5 bg-pink-400 rounded-full mr-2 group-hover:bg-pink-600 transition-colors"></span>
+                  Our Team
+                </a></li>
+                <li><a href="#why-us" className="text-gray-600 hover:text-pink-600 transition-colors duration-200 flex items-center group">
+                  <span className="w-1.5 h-1.5 bg-pink-400 rounded-full mr-2 group-hover:bg-pink-600 transition-colors"></span>
+                  Our Process
+                </a></li>
+                <li><a href="#faq" className="text-gray-600 hover:text-pink-600 transition-colors duration-200 flex items-center group">
+                  <span className="w-1.5 h-1.5 bg-pink-400 rounded-full mr-2 group-hover:bg-pink-600 transition-colors"></span>
+                  FAQ
+                </a></li>
               </ul>
             </div>
+
             <div>
-              <h3 className="text-lg font-semibold mb-4">Connect</h3>
+              <h3 className="text-lg font-semibold mb-4 text-gray-900">Connect</h3>
               <div className="space-y-4 text-sm">
-                <div className="flex items-start">
-                  <Phone className="w-5 h-5 mr-3 text-gray-400 mt-0.5" />
-                  <span className="text-gray-300">+1 (800) 000-0000</span>
+                <div className="flex items-start group">
+                  <div className="p-2 bg-pink-50 rounded-lg mr-3 group-hover:bg-pink-100 transition-colors">
+                    <Phone className="w-4 h-4 text-pink-600" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-500 uppercase tracking-wide">Phone</p>
+                    <span className="text-gray-700 font-medium">866-987-8225</span>
+                  </div>
                 </div>
-                <div className="flex items-start">
-                  <Mail className="w-5 h-5 mr-3 text-gray-400 mt-0.5" />
-                  <span className="text-gray-300">contact@yourcompany.com</span>
+                <div className="flex items-start group">
+                  <div className="p-2 bg-pink-50 rounded-lg mr-3 group-hover:bg-pink-100 transition-colors">
+                    <Mail className="w-4 h-4 text-pink-600" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-500 uppercase tracking-wide">Email</p>
+                    <span className="text-gray-700 font-medium">booking@staaj.com</span>
+                  </div>
                 </div>
-                <div className="flex items-start">
-                  <MapPin className="w-5 h-5 mr-3 text-gray-400 mt-0.5" />
-                  <span className="text-gray-300">123 AI Way, Innovation City</span>
+                <div className="flex items-start group">
+                  <div className="p-2 bg-pink-50 rounded-lg mr-3 group-hover:bg-pink-100 transition-colors">
+                    <MapPin className="w-4 h-4 text-pink-600" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-500 uppercase tracking-wide">Location</p>
+                    <span className="text-gray-700 font-medium">Los Angeles, CA</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="mt-12 pt-8 border-t border-gray-800 text-center text-sm text-gray-400">
-            <p>&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
+          <div className="mt-12 pt-8 border-t border-gray-200">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <p className="text-sm text-gray-500 mb-4 md:mb-0">
+                &copy; {new Date().getFullYear()} STAAJ Solutions. All rights reserved.
+              </p>
+              <div className="flex items-center space-x-6 text-sm text-gray-500">
+                <a href="#" className="hover:text-pink-600 transition-colors">Privacy Policy</a>
+                <a href="#" className="hover:text-pink-600 transition-colors">Terms of Service</a>
+                <div className="flex items-center space-x-1">
+                  <Heart className="w-3 h-3 text-pink-500 fill-current" />
+                  <span>Made with care in LA</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
