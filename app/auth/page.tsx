@@ -52,6 +52,15 @@ const AuthPage: React.FC = () => {
             position: questionnaireData.position
           };
           await axios.post('/api/signup', payload);
+          
+          await axios.post('/api/mail', {
+          firstName: signupData.firstName,
+          lastName: signupData.lastName,
+          email: signupData.email,
+          subject: "Welcome to STAAJ!",
+          message: `Hi ${signupData.firstName},\n\nThank you for signing up with STAAJ! We're excited to have you on board.\n\nOur team will reach out to you soon, and in the meantime, feel free to schedule a discovery call:\nhttps://meetings.hubspot.com/booking-staaj?uuid=f8f41247-2e47-4139-8985-27421d59959a\n\nBest,\nThe STAAJ Team`
+        });
+        
           router.push('/landingpage');
         } catch (error: any) {
           console.error('HubSpot API error:', error.response?.data || error.message);
