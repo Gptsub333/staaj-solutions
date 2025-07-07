@@ -33,43 +33,42 @@ const AuthPage: React.FC = () => {
   };
 
   const handleQuestionnaireComplete = (data: QuestionnaireData) => {
-    setQuestionnaireData(data);
-    setCurrentStep('landing'); // triggers HubSpot submission
+  setQuestionnaireData(data);
+
+  const summary = `
+Business Stage: ${data.businessStage || 'N/A'}
+Main Challenge: ${data.mainChallenge || 'N/A'}
+Help Type: ${data.helpType || 'N/A'}
+Team Info: ${data.teamInfo || 'N/A'}
+Success Vision: ${data.successVision || 'N/A'}
+Industry: ${data.industry || 'N/A'}
+Position: ${data.position || 'N/A'}
+  `.trim();
+
+  const payload = {
+    ...signupData,
+    businessStage: summary,
   };
 
-  useEffect(() => {
-    const submitToHubspot = async () => {
-      if (currentStep === 'landing') {
-        try {
-          const payload = {
-            ...signupData,
-            businessStage: questionnaireData.businessStage,
-            mainChallenge: questionnaireData.mainChallenge,
-            helpType: questionnaireData.helpType,
-            teamInfo: questionnaireData.teamInfo,
-            successVision: questionnaireData.successVision,
-            industry_quest: questionnaireData.industry,
-            position: questionnaireData.position
-          };
-          await axios.post('/api/signup', payload);
-          
-          await axios.post('/api/mail', {
-          firstName: signupData.firstName,
-          lastName: signupData.lastName,
-          email: signupData.email,
-          subject: "Welcome to STAAJ!",
-          message: `Hi ${signupData.firstName},\n\nThank you for signing up with STAAJ! We're excited to have you on board.\n\nOur team will reach out to you soon, and in the meantime, feel free to schedule a discovery call:\nhttps://meetings.hubspot.com/booking-staaj?uuid=f8f41247-2e47-4139-8985-27421d59959a\n\nBest,\nThe STAAJ Team`
-        });
-        
-          router.push('/landingpage');
-        } catch (error: any) {
-          console.error('HubSpot API error:', error.response?.data || error.message);
-        }
-      }
-    };
-    submitToHubspot();
-    // eslint-disable-next-line
-  }, [currentStep]);
+  const mailPayload = {
+    firstName: signupData.firstName,
+    lastName: signupData.lastName,
+    email: signupData.email,
+    subject: "Welcome to STAAJ!",
+    message: `Hi ${signupData.firstName},\n\nThank you for signing up with STAAJ! We're excited to have you on board.\n\nOur team will reach out to you soon, and in the meantime, feel free to schedule a discovery call:\nhttps://meetings.hubspot.com/booking-staaj?uuid=f8f41247-2e47-4139-8985-27421d59959a\n\nBest,\nThe STAAJ Team`
+  };
+
+  // Trigger API calls in background — don't wait
+  axios.post('/api/signup', payload).catch(console.error);
+  axios.post('/api/mail', mailPayload).catch(console.error);
+
+  setCurrentStep('landing');
+  router.push('/landingpage'); // Go immediately
+};
+
+
+  
+ 
 
   return (
     <AuthLayout>
