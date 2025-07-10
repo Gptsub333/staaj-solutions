@@ -1,13 +1,14 @@
 'use client';
 
-import React, { useState, useEffect, useRef , useCallback} from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
   ArrowRight, Download, CheckCircle, Star, Award, Lightbulb, Heart,
   LineChart, Users2, Target, BarChart, Users, Settings, Bot, Cloud,
-  Brain, Database, Shield, Network, Phone, Mail, Linkedin, Twitter, Facebook, Instagram, ChevronDown, ChevronUp, Menu, X, MapPin, Puzzle, TrendingUp,Clock,BookOpenCheck, Briefcase, Megaphone, Sparkles, BarChart3, ChevronLeft, ChevronRight, ExternalLink,} from 'lucide-react';
+  Brain, Database, Shield, Network, Phone, Mail, Linkedin, Twitter, Facebook, Instagram, ChevronDown, ChevronUp, Menu, X, MapPin, Puzzle, TrendingUp, Clock, BookOpenCheck, Briefcase, Megaphone, Sparkles, BarChart3, ChevronLeft, ChevronRight, ExternalLink,
+} from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { WhyChooseUsSection } from "../../components/WhyChooseUsSection";
 import OurPeopleSection from "../../components/OurPeopleSection";
@@ -33,7 +34,7 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  
+
   useEffect(() => {
     const currentWord = words[currentWordIndex];
     const timer = setTimeout(() => {
@@ -132,13 +133,13 @@ const containerVariants = {
 };
 
 const cardVariants = {
-  hidden: { 
-    opacity: 0, 
+  hidden: {
+    opacity: 0,
     x: -50,
     scale: 0.95
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     x: 0,
     scale: 1,
     transition: {
@@ -150,8 +151,8 @@ const cardVariants = {
 
 const iconVariants = {
   rest: { scale: 1, rotate: 0 },
-  hover: { 
-    scale: 1.1, 
+  hover: {
+    scale: 1.1,
     rotate: 5,
     transition: {
       duration: 0.3,
@@ -214,13 +215,13 @@ const GenericLandingPage = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const serviceRefs: React.MutableRefObject<(HTMLDivElement | null)[]> = useRef([]);
   const router = useRouter();
-  const sectionRef = useRef<HTMLDivElement | null>(null); 
+  const sectionRef = useRef<HTMLDivElement | null>(null);
   const [showServiceSection, setShowServiceSection] = useState(false);
-   const [showServiceDetail, setShowServiceDetail] = React.useState(false);
+  const [showServiceDetail, setShowServiceDetail] = React.useState(false);
 
 
 
-   useEffect(() => {
+  useEffect(() => {
     if (typeof window === "undefined") return;
     const hash = window.location.hash;
     if (hash.startsWith("#services")) {
@@ -272,78 +273,78 @@ const GenericLandingPage = () => {
 
   // Services (all-industry)
   const services = [
-  {
-    key: 'overview',
-    title: 'STAAJ Solutions',
-    subtitle: 'Service Overview',
-    icon: <BookOpenCheck className="w-12 h-12 text-blue-700" />,
-    summary: 'Built on 90-Day Wins. ',
-    objective: 'Each tier of our service is powered by our PPTFM foundation: Product, People, Technology, Finance, and Metrics. That\'s how we help businesses grow smarter, not harder.',
-    features: [
-      'STAAJ Lite - A strategic starting point for small teams that need structure and support without the overhead.',
-      'STAAJ Pro - A hands-on partnership to drive growth, streamline operations, and build your roadmap to scale.',
-      'STAAJ Enterprise - An embedded executive team delivering full-scale transformation.',
-      'Custom Solutions - Bring us your business problems, we\'ll help you solution them with tailored strategies.',
-    ],
-    ideal: 'Businesses of all sizes looking for scalable, effective, people-driven growth.',
-    image: '/staaj-solutions.png',
-    link: '/staaj-services?service=overview'
-  },
-  {
-    key: 'lite',
-    title: 'STAAJ Lite',
-    subtitle: 'Customer Journey Excellence',
-    icon: <Clock className="w-12 h-12 text-red-600" />,
-    summary: 'STAAJ Lite (Road to $1M Revenue)\nHelping early-stage founders go from scrappy to scalable.',
-    objective: 'Who it\'s for:\nFounders and CEOs of small teams (4-10 people) building their first $1M in annual revenue.\n\nWhat they get:\n• Confidence to scale without burnout\n• Simple systems to support growth\n• Weekly guidance from seasoned experts\n• Clear, data-informed decisions\n• Help shaping go-to-market and operational basics\n\nWhy it matters:\nYou don\'t need a giant team to act like a pro. We help you build like the CEO you want to be.',
-    features: [
-      
-    ],
-    ideal: 'Small to medium-sized businesses aiming to improve customer interactions and satisfaction.',
-    image: '/staaj-lite.png',
-    link: '/staaj-services?service=lite'
-  },
-  {
-    key: 'pro',
-    title: 'STAAJ Pro',
-    subtitle: 'End-to-End Lean Operations',
-    icon: <BarChart3 className="w-12 h-12 text-pink-600" />,
-    summary: 'STAAJ Pro (Road to $5M Revenue)\nFueling teams ready for serious growth.',
-    objective: 'Who it\'s for:\nLeaders of growing companies (10-30 people) aiming to cross the $5M mark with solid systems.\n\nWhat they get:\n• Personalized growth roadmap\n• Strategic help across marketing, ops, and sales\n• Hands-on workshops to unblock progress\n• More efficient workflows\n• Support to scale team culture and performance\n\nWhy it matters:\nYou\'ve proven your idea works—now it\'s time to grow smarter, not just bigger.',
-    features: [
-      
-    ],
-    ideal: 'Growing businesses seeking to scale operations efficiently and effectively.',
-    image: '/staaj-pro.png',
-    link: '/staaj-services?service=pro'
-  },
-  {
-    key: 'enterprise',
-    title: 'STAAJ Enterprise',
-    subtitle: 'Road to $10M+ Revenue',
-    icon: <Briefcase className="w-12 h-12 text-orange-600" />,
-    summary: 'STAAJ Enterprise (Road to $10M+ Revenue)\nEnterprise-level expertise for scaling companies.',
-    objective: 'Who it\'s for:\nEstablished businesses (30-50+ people) looking to cross into 8-figure territory with confidence.\n\nWhat they get:\n• Full executive team support without the full-time cost\n• Revenue operations that drive measurable ROI\n• Better data visibility to guide strategy\n• Workflow optimization across departments\n• Scalable structure for sustainable growth\n\nWhy it matters:\nYou\'re past "startup." Now it\'s about legacy. We help you lead with clarity and stay ahead of the curve.',
-    features: [],
-    ideal: 'Established businesses aiming to maintain momentum and navigate complex challenges.',
-    image: '/staaj-enterprise.png',
-    link: '/staaj-services?service=enterprise'
-  },
-  {
-    key: 'custom',
-    title: 'Custom Solutions',
-    subtitle: 'Tailored Services for Unique Needs',
-    icon: <Settings className="w-12 h-12 text-purple-700" />,
-    summary: 'Custom Solutions\nTailored strategies for unique challenges, solutioned in 90-day sprints.',
-    objective: 'Who it\'s for:\nAny organization facing a specific hurdle, pivot, or opportunity that doesn\'t fit a one-size-fits-all plan.\n\nWhat they get:\n• Targeted problem-solving with expert support\n• Rapid-response workshops and action plans\n• Flexible team involvement based on the issue\n• Cross-functional expertise across PPT\n\nWhy it matters:\nNot every business challenge fits a template. When things get complex, we help you solution with speed, clarity, and confidence.',
-    features: [],
-    ideal: 'Businesses with unique needs that require specialized solutions beyond standard offerings.',
-    image: '/custom-solutions.png',
-    link: '/staaj-services?service=custom'
-  },
-];
+    {
+      key: 'overview',
+      title: 'STAAJ Solutions',
+      subtitle: 'Service Overview',
+      icon: <BookOpenCheck className="w-12 h-12 text-blue-700" />,
+      summary: 'Built on 90-Day Wins. ',
+      objective: 'Each tier of our service is powered by our PPTFM foundation: Product, People, Technology, Finance, and Metrics. That\'s how we help businesses grow smarter, not harder.',
+      features: [
+        'STAAJ Lite - A strategic starting point for small teams that need structure and support without the overhead.',
+        'STAAJ Pro - A hands-on partnership to drive growth, streamline operations, and build your roadmap to scale.',
+        'STAAJ Enterprise - An embedded executive team delivering full-scale transformation.',
+        'Custom Solutions - Bring us your business problems, we\'ll help you solution them with tailored strategies.',
+      ],
+      ideal: 'Businesses of all sizes looking for scalable, effective, people-driven growth.',
+      image: '/staaj-solutions.png',
+      link: '/staaj-services?service=overview'
+    },
+    {
+      key: 'lite',
+      title: 'STAAJ Lite',
+      subtitle: 'Customer Journey Excellence',
+      icon: <Clock className="w-12 h-12 text-red-600" />,
+      summary: 'STAAJ Lite (Road to $1M Revenue)\nHelping early-stage founders go from scrappy to scalable.',
+      objective: 'Who it\'s for:\nFounders and CEOs of small teams (4-10 people) building their first $1M in annual revenue.\n\nWhat they get:\n• Confidence to scale without burnout\n• Simple systems to support growth\n• Weekly guidance from seasoned experts\n• Clear, data-informed decisions\n• Help shaping go-to-market and operational basics\n\nWhy it matters:\nYou don\'t need a giant team to act like a pro. We help you build like the CEO you want to be.',
+      features: [
 
-// Why Choose Us
+      ],
+      ideal: 'Small to medium-sized businesses aiming to improve customer interactions and satisfaction.',
+      image: '/staaj-lite.png',
+      link: '/staaj-services?service=lite'
+    },
+    {
+      key: 'pro',
+      title: 'STAAJ Pro',
+      subtitle: 'End-to-End Lean Operations',
+      icon: <BarChart3 className="w-12 h-12 text-pink-600" />,
+      summary: 'STAAJ Pro (Road to $5M Revenue)\nFueling teams ready for serious growth.',
+      objective: 'Who it\'s for:\nLeaders of growing companies (10-30 people) aiming to cross the $5M mark with solid systems.\n\nWhat they get:\n• Personalized growth roadmap\n• Strategic help across marketing, ops, and sales\n• Hands-on workshops to unblock progress\n• More efficient workflows\n• Support to scale team culture and performance\n\nWhy it matters:\nYou\'ve proven your idea works—now it\'s time to grow smarter, not just bigger.',
+      features: [
+
+      ],
+      ideal: 'Growing businesses seeking to scale operations efficiently and effectively.',
+      image: '/staaj-pro.png',
+      link: '/staaj-services?service=pro'
+    },
+    {
+      key: 'enterprise',
+      title: 'STAAJ Enterprise',
+      subtitle: 'Road to $10M+ Revenue',
+      icon: <Briefcase className="w-12 h-12 text-orange-600" />,
+      summary: 'STAAJ Enterprise (Road to $10M+ Revenue)\nEnterprise-level expertise for scaling companies.',
+      objective: 'Who it\'s for:\nEstablished businesses (30-50+ people) looking to cross into 8-figure territory with confidence.\n\nWhat they get:\n• Full executive team support without the full-time cost\n• Revenue operations that drive measurable ROI\n• Better data visibility to guide strategy\n• Workflow optimization across departments\n• Scalable structure for sustainable growth\n\nWhy it matters:\nYou\'re past "startup." Now it\'s about legacy. We help you lead with clarity and stay ahead of the curve.',
+      features: [],
+      ideal: 'Established businesses aiming to maintain momentum and navigate complex challenges.',
+      image: '/staaj-enterprise.png',
+      link: '/staaj-services?service=enterprise'
+    },
+    {
+      key: 'custom',
+      title: 'Custom Solutions',
+      subtitle: 'Tailored Services for Unique Needs',
+      icon: <Settings className="w-12 h-12 text-purple-700" />,
+      summary: 'Custom Solutions\nTailored strategies for unique challenges, solutioned in 90-day sprints.',
+      objective: 'Who it\'s for:\nAny organization facing a specific hurdle, pivot, or opportunity that doesn\'t fit a one-size-fits-all plan.\n\nWhat they get:\n• Targeted problem-solving with expert support\n• Rapid-response workshops and action plans\n• Flexible team involvement based on the issue\n• Cross-functional expertise across PPT\n\nWhy it matters:\nNot every business challenge fits a template. When things get complex, we help you solution with speed, clarity, and confidence.',
+      features: [],
+      ideal: 'Businesses with unique needs that require specialized solutions beyond standard offerings.',
+      image: '/custom-solutions.png',
+      link: '/staaj-services?service=custom'
+    },
+  ];
+
+  // Why Choose Us
   const whyChooseUs = [
     {
       icon: <Award className="w-8 h-8" />,
@@ -372,7 +373,7 @@ const GenericLandingPage = () => {
     //   "/images/p3.jpeg",
     //   "/images/p4.png"
     // ],
-      
+
     // },
     {
       icon: <Puzzle className="w-8 h-8" />,
@@ -386,7 +387,7 @@ const GenericLandingPage = () => {
       ],
       finalLine: "Our approach is fully turnkey and designed to deliver results without adding complexity.",
       image: "/images/generic-3.png"
- 
+
     },
     {
       icon: <Users className="w-8 h-8" />,
@@ -403,65 +404,65 @@ const GenericLandingPage = () => {
     }
   ];
 
-// Updated FAQs for STAAJ Solutions
-const faqs = [
-  {
-    question: "What is STAAJ Solutions?",
-    answer: "We are a dedicated team of professionals who help organizations streamline their processes, improve team efficiency, and create sustainable growth systems."
-  },
-  {
-    question: "What does \"people-first\" mean?",
-    answer: "We believe that successful operations depend on empowered, well‑organized teams working with clear systems and processes."
-  },
-  {
-    question: "How do you pronounce STAAJ?",
-    answer: "Same way you pronounce 'STAGE'."
-  },
-  {
-    question: "How long has STAAJ Solutions been in business?",
-    answer: "We were founded in 2023 by trusted professionals with decades of experience."
-  },
-  {
-    question: "What types of problems do you solve?",
-    answer: "- Outdated processes that no longer serve your growing business\n- Team confusion and lack of clarity around roles and priorities\n- Leadership bottlenecks where everything requires owner approval\n- Revenue growth stagnation despite market demand\n- Scaling challenges that lead to burnout and inefficiency"
-  },
-  {
-    question: "What services do you offer?",
-    answer: "- Process optimization and systematization\n- Team structure and workflow design\n- Leadership delegation frameworks\n- Revenue growth strategy implementation\n- Operational efficiency audits and improvements"
-  },
-  {
-    question: "Do you work with businesses of all sizes?",
-    answer: "We work with growing businesses that are ready to scale. Our solutions are designed for companies with between 4 and 100 employees."
-  },
-  {
-    question: "What industries do you serve?",
-    answer: "Our expertise is in the tech sector, retail, call centers, and healthcare."
-  },
-  {
-    question: "How quickly can you deliver results?",
-    answer: "We deliver high‑value solutions in as little as 30 days."
-  },
-  {
-    question: "What does the implementation process look like?",
-    answer: "- Initial assessment of your current operations and challenges\n- Strategic planning and solution design\n- Implementation of new systems and processes\n- Team training and change management\n- Ongoing support and optimization"
-  },
-  {
-    question: "Do you work remotely or on‑site?",
-    answer: "We primarily work with you remotely; however, we offer custom on‑site solutions to meet your needs."
-  },
-  {
-    question: "How involved does our team need to be during implementation?",
-    answer: "Your team's involvement is crucial for success. We work collaboratively with your key team members to ensure solutions are practical, sustainable, and well‑adopted."
-  },
-  {
-    question: "How much do your services cost?",
-    answer: "We offer high‑value, low‑cost solutions designed to provide significant return on investment. Pricing varies based on your specific needs and scope of work – contact us for a customized quote."
-  },
-  {
-    question: "What kind of ROI can we expect?",
-    answer: "Our clients typically see improvements in efficiency, reduced operational bottlenecks, clearer team accountability, and accelerated revenue growth. Many experience significant time savings and reduced stress within the first 30 days."
-  }
-];
+  // Updated FAQs for STAAJ Solutions
+  const faqs = [
+    {
+      question: "What is STAAJ Solutions?",
+      answer: "We are a dedicated team of professionals who help organizations streamline their processes, improve team efficiency, and create sustainable growth systems."
+    },
+    {
+      question: "What does \"people-first\" mean?",
+      answer: "We believe that successful operations depend on empowered, well‑organized teams working with clear systems and processes."
+    },
+    {
+      question: "How do you pronounce STAAJ?",
+      answer: "Same way you pronounce 'STAGE'."
+    },
+    {
+      question: "How long has STAAJ Solutions been in business?",
+      answer: "We were founded in 2023 by trusted professionals with decades of experience."
+    },
+    {
+      question: "What types of problems do you solve?",
+      answer: "- Outdated processes that no longer serve your growing business\n- Team confusion and lack of clarity around roles and priorities\n- Leadership bottlenecks where everything requires owner approval\n- Revenue growth stagnation despite market demand\n- Scaling challenges that lead to burnout and inefficiency"
+    },
+    {
+      question: "What services do you offer?",
+      answer: "- Process optimization and systematization\n- Team structure and workflow design\n- Leadership delegation frameworks\n- Revenue growth strategy implementation\n- Operational efficiency audits and improvements"
+    },
+    {
+      question: "Do you work with businesses of all sizes?",
+      answer: "We work with growing businesses that are ready to scale. Our solutions are designed for companies with between 4 and 100 employees."
+    },
+    {
+      question: "What industries do you serve?",
+      answer: "Our expertise is in the tech sector, retail, call centers, and healthcare."
+    },
+    {
+      question: "How quickly can you deliver results?",
+      answer: "We deliver high‑value solutions in as little as 30 days."
+    },
+    {
+      question: "What does the implementation process look like?",
+      answer: "- Initial assessment of your current operations and challenges\n- Strategic planning and solution design\n- Implementation of new systems and processes\n- Team training and change management\n- Ongoing support and optimization"
+    },
+    {
+      question: "Do you work remotely or on‑site?",
+      answer: "We primarily work with you remotely; however, we offer custom on‑site solutions to meet your needs."
+    },
+    {
+      question: "How involved does our team need to be during implementation?",
+      answer: "Your team's involvement is crucial for success. We work collaboratively with your key team members to ensure solutions are practical, sustainable, and well‑adopted."
+    },
+    {
+      question: "How much do your services cost?",
+      answer: "We offer high‑value, low‑cost solutions designed to provide significant return on investment. Pricing varies based on your specific needs and scope of work – contact us for a customized quote."
+    },
+    {
+      question: "What kind of ROI can we expect?",
+      answer: "Our clients typically see improvements in efficiency, reduced operational bottlenecks, clearer team accountability, and accelerated revenue growth. Many experience significant time savings and reduced stress within the first 30 days."
+    }
+  ];
 
   // Framer Motion variants
   const fadeIn = {
@@ -482,7 +483,7 @@ const faqs = [
     setExpandedFaq(expandedFaq === index ? null : index);
   };
 
-   const navigateService = (direction: string) => {
+  const navigateService = (direction: string) => {
     if (direction === 'prev') {
       setSelectedService(selectedService === 0 ? services.length - 1 : selectedService - 1);
     } else {
@@ -492,78 +493,78 @@ const faqs = [
 
   return (
     <div className="min-h-screen bg-white relative overflow-hidden">
-     {/* Navigation */}
-<motion.nav
-  className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-b border-gray-200/50 shadow-sm"
-  initial={{ y: -100, opacity: 0 }}
-  animate={{ y: 0, opacity: 1 }}
-  transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
->
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="flex justify-between items-center h-20">
-      <div className="flex items-center">
-        <motion.div className="flex items-center space-x-3" whileHover={{ scale: 1.01 }}>
-          <Link href = "/">
-          <div className="relative">
-            <Image
-              src="/logo2.png"
-              alt="Your Company"
-              width={100}
-              height={36}
-              className="h-9 w-auto object-contain"
-              priority
-            />
-          </div>
-          </Link>
-        </motion.div>
-      </div>
-      <div className="hidden lg:flex items-center space-x-8">
-       <motion.a
-          href="#services"
-          onClick={e => { e.preventDefault(); handleNavToServices(); }}
-          className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-        >Services</motion.a>
-        <motion.a href="#why-us" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">Why Us</motion.a>
-        <motion.a href="#faq" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">FAQ</motion.a>
-      </div>
-      <div className="lg:hidden">
-        <motion.button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="text-gray-700 hover:text-gray-900 p-2 rounded-lg hover:bg-gray-50 transition-colors"
-          whileTap={{ scale: 0.95 }}
-        >
-          {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </motion.button>
-      </div>
-    </div>
-  </div>
-  <AnimatePresence>
-    {isMenuOpen && (
-      <motion.div
-        className="lg:hidden bg-white border-t border-gray-100"
-        initial={{ opacity: 0, height: 0 }}
-        animate={{ opacity: 1, height: 'auto' }}
-        exit={{ opacity: 0, height: 0 }}
-        transition={{ duration: 0.3 }}
+      {/* Navigation */}
+      <motion.nav
+        className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-b border-gray-200/50 shadow-sm"
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
       >
-        <div className="px-4 py-4 space-y-2">
-          <motion.a href="#services" className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors" onClick={() => setIsMenuOpen(false)}>
-            Services
-          </motion.a>
-          <motion.a href="#why-us" className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors" onClick={() => setIsMenuOpen(false)}>
-            Why Us
-          </motion.a>
-          <motion.a href="#faq" className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors" onClick={() => setIsMenuOpen(false)}>
-            FAQ
-          </motion.a>
-          <motion.button className="block w-full text-left px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
-            Book AI Consultation
-          </motion.button>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
+            <div className="flex items-center">
+              <motion.div className="flex items-center space-x-3" whileHover={{ scale: 1.01 }}>
+                <Link href="/">
+                  <div className="relative">
+                    <Image
+                      src="/logo2.png"
+                      alt="Your Company"
+                      width={100}
+                      height={36}
+                      className="h-9 w-auto object-contain"
+                      priority
+                    />
+                  </div>
+                </Link>
+              </motion.div>
+            </div>
+            <div className="hidden lg:flex items-center space-x-8">
+              <motion.a
+                href="#services"
+                onClick={e => { e.preventDefault(); handleNavToServices(); }}
+                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+              >Services</motion.a>
+              <motion.a href="#why-us" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">Why Us</motion.a>
+              <motion.a href="#faq" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">FAQ</motion.a>
+            </div>
+            <div className="lg:hidden">
+              <motion.button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-gray-700 hover:text-gray-900 p-2 rounded-lg hover:bg-gray-50 transition-colors"
+                whileTap={{ scale: 0.95 }}
+              >
+                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </motion.button>
+            </div>
+          </div>
         </div>
-      </motion.div>
-    )}
-  </AnimatePresence>
-</motion.nav>
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              className="lg:hidden bg-white border-t border-gray-100"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="px-4 py-4 space-y-2">
+                <motion.a href="#services" className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors" onClick={() => setIsMenuOpen(false)}>
+                  Services
+                </motion.a>
+                <motion.a href="#why-us" className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors" onClick={() => setIsMenuOpen(false)}>
+                  Why Us
+                </motion.a>
+                <motion.a href="#faq" className="block px-3 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors" onClick={() => setIsMenuOpen(false)}>
+                  FAQ
+                </motion.a>
+                <motion.button className="block w-full text-left px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium" onClick={() => setIsMenuOpen(false)}>
+                  Book AI Consultation
+                </motion.button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.nav>
 
       {/* HERO SECTION */}
       <section className="relative py-0 min-h-[calc(100vh-5rem)] flex items-center overflow-hidden">
@@ -600,7 +601,7 @@ const faqs = [
               <TypewriterText words={typewriterWords} />
             </motion.div>
             {/* CTA Buttons */}
-             <motion.div
+            <motion.div
               className="mb-7 text-base md:text-lg text-white/90 font-medium"
               variants={fadeIn}
               initial="hidden"
@@ -682,12 +683,12 @@ const faqs = [
       </section>
 
       {/* Why Us */}
-       <WhyChooseUsSection sections={whyChooseUs} />
-       {/* our people */}
-       <OurPeopleSection />
-     
+      <WhyChooseUsSection sections={whyChooseUs} />
+      {/* our people */}
+      <OurPeopleSection />
 
-   {/* Services Section */}
+
+      {/* Services Section */}
       <section
         ref={sectionRef}
         id="services"
@@ -744,7 +745,7 @@ const faqs = [
           </div>
 
           {/* Service Navigator - Optimized for smoother interactions */}
-          <motion.div 
+          <motion.div
             className="mb-8"
             initial={smoothVariants.fadeInUp.initial}
             whileInView={smoothVariants.fadeInUp.animate}
@@ -759,11 +760,10 @@ const faqs = [
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   transition={quickTransition}
-                  className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
-                    selectedService === index
+                  className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${selectedService === index
                       ? 'bg-gradient-to-r from-pink-500 to-rose-600 text-white shadow-lg'
                       : 'bg-white/80 text-gray-600 hover:bg-pink-50 hover:text-pink-600 border border-pink-200/50'
-                  }`}
+                    }`}
                 >
                   {service.title}
                 </motion.button>
@@ -811,32 +811,32 @@ const faqs = [
                   </div>
 
                   {/* Service Content - Scrollable to show all content */}
-                      <div className="p-4 sm:p-6 lg:p-8">
-                        <div className="flex flex-col lg:flex-row gap-4 min-h-full">
-                          {/* Left Column - Service Info */}
-                          <div className="lg:w-3/4">
-                            {/* Icon and Heading */}
-                            <motion.div 
-                              className="flex items-center gap-3 mb-3"
-                              initial={smoothVariants.slideIn.initial}
-                              animate={smoothVariants.slideIn.animate}
-                              transition={{ ...smoothTransition, delay: 0.1 }}
-                            >
-                              <div className="w-9 h-9 bg-white rounded-2xl flex items-center justify-center text-white shadow-lg border border-gray-200">
-                                {services[selectedService].icon}
-                              </div>
-                              <div>
-                                <h3 className="text-base lg:text-lg font-bold text-gray-900 mb-1">
-                                  {services[selectedService].title}
-                                </h3>
-                                <p className="text-pink-600 font-medium text-xs">
-                                  {services[selectedService].subtitle}
-                                </p>
-                              </div>
-                            </motion.div>
-                        
+                  <div className="p-4 sm:p-6 lg:p-8">
+                    <div className="flex flex-col lg:flex-row gap-4 min-h-full">
+                      {/* Left Column - Service Info */}
+                      <div className="lg:w-3/4">
+                        {/* Icon and Heading */}
+                        <motion.div
+                          className="flex items-center gap-3 mb-3"
+                          initial={smoothVariants.slideIn.initial}
+                          animate={smoothVariants.slideIn.animate}
+                          transition={{ ...smoothTransition, delay: 0.1 }}
+                        >
+                          <div className="w-9 h-9 bg-white rounded-2xl flex items-center justify-center text-white shadow-lg border border-gray-200">
+                            {services[selectedService].icon}
+                          </div>
+                          <div>
+                            <h3 className="text-base lg:text-lg font-bold text-gray-900 mb-1">
+                              {services[selectedService].title}
+                            </h3>
+                            <p className="text-pink-600 font-medium text-xs">
+                              {services[selectedService].subtitle}
+                            </p>
+                          </div>
+                        </motion.div>
+
                         {services[selectedService].summary && (
-                          <motion.div 
+                          <motion.div
                             className="text-gray-600 text-lg mb-6 leading-relaxed"
                             initial={smoothVariants.fadeInUp.initial}
                             animate={smoothVariants.fadeInUp.animate}
@@ -854,9 +854,9 @@ const faqs = [
                             ))}
                           </motion.div>
                         )}
-                        
+
                         {services[selectedService].objective && (
-                          <motion.div 
+                          <motion.div
                             className="mb-6"
                             initial={smoothVariants.fadeInUp.initial}
                             animate={smoothVariants.fadeInUp.animate}
@@ -896,9 +896,9 @@ const faqs = [
                             </div>
                           </motion.div>
                         )}
-                        
+
                         {services[selectedService].features && services[selectedService].features.length > 0 && (
-                          <motion.div 
+                          <motion.div
                             className="mb-6"
                             initial={smoothVariants.fadeInUp.initial}
                             animate={smoothVariants.fadeInUp.animate}
@@ -921,9 +921,9 @@ const faqs = [
                             </div>
                           </motion.div>
                         )}
-                        
+
                         {services[selectedService].ideal && (
-                          <motion.div 
+                          <motion.div
                             className="bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl p-4 border border-pink-200/50"
                             initial={smoothVariants.scaleIn.initial}
                             animate={smoothVariants.scaleIn.animate}
@@ -936,9 +936,9 @@ const faqs = [
                           </motion.div>
                         )}
                       </div>
-                      
+
                       {/* Right Column - Image */}
-                      <motion.div 
+                      <motion.div
                         className="lg:w-1/3"
                         initial={smoothVariants.scaleIn.initial}
                         animate={smoothVariants.scaleIn.animate}
@@ -1017,73 +1017,73 @@ const faqs = [
             ))}
           </motion.div>
         </div>
-      </section> 
-   
+      </section>
+
 
       {/* CTA */}
-     <section className="py-16 bg-gradient-to-r from-purple-600 via-pink-600 to-pink-500 text-white">
-  <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerChildren}>
-      <motion.h2 className="text-3xl md:text-4xl font-bold mb-4" variants={fadeIn}>
-        Ready to Begin Your STAAJ Journey?
-      </motion.h2>
-      <motion.p className="text-lg mb-8 text-white/90 max-w-2xl mx-auto" variants={fadeIn}>
-        Join successful business leaders who trust STAAJ Solutions to help them reach their full potential.
-      </motion.p>
-      <motion.div variants={fadeIn}>
-        <motion.button
-          onClick={() => router.push('/auth')}
-          className="group  hover:from-red-700 hover:to-pink-700 bg-white text-red-500 font-semibold py-4 px-8 rounded-lg text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center mx-auto space-x-2 relative overflow-hidden"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          animate={{
-            boxShadow: [
-              "0 10px 25px rgba(220, 38, 127, 0.3)",
-              "0 15px 35px rgba(220, 38, 127, 0.5)",
-              "0 10px 25px rgba(220, 38, 127, 0.3)"
-            ]
-          }}
-          transition={{
-            boxShadow: {
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }
-          }}
-        >
-          {/* Pulsing Background Effect */}
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-r   from-pink-600   to-red-500 rounded-lg opacity-0"
-            animate={{
-              opacity: [0, 0.3, 0],
-              scale: [1, 1.05, 1]
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-            }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="relative z-10"
-          >
-            <Heart className="w-5 h-5 fill-current" />
+      <section className="py-16 bg-gradient-to-r from-purple-600 via-pink-600 to-pink-500 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerChildren}>
+            <motion.h2 className="text-3xl md:text-4xl font-bold mb-4" variants={fadeIn}>
+              Ready to Begin Your STAAJ Journey?
+            </motion.h2>
+            <motion.p className="text-lg mb-8 text-white/90 max-w-2xl mx-auto" variants={fadeIn}>
+              Join successful business leaders who trust STAAJ Solutions to help them reach their full potential.
+            </motion.p>
+            <motion.div variants={fadeIn}>
+              <motion.button
+                onClick={() => router.push('/auth')}
+                className="group  hover:from-red-700 hover:to-pink-700 bg-white text-red-500 font-semibold py-4 px-8 rounded-lg text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center mx-auto space-x-2 relative overflow-hidden"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                animate={{
+                  boxShadow: [
+                    "0 10px 25px rgba(220, 38, 127, 0.3)",
+                    "0 15px 35px rgba(220, 38, 127, 0.5)",
+                    "0 10px 25px rgba(220, 38, 127, 0.3)"
+                  ]
+                }}
+                transition={{
+                  boxShadow: {
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }
+                }}
+              >
+                {/* Pulsing Background Effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r   from-pink-600   to-red-500 rounded-lg opacity-0"
+                  animate={{
+                    opacity: [0, 0.3, 0],
+                    scale: [1, 1.05, 1]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                <motion.div
+                  animate={{
+                    scale: [1, 1.2, 1],
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="relative z-10"
+                >
+                  <Heart className="w-5 h-5 fill-current" />
+                </motion.div>
+                <span className="relative z-10 font-semibold">Get Started</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform relative z-10" />
+              </motion.button>
+            </motion.div>
           </motion.div>
-          <span className="relative z-10 font-semibold">Get Started</span>
-          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform relative z-10" />
-        </motion.button>
-      </motion.div>
-    </motion.div>
-  </div>
-</section>  
+        </div>
+      </section>
 
       {/* Footer */}
       <footer className="bg-gradient-to-br from-gray-50 to-white border-t border-gray-200 py-12 relative">
@@ -1102,7 +1102,7 @@ const faqs = [
                   <Linkedin className="w-4 h-4" />
                 </a>
                 <a href="https://x.com/Staajsolutions" className="p-2 bg-white rounded-lg border border-gray-200 text-gray-600 hover:text-blue-500 hover:border-blue-200 hover:shadow-md transition-all duration-200">
-                  <X className="w-4 h-4" />
+                  <img src="/images/x.svg" className="w-4 h-4" />
                 </a>
                 <a href="https://www.facebook.com/staajsolutions" className="p-2 bg-white rounded-lg border border-gray-200 text-gray-600 hover:text-blue-600 hover:border-blue-200 hover:shadow-md transition-all duration-200">
                   <Facebook className="w-4 h-4" />

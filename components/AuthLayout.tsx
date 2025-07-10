@@ -182,7 +182,7 @@ const SidebarContent: React.FC = () => {
 
           {/* Current Pillar Highlight */}
           <div className="mb-8 p-6 bg-gradient-to-br from-pink-50 to-purple-50 rounded-xl animate-stepfadein flex items-start gap-4">
-            <div className={`w-16 h-16 bg-gradient-to-r ${PPTFM_ITEMS[current].color} rounded-xl flex items-center justify-center text-2xl shadow-lg`}>
+            <div className={`w-16 h-16  text-white rounded-xl flex items-center justify-center text-2xl shadow-lg`}>
               {PPTFM_ITEMS[current].icon}
             </div>
             <div>
@@ -215,7 +215,7 @@ const SidebarContent: React.FC = () => {
                   <div
                     className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm ${
                       idx === current
-                        ? `bg-gradient-to-r ${item.color} text-white shadow-md`
+                        ? `bg-white-400 ${item.color} text-white shadow-md`
                         : 'bg-white text-gray-600'
                     }`}
                   >
@@ -274,9 +274,20 @@ const SidebarContent: React.FC = () => {
   {/* FIXED HEIGHT CONTAINER */}
 <div className="flex flex-col items-center justify-center h-64 min-h-[16rem] max-h-64 overflow-hidden animate-testimonialfadein text-center">
   {/* Avatar above */}
+  {testimonials[currentTestimonial].name != "Subhanjan Sarkar" ? 
   <div className={`w-12 h-12 mb-4 bg-gradient-to-r ${testimonials[currentTestimonial].color} rounded-full flex items-center justify-center text-white font-bold shadow-lg`}>
     {testimonials[currentTestimonial].name[0]}
-  </div>
+  </div> : <div className='bg-slate-200 rounded-full p-2'>
+      <Image
+              src="/images/pitchlink_logo.png"
+              alt="Pitch Link Logo"
+              className="object-contain"
+              priority
+              width={40}
+              height={40}
+              style={{ objectFit: 'contain'}}
+            />
+    </div>}
   {/* Testimonial text/content */}
   <div className="flex-1 flex flex-col justify-center h-full">
     <p className="text-gray-700 italic mb-2 line-clamp-5">{`"${testimonials[currentTestimonial].content}"`}</p>
@@ -287,7 +298,6 @@ const SidebarContent: React.FC = () => {
     </p>
   </div>
 </div>
-
 </div>
 
     </aside>

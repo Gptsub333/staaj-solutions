@@ -180,9 +180,10 @@ export default function LandingPage() {
             <div className="space-y-8">
               <div className="animate-fade-in-up">
                 <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Scaling your business is hard, Don't CEO Alone.
-                  <br />
+                  Scaling your business is hard, 
+                  <br/>
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-pink-600">
+                    Don't CEO Alone.<br/>
                     We&apos;re here to help.
                   </span>
                 </h1>
