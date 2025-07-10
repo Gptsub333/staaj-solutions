@@ -180,7 +180,7 @@ export default function LandingPage() {
             <div className="space-y-8">
               <div className="animate-fade-in-up">
                 <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                 Scaling your business is hard, Don't CEO Alone.
+                  Scaling your business is hard, Don't CEO Alone.
                   <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-pink-600">
                     We&apos;re here to help.
@@ -218,7 +218,7 @@ export default function LandingPage() {
       </div>
 
       {/* SERVICES SECTION */}
-        <div className="py-20 bg-white">
+      <div className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Core Services</h2>
@@ -226,13 +226,14 @@ export default function LandingPage() {
               Choose the perfect solution to scale your business effectively
             </p>
           </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {cards.map((card, idx) => (
-            <ServiceCard key={idx} {...card} features={card.features.map(f => f.text)} />
-          ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {cards.map((card, idx) => (
+              <ServiceCard key={idx} {...card} features={card.features} />
+
+            ))}
+          </div>
         </div>
-        </div>
-        </div>
+      </div>
 
       {/* TRUST SECTION (Key Stats) */}
       <div className="bg-white mt-2">

@@ -3,14 +3,12 @@ import { Factory, Users, Code, ArrowRight, Star, TrendingUp, Shield, Zap } from 
 import { notFound } from 'next/navigation';
 import AnimatedCard from '@/components/AnimatedCard';
 
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
+// Define the PageProps type
+
+
 
 // Landing Page Components
-const ManufacturingLanding: React.FC = () => (
+const ManufacturingLanding = () => (
   <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
     <div className="container mx-auto px-6 py-12">
       <AnimatedCard className="text-center mb-12">
@@ -52,7 +50,7 @@ const ManufacturingLanding: React.FC = () => (
   </div>
 );
 
-const BusinessManagementLanding: React.FC = () => (
+const BusinessManagementLanding = () => (
   <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
     <div className="container mx-auto px-6 py-12">
       <AnimatedCard className="text-center mb-12">
@@ -94,7 +92,7 @@ const BusinessManagementLanding: React.FC = () => (
   </div>
 );
 
-const SoftwareDevelopmentLanding: React.FC = () => (
+const SoftwareDevelopmentLanding = () => (
   <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
     <div className="container mx-auto px-6 py-12">
       <AnimatedCard className="text-center mb-12">
@@ -137,10 +135,10 @@ const SoftwareDevelopmentLanding: React.FC = () => (
 );
 
 // Main Category Page Component
-const CategoryPage: React.FC<PageProps> = ({ params }) => {
+const CategoryPage = ({ params }) => {
   const { slug } = params;
 
-  const renderLandingPage = (): JSX.Element => {
+  const renderLandingPage = () => {
     switch(slug) {
       case 'manufacturing':
         return <ManufacturingLanding />;
