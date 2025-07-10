@@ -9,6 +9,8 @@ import {
   LineChart, Users2, Target, BarChart, Users, Settings, Bot, Cloud,
   Brain, Database, Shield, Network, Phone, Mail, Linkedin, Twitter, Facebook, Instagram, ChevronDown, ChevronUp, Menu, X, MapPin, Puzzle, TrendingUp,Clock,BookOpenCheck, Briefcase, Megaphone, Sparkles, BarChart3, ChevronLeft, ChevronRight, ExternalLink,} from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { WhyChooseUsSection } from "../../components/WhyChooseUsSection";
+import OurPeopleSection from "../../components/OurPeopleSection";
 
 
 // --- Animated Typewriter Component ---
@@ -353,17 +355,25 @@ const GenericLandingPage = () => {
         "We tailor strategies to your stage and business goals",
         "We stay close to the work until it's done right",
       ],
-      finalLine: "No fluff, just hands-on help that drives results."
+      finalLine: "No fluff, just hands-on help that drives results.",
+      image: "/images/generic-1.png"
     },
-    {
-      icon: <TrendingUp className="w-8 h-8" />,
-      title: "Our People",
-      description: "**Sam Spampinato**\nFounder and President\nSam leads STAAJ with a focus on clarity, results, and real relationships. He brings years of experience scaling businesses and helps clients think bigger while staying grounded in what works.\n\n**Bryna Kielar**\nFounder and Chief Operating Officer\nBryna keeps everything running smoothly. She's an expert in operations and team leadership, and she helps clients turn big goals into simple, workable plans.\n\n**Garrett Finley**\nCo-Founder and Head of Customer Excellence\nGarrett makes sure every client feels supported and seen. He blends process expertise with a deep commitment to service, helping teams work smarter and communicate better.\n\n**Alex Wiehman**\nCo-Founder and Brand Marketing Architect\nAlex helps clients find their voice and connect with the right audience. He brings creative energy and strategic thinking to every project, making sure brands grow with purpose.",
-      stats: "",
-      details: 
-        [],
-      finalLine: ""
-    },
+    // {
+    //   icon: <TrendingUp className="w-8 h-8" />,
+    //   title: "Our People",
+    //   description: "**Sam Spampinato**\nFounder and President\nSam leads STAAJ with a focus on clarity, results, and real relationships. He brings years of experience scaling businesses and helps clients think bigger while staying grounded in what works.\n\n**Bryna Kirzner**\nFounder and Chief Operating Officer\nBryna keeps everything running smoothly. She's an expert in operations and team leadership, and she helps clients turn big goals into simple, workable plans.\n\n**Garrett Finley**\nCo-Founder and Director of Operational Integrity\nGarrett makes sure every client feels supported and seen. He blends process expertise with a deep commitment to service, helping teams work smarter and communicate better.\n\n**Alex Wichman**\nCo-Founder and Director of Marketing\nAlex helps clients find their voice and connect with the right audience. He brings creative energy and strategic thinking to every project, making sure brands grow with purpose.",
+    //   stats: "",
+    //   details: 
+    //     [],
+    //   finalLine: "",
+    //   image: [
+    //   "/images/p1.png",
+    //   "/images/p2.jpeg",
+    //   "/images/p3.jpeg",
+    //   "/images/p4.png"
+    // ],
+      
+    // },
     {
       icon: <Puzzle className="w-8 h-8" />,
       title: "Our Process",
@@ -374,7 +384,9 @@ const GenericLandingPage = () => {
         "Roadmap: We co-create a clear plan that fits your stage, your culture, and your resources.",
         "Ongoing Support: We stay closely involved to keep things aligned, adjust strategies, and ensure consistent progress."
       ],
-      finalLine: "Our approach is fully turnkey and designed to deliver results without adding complexity."
+      finalLine: "Our approach is fully turnkey and designed to deliver results without adding complexity.",
+      image: "/images/generic-3.png"
+ 
     },
     {
       icon: <Users className="w-8 h-8" />,
@@ -386,7 +398,8 @@ const GenericLandingPage = () => {
         "Clear wins that move your business forward",
         "A trusted partner who evolves with you"
       ],
-      finalLine: "We measure our success by your success. We're here for the long haul."
+      finalLine: "We measure our success by your success. We're here for the long haul.",
+      image: "/images/generic-4.png"
     }
   ];
 
@@ -669,105 +682,11 @@ const faqs = [
       </section>
 
       {/* Why Us */}
-      <section id="why-us" className="py-16 bg-gray-50 relative">
-        <DotBackground density={1} opacity={0.2} color="#919294" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div className="text-center mb-12" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
-            <span className="inline-block px-3 py-1 mb-4 bg-indigo-50 text-indigo-700 rounded-full text-sm font-medium border border-indigo-200">
-              Why Work With Us
-            </span>
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">
-              Consulting for Any Organisation
-            </h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
-              We combine broad industry knowledge with deep operational expertise to deliver solutions for any business or sector.
-            </p>
-          </motion.div>
-          <motion.div className="space-y-12 md:space-y-16" variants={staggerChildren} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            {whyChooseUs.map((item, index) => (
-              <motion.div
-                key={index}
-                className={`bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300 group overflow-hidden flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-stretch min-h-[600px] md:min-h-[500px]`}
-                variants={fadeIn}
-              >
-                {/* Image Column */}
-                <div className="md:w-2/5 w-full h-80 md:h-auto bg-gray-100 flex items-center justify-center p-4">
-                  <div className="w-full h-full max-w-md max-h-80 relative">
-                    <img 
-                      src={`/images/generic-${index + 1}.png`} 
-                      alt={item.title} 
-                      className="w-full h-full object-contain rounded-lg" 
-                    />
-                  </div>
-                </div>
-                {/* Text Column */}
-                <div className="md:w-3/5 w-full p-6 md:p-8 flex flex-col justify-center">
-                  <div className="text-indigo-600 mb-3 md:mb-4 transition-transform duration-200 inline-block">
-                    {React.cloneElement(item.icon, { className: "w-7 h-7 md:w-8 md:h-8" })}
-                  </div>
-                  <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 md:mb-3">{item.title}</h3>
-                  <div className="text-gray-600 leading-relaxed mb-3 md:mb-4 text-sm md:text-base">
-                    {item.description.split('\n\n').map((paragraph, pIndex) => {
-                      const lines = paragraph.split('\n');
-                      return (
-                        <div key={pIndex} className={pIndex > 0 ? 'mt-4' : ''}>
-                          {lines.map((line, lIndex) => {
-                            // Check if this is a bold name (starts and ends with **)
-                            if (line.startsWith('**') && line.endsWith('**')) {
-                              const name = line.slice(2, -2);
-                              return (
-                                <h4 key={lIndex} className="text-lg md:text-xl font-bold text-gray-900 mb-1">
-                                  {name}
-                                </h4>
-                              );
-                            }
-                            // Check if this is a title line (comes after a name, no ** formatting)
-                            else if (lIndex === 1 && lines[0].startsWith('**')) {
-                              return (
-                                <p key={lIndex} className="text-sm md:text-base font-semibold text-indigo-600 mb-2">
-                                  {line}
-                                </p>
-                              );
-                            }
-                            // Regular content line
-                            else if (line.trim()) {
-                              return (
-                                <p key={lIndex} className="text-gray-600 leading-relaxed">
-                                  {line}
-                                </p>
-                              );
-                            }
-                            return null;
-                          })}
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div className="text-sm md:text-base font-semibold text-indigo-700 mb-4">{item.stats}</div>
-                  {item.details && item.details.length > 0 && (
-                    <div>
-                      <h4 className="text-sm font-semibold text-gray-800 mb-2">Key Benefits:</h4>
-                      <ul className="space-y-1.5 text-sm text-gray-600">
-                        {item.details.map((detail, detailIndex) => (
-                          <li key={detailIndex} className="flex items-start">
-                            <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                            {detail}
-                          </li>
-                        ))}
-                      </ul>
-                      {item.finalLine && (
-                        <p className="mt-4 text-sm md:text-base font-medium text-indigo-700 italic">
-                          {item.finalLine}
-                        </p>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+       <WhyChooseUsSection sections={whyChooseUs} />
+       {/* our people */}
+       <OurPeopleSection />
+     
+
    {/* Services Section */}
       <section
         ref={sectionRef}
@@ -892,28 +811,29 @@ const faqs = [
                   </div>
 
                   {/* Service Content - Scrollable to show all content */}
-                  <div className="p-8 max-h-[600px] overflow-y-auto">
-                    <div className="flex flex-col lg:flex-row gap-8 min-h-full">
-                      {/* Left Column - Service Info */}
-                      <div className="lg:w-2/3">
-                        <motion.div 
-                          className="flex items-center gap-4 mb-6"
-                          initial={smoothVariants.slideIn.initial}
-                          animate={smoothVariants.slideIn.animate}
-                          transition={{ ...smoothTransition, delay: 0.1 }}
-                        >
-                          <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-white shadow-lg border border-gray-200">
-                            {services[selectedService].icon}
-                          </div>
-                          <div>
-                            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
-                              {services[selectedService].title}
-                            </h3>
-                            <p className="text-pink-600 font-semibold">
-                              {services[selectedService].subtitle}
-                            </p>
-                          </div>
-                        </motion.div>
+                      <div className="p-4 sm:p-6 lg:p-8">
+                        <div className="flex flex-col lg:flex-row gap-4 min-h-full">
+                          {/* Left Column - Service Info */}
+                          <div className="lg:w-3/4">
+                            {/* Icon and Heading */}
+                            <motion.div 
+                              className="flex items-center gap-3 mb-3"
+                              initial={smoothVariants.slideIn.initial}
+                              animate={smoothVariants.slideIn.animate}
+                              transition={{ ...smoothTransition, delay: 0.1 }}
+                            >
+                              <div className="w-9 h-9 bg-white rounded-2xl flex items-center justify-center text-white shadow-lg border border-gray-200">
+                                {services[selectedService].icon}
+                              </div>
+                              <div>
+                                <h3 className="text-base lg:text-lg font-bold text-gray-900 mb-1">
+                                  {services[selectedService].title}
+                                </h3>
+                                <p className="text-pink-600 font-medium text-xs">
+                                  {services[selectedService].subtitle}
+                                </p>
+                              </div>
+                            </motion.div>
                         
                         {services[selectedService].summary && (
                           <motion.div 
@@ -1087,7 +1007,7 @@ const faqs = [
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <div className="p-6 pt-0 border-t border-gray-100 text-sm text-gray-600">
+                      <div className="p-6 pt-2 border-t border-gray-100 text-sm text-gray-600">
                         {faq.answer}
                       </div>
                     </motion.div>
@@ -1113,7 +1033,7 @@ const faqs = [
       <motion.div variants={fadeIn}>
         <motion.button
           onClick={() => router.push('/auth')}
-          className="group bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-semibold py-4 px-8 rounded-lg text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center mx-auto space-x-2 relative overflow-hidden"
+          className="group  hover:from-red-700 hover:to-pink-700 bg-white text-red-500 font-semibold py-4 px-8 rounded-lg text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center mx-auto space-x-2 relative overflow-hidden"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           animate={{
@@ -1133,7 +1053,7 @@ const faqs = [
         >
           {/* Pulsing Background Effect */}
           <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-pink-400 to-red-500 rounded-lg opacity-0"
+            className="absolute inset-0 bg-gradient-to-r   from-pink-600   to-red-500 rounded-lg opacity-0"
             animate={{
               opacity: [0, 0.3, 0],
               scale: [1, 1.05, 1]
@@ -1182,7 +1102,7 @@ const faqs = [
                   <Linkedin className="w-4 h-4" />
                 </a>
                 <a href="https://x.com/Staajsolutions" className="p-2 bg-white rounded-lg border border-gray-200 text-gray-600 hover:text-blue-500 hover:border-blue-200 hover:shadow-md transition-all duration-200">
-                  <Twitter className="w-4 h-4" />
+                  <X className="w-4 h-4" />
                 </a>
                 <a href="https://www.facebook.com/staajsolutions" className="p-2 bg-white rounded-lg border border-gray-200 text-gray-600 hover:text-blue-600 hover:border-blue-200 hover:shadow-md transition-all duration-200">
                   <Facebook className="w-4 h-4" />

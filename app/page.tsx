@@ -9,8 +9,99 @@ import {
   Briefcase,
   Settings,
   Clock,
+  LucideProps,
 } from 'lucide-react';
 import Link from 'next/link';
+import ServiceCard from '../components/ServiceCard';
+
+
+
+const cards = [
+  {
+    icon: Clock,
+    iconBg: "bg-gradient-to-br from-red-100 to-pink-200",
+    iconColor: "text-red-600",
+    border: "border-red-100 hover:border-red-300",
+    hoverShadow: "hover:shadow-xl",
+    title: "STAAJ Lite",
+    subtitle: "Road to $1M",
+    description: "For early-stage founders (4–10 people) building toward their first $1M.",
+    features: [
+      { icon: CheckCircle, text: "Clear, data-informed decision-making" },
+      { icon: CheckCircle, text: "Burnout-free growth strategies" },
+      { icon: CheckCircle, text: "Simple systems that scale" },
+      { icon: CheckCircle, text: "Weekly expert support" },
+      { icon: CheckCircle, text: "Go-to-market and ops setup" }
+    ],
+    badge: "Quick Start",
+    badgeBg: "bg-red-100",
+    badgeText: "text-red-800",
+    link: "/landingpage/#services?service=lite",
+  },
+  {
+    icon: BarChart3,
+    iconBg: "bg-gradient-to-br from-pink-100 to-red-200",
+    iconColor: "text-pink-600",
+    border: "border-pink-100 hover:border-pink-300",
+    hoverShadow: "hover:shadow-xl",
+    title: "STAAJ Pro",
+    subtitle: "Road to $5M",
+    description: "For growing teams (10–30 people) scaling past $1M toward $5M.",
+    features: [
+      { icon: CheckCircle, text: "Smarter workflows" },
+      { icon: CheckCircle, text: "Custom growth roadmap" },
+      { icon: CheckCircle, text: "Strategic help across teams" },
+      { icon: CheckCircle, text: "Workshops to unlock progress" },
+      { icon: CheckCircle, text: "Culture and performance" }
+    ],
+    badge: "Most Popular",
+    badgeBg: "bg-pink-100",
+    badgeText: "text-pink-800",
+    link: "/landingpage/#services?service=pro",
+  },
+  {
+    icon: Briefcase,
+    iconBg: "bg-gradient-to-br from-orange-100 to-red-200",
+    iconColor: "text-orange-600",
+    border: "border-orange-100 hover:border-orange-300",
+    hoverShadow: "hover:shadow-xl",
+    title: "STAAJ Enterprise",
+    subtitle: "Road to $10M",
+    description: "For established companies (30–50+ people) aiming for $10M and beyond.",
+    features: [
+      { icon: CheckCircle, text: "Executive-level guidance" },
+      { icon: CheckCircle, text: "Revenue ops with measurable ROI" },
+      { icon: CheckCircle, text: "Strategic visibility through better data" },
+      { icon: CheckCircle, text: "Cross-team workflow alignment" },
+      { icon: CheckCircle, text: "Infrastructure for sustainable scale" }
+    ],
+    badge: "Premium",
+    badgeBg: "bg-orange-100",
+    badgeText: "text-orange-800",
+    link: "/landingpage/#services?service=enterprise",
+  },
+  {
+    icon: Settings,
+    iconBg: "bg-gradient-to-br from-purple-100 to-pink-200",
+    iconColor: "text-purple-600",
+    border: "border-purple-100 hover:border-purple-300",
+    hoverShadow: "hover:shadow-xl",
+    title: "Custom Solutions",
+    subtitle: "",
+    description: "Got business problems? We'll help you solution them.",
+    features: [
+      { icon: CheckCircle, text: "Executive-level guidance" },
+      { icon: CheckCircle, text: "Revenue ops with measurable ROI" },
+      { icon: CheckCircle, text: "Strategic visibility through better data" },
+      { icon: CheckCircle, text: "Cross-team workflow alignment" },
+      { icon: CheckCircle, text: "Infrastructure for sustainable scale" }
+    ],
+    badge: "Bespoke",
+    badgeBg: "bg-purple-100",
+    badgeText: "text-purple-800",
+    link: "/landingpage/#services?service=custom",
+  }
+];
 
 export default function LandingPage() {
   return (
@@ -89,7 +180,7 @@ export default function LandingPage() {
             <div className="space-y-8">
               <div className="animate-fade-in-up">
                 <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Scaling your business is hard.
+                 Scaling your business is hard, Don't CEO Alone.
                   <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-pink-600">
                     We&apos;re here to help.
@@ -127,7 +218,7 @@ export default function LandingPage() {
       </div>
 
       {/* SERVICES SECTION */}
-      <div className="py-20 bg-white">
+        <div className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Core Services</h2>
@@ -135,203 +226,13 @@ export default function LandingPage() {
               Choose the perfect solution to scale your business effectively
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* STAAJ Lite */}
-            <div className="bg-white rounded-xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border-2 border-red-100 hover:border-red-300 transform hover:scale-105 group">
-              <div className="w-16 h-16 bg-gradient-to-br from-red-100 to-pink-200 rounded-xl flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform duration-300">
-                <Clock className="w-8 h-8 text-red-600" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">STAAJ Lite</h3>
-              <p className="text-gray-600 mb-2 leading-relaxed font-semibold">
-                Road to $1M
-              </p>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                For early-stage founders (4–10 people) building toward their first $1M.
-              </p>
-              <div className="space-y-3 mb-6">
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span className="text-sm text-gray-600">Clear, data-informed decision-making</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span className="text-sm text-gray-600">Burnout-free growth strategies</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span className="text-sm text-gray-600">Simple systems that scale</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span className="text-sm text-gray-600">Weekly expert support</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span className="text-sm text-gray-600">Go-to-market and ops setup</span>
-                </div>
-              </div>
-              <div className="text-center mb-4">
-                <span className="inline-block bg-red-100 text-red-800 text-xs px-3 py-1 rounded-full font-medium">
-                  Quick Start
-                </span>
-              </div>
-              <div className="text-center">
-                <Link
-                  href="/landingpage/#services?service=lite"
-                  scroll={false}
-                  className="inline-block px-5 py-2 mt-2 rounded-xl font-semibold bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow hover:scale-105 transition"
-                >
-                  Learn More
-                </Link>
-              </div>
-            </div>
-            {/* STAAJ Pro */}
-            <div className="bg-white rounded-xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border-2 border-pink-100 hover:border-pink-300 transform hover:scale-105 group">
-              <div className="w-16 h-16 bg-gradient-to-br from-pink-100 to-red-200 rounded-xl flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform duration-300">
-                <BarChart3 className="w-8 h-8 text-pink-600" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">STAAJ Pro</h3>
-              <p className="text-gray-600 mb-2 leading-relaxed font-semibold">
-                Road to $5M
-              </p>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                For growing teams (10–30 people) scaling past $1M toward $5M.
-              </p>
-              <div className="space-y-3 mb-6">
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span className="text-sm text-gray-600">Smarter workflows</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span className="text-sm text-gray-600">Custom growth roadmap</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span className="text-sm text-gray-600">Strategic help across teams</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span className="text-sm text-gray-600">Workshops to unlock progress</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span className="text-sm text-gray-600">Culture and performance</span>
-                </div>
-              </div>
-              <div className="text-center mb-4">
-                <span className="inline-block bg-pink-100 text-pink-800 text-xs px-3 py-1 rounded-full font-medium">
-                  Most Popular
-                </span>
-              </div>
-              <div className="text-center">
-                <Link
-                  href="/landingpage/#services?service=pro"
-                  scroll={false}
-                  className="inline-block px-5 py-2 mt-2 rounded-xl font-semibold bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow hover:scale-105 transition"
-                >
-                  Learn More
-                </Link>
-              </div>
-            </div>
-            {/* STAAJ Enterprise */}
-            <div className="bg-white rounded-xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border-2 border-orange-100 hover:border-orange-300 transform hover:scale-105 group">
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-red-200 rounded-xl flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform duration-300">
-                <Briefcase className="w-8 h-8 text-orange-600" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">STAAJ Enterprise</h3>
-              <p className="text-gray-600 mb-2 leading-relaxed font-semibold">
-                Road to $10M
-              </p>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                For established companies (30–50+ people) aiming for $10M and beyond.
-              </p>
-              <div className="space-y-3 mb-6">
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span className="text-sm text-gray-600">Executive-level guidance</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span className="text-sm text-gray-600">Revenue ops with measurable ROI</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span className="text-sm text-gray-600">Strategic visibility through better data</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span className="text-sm text-gray-600">Cross-team workflow alignment</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span className="text-sm text-gray-600">Infrastructure for sustainable scale</span>
-                </div>
-              </div>
-              <div className="text-center mb-4">
-                <span className="inline-block bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full font-medium">
-                  Premium
-                </span>
-              </div>
-              <div className="text-center">
-                <Link
-                  href="/landingpage/#services?service=enterprise"
-                  scroll={false}
-                  className="inline-block px-5 py-2 mt-2 rounded-xl font-semibold bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow hover:scale-105 transition"
-                >
-                  Learn More
-                </Link>
-              </div>
-            </div>
-            {/* Custom Solutions */}
-            <div className="bg-white rounded-xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 border-2 border-purple-100 hover:border-purple-300 transform hover:scale-105 group">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-200 rounded-xl flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform duration-300">
-                <Settings className="w-8 h-8 text-purple-600" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Custom Solutions</h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                Got business problems? We'll help you solution them.
-              </p>
-              <div className="space-y-3 mb-6">
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span className="text-sm text-gray-600">Executive-level guidance</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span className="text-sm text-gray-600">Revenue ops with measurable ROI</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span className="text-sm text-gray-600">Strategic visibility through better data</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span className="text-sm text-gray-600">Cross-team workflow alignment</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span className="text-sm text-gray-600">Infrastructure for sustainable scale</span>
-                </div>
-              </div>
-              <div className="text-center mb-4">
-                <span className="inline-block bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full font-medium">
-                  Bespoke
-                </span>
-              </div>
-              <div className="text-center">
-                <Link
-                  href="/landingpage/#services?service=custom"
-                  scroll={false}
-                  className="inline-block px-5 py-2 mt-2 rounded-xl font-semibold bg-gradient-to-r from-pink-600 to-purple-600 text-white shadow hover:scale-105 transition"
-                >
-                  Learn More
-                </Link>
-              </div>
-            </div>
-          </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {cards.map((card, idx) => (
+            <ServiceCard key={idx} {...card} features={card.features.map(f => f.text)} />
+          ))}
         </div>
-      </div>
+        </div>
+        </div>
 
       {/* TRUST SECTION (Key Stats) */}
       <div className="bg-white mt-2">
@@ -385,7 +286,7 @@ export default function LandingPage() {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Quarterly Framework</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We provide enterprise-level expertise through our comprehensive PPTFM approach
+              We provide enterprise-level expertise through our comprehensive PPTFM(Process People Technology Financials Metrics) approach
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

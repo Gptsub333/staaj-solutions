@@ -256,78 +256,40 @@ const SidebarContent: React.FC = () => {
       </div>
 
       {/* Testimonials */}
-      <div className="bg-white rounded-xl shadow-lg border border-pink-100 p-6 relative overflow-hidden">
-        {/* Circular Progress Indicator */}
-        <div className="absolute top-4 right-4 w-12 h-12">
-          <svg className="w-12 h-12 transform -rotate-90" viewBox="0 0 48 48">
-            <circle
-              cx="24"
-              cy="24"
-              r="20"
-              stroke="#f3f4f6"
-              strokeWidth="3"
-              fill="none"
-            />
-            <circle
-              cx="24"
-              cy="24"
-              r="20"
-              stroke="url(#testimonialGradient)"
-              strokeWidth="3"
-              fill="none"
-              strokeLinecap="round"
-              strokeDasharray={`${2 * Math.PI * 20}`}
-              strokeDashoffset={`${2 * Math.PI * 20 * (1 - testimonialProgress / 100)}`}
-              className="transition-all duration-100 ease-linear"
-            />
-            <defs>
-              <linearGradient id="testimonialGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#ec4899" />
-                <stop offset="100%" stopColor="#8b5cf6" />
-              </linearGradient>
-            </defs>
-          </svg>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className={`w-6 h-6 bg-gradient-to-r ${testimonials[currentTestimonial].color} rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg`}>
-              {currentTestimonial + 1}
-            </div>
-          </div>
-        </div>
-        {/* Testimonial Dots Indicator */}
-        <div className="flex space-x-2 mb-4">
-          {testimonials.map((_, idx) => (
-            <div
-              key={idx}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                idx === currentTestimonial
-                  ? `bg-gradient-to-r ${testimonials[currentTestimonial].color} scale-125`
-                  : 'bg-gray-300'
-              }`}
-            />
-          ))}
-        </div>
-        <div className="flex items-start space-x-4 animate-testimonialfadein">
-          <div className={`w-12 h-12 bg-gradient-to-r ${testimonials[currentTestimonial].color} rounded-full flex items-center justify-center text-white font-bold shadow-lg`}>
-            {testimonials[currentTestimonial].name[0]}
-          </div>
-          <div className="flex-1">
-            <p className="text-gray-700 italic mb-2">"{testimonials[currentTestimonial].content}"</p>
-            <p className="font-semibold text-gray-800">{testimonials[currentTestimonial].name}</p>
-            <p className="text-sm text-gray-600">
-              {testimonials[currentTestimonial].role}
-              {testimonials[currentTestimonial].company ? `, ${testimonials[currentTestimonial].company}` : ''}
-              {testimonials[currentTestimonial].date ? ` · ${testimonials[currentTestimonial].date}` : ''}
-            </p>
-          </div>
-        </div>
-        {/* Bottom progress bar */}
-        <div className="mt-4 w-full h-1 bg-gray-100 rounded-full">
-          <div
-            className={`h-full bg-gradient-to-r ${testimonials[currentTestimonial].color} rounded-full transition-all duration-100 ease-linear`}
-            style={{ width: `${testimonialProgress}%` }}
-          />
-        </div>
-      </div>
+      {/* Testimonials */}
+<div className="bg-white rounded-xl shadow-lg border border-pink-100 p-6 relative overflow-hidden">
+  {/* Testimonial Dots Indicator */}
+  <div className="flex space-x-2 mb-4">
+    {testimonials.map((_, idx) => (
+      <div
+        key={idx}
+        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+          idx === currentTestimonial
+            ? `bg-gradient-to-r ${testimonials[currentTestimonial].color} scale-125`
+            : 'bg-gray-300'
+        }`}
+      />
+    ))}
+  </div>
+  {/* FIXED HEIGHT CONTAINER */}
+<div className="flex flex-col items-center justify-center h-64 min-h-[16rem] max-h-64 overflow-hidden animate-testimonialfadein text-center">
+  {/* Avatar above */}
+  <div className={`w-12 h-12 mb-4 bg-gradient-to-r ${testimonials[currentTestimonial].color} rounded-full flex items-center justify-center text-white font-bold shadow-lg`}>
+    {testimonials[currentTestimonial].name[0]}
+  </div>
+  {/* Testimonial text/content */}
+  <div className="flex-1 flex flex-col justify-center h-full">
+    <p className="text-gray-700 italic mb-2 line-clamp-5">{`"${testimonials[currentTestimonial].content}"`}</p>
+    <p className="font-semibold text-gray-800">{testimonials[currentTestimonial].name}</p>
+    <p className="text-sm text-gray-600">
+      {testimonials[currentTestimonial].role}
+      {testimonials[currentTestimonial].company ? `, ${testimonials[currentTestimonial].company}` : ''}
+    </p>
+  </div>
+</div>
+
+</div>
+
     </aside>
   );
 };

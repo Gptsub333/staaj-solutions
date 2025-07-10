@@ -44,18 +44,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     <body style="margin:0; padding:0; font-family: 'Inter', Arial, sans-serif; background: #fff5fa;">
       <div style="max-width:600px; margin:48px auto; background:#fff; border-radius:22px; overflow:hidden; box-shadow:0 8px 36px rgba(236,72,153,0.08); border-top: 6px solid #ec4899;">
         <!-- Header -->
-        <div style="background: linear-gradient(90deg,#fff5fa 0%,#fff 65%,#ffe4ee 100%); padding:48px 32px 36px 32px; text-align:left;">
-          <span style="display:inline-block; font-size:1.3rem; font-weight:800; color:#ec4899; margin-bottom:12px; letter-spacing:-1px;">
-            STAAJ Solutions
-          </span>
-          <h1 style="color:#0f172a; margin:20px 0 24px 0; font-size:2.1rem; font-weight:900; line-height:1.1;">
-            Scaling your business is hard.<br>
-            <span style="color:#ec4899;">We're here to help.</span>
-          </h1>
-          <p style="color:#475569; font-size:1.1rem; margin:0 0 38px 0; max-width:430px;">
-            We empower small and midsize businesses to scale with confidence through enterprise-level expertise and personalized support.
-          </p>
-        </div>
+ 
+          <div style="background: linear-gradient(90deg,#fff5fa 0%,#fff 65%,#ffe4ee 100%); padding: 28px 24px 18px 24px; border-radius: 22px 22px 0 0;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+              <tr>
+                <td style="vertical-align: middle; padding-right: 10px;" width="48">
+                  <img src="https://res.cloudinary.com/dkou4uxp1/image/upload/v1752144185/logo_ypqxzy.png" alt="STAAJ Logo" width="44" height="44" style="display:block; border-radius:12px; background:#fff1fa;" />
+                </td>
+                <td style="vertical-align: middle;">
+                  <span style="display:inline-block; font-size:1.15rem; font-weight:900; color:#ec4899; letter-spacing:-1px; line-height:1;">
+                    STAAJ Solutions
+                  </span>
+                </td>
+              </tr>
+            </table>
+            <h1 style="color:#0f172a; margin:18px 0 16px 0; font-size:1.12rem; font-weight:800; line-height:1.24;">
+              Scaling your business is hard. <span style="color:#ec4899;">Don't CEO Alone.</span>
+            </h1>
+            <p style="color:#475569; font-size:1rem; margin:0 0 18px 0;">
+              We empower small and midsize businesses to scale with confidence through enterprise-level expertise and personalized support.
+            </p>
+          </div>
+
         <!-- Main Message & CTA -->
         <div style="padding:0 32px 0 32px;">
           <h2 style="color:#d946ef; font-size:1.3rem; font-weight:700; margin:36px 0 20px 0;">Hello ${firstName}!</h2>
@@ -83,7 +93,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           </p>
           <div style="margin:18px 0; padding:13px; background-color:rgba(255,255,255,0.13); border-radius:8px; border-left:4px solid #ef4444; display:inline-block;">
             <p style="color:#fff; font-size:0.95rem; margin:0; font-style:italic;">
-              "Scaling your business is hard. We're here to help."
+              "Scaling your business is hard, Don't CEO Alone. We're here to help."
             </p>
           </div>
           <p style="color:#fce7f3; font-size: 12px; margin: 15px 0 0 0;">
