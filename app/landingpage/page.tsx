@@ -1166,7 +1166,7 @@ const GenericLandingPage = () => {
                   </div>
                   <div>
                     <p className="text-xs text-gray-500 uppercase tracking-wide">Phone</p>
-                    <span className="text-gray-700 font-medium">866-987-8225</span>
+                    <span className="text-gray-700 font-medium">866-98-STAAJ</span>
                   </div>
                 </div>
                 <div className="flex items-start group">
