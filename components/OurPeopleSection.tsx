@@ -20,14 +20,14 @@ const people = [
         title: "Co-Founder and Director of Operational Integrity",
         description:
             "Garrett makes sure every client feels supported and seen. He blends process expertise with a deep commitment to service, helping teams work smarter and communicate better.",
-        image: "/images/p3.jpeg",
+        image: "/images/p4.jpeg",
     },
     {
         name: "Alex Wichman",
         title: "Co-Founder and Director of Marketing",
         description:
             "Alex helps clients find their voice and connect with the right audience. He brings creative energy and strategic thinking to every project, making sure brands grow with purpose.",
-        image: "/images/p4.png",
+        image: "/images/p3.png",
     },
 ]
 
